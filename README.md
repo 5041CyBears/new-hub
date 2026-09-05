@@ -1,33 +1,59 @@
 # 5041 CyBears Training Documentation Site
 
-This folder is a static GitHub Pages site converted from the uploaded Reveal.js training modules. It uses a documentation-style navigation layout inspired by FTC Docs while preserving the module content, images, interactive activities, quizzes, passing scores, and PDF certificate generation.
+This is a static GitHub Pages training site for 5041 CyBears FRC and FTC modules. The original module content, interactives, quizzes, passing scores, and quiz-gated PDF certificates are preserved, while every page is displayed inside one shared documentation-style shell.
 
 ## Publish on GitHub Pages
 
-1. Copy the contents of this folder into the repository/branch you want to publish.
-2. In GitHub, open **Settings → Pages**.
-3. Under **Build and deployment**, choose **Deploy from a branch**.
-4. Select the branch and `/ (root)` folder containing `index.html`, then save.
-5. Open the Pages URL after deployment.
+1. Copy the contents of this folder into the repository you want to publish.
+2. Commit and push the files to GitHub.
+3. Open **Settings → Pages** in the repository.
+4. Choose **Deploy from a branch**.
+5. Select the branch containing this site and `/ (root)`.
+6. Save and open the generated GitHub Pages URL.
 
-All site links are relative, so the site works as either a user/organization Pages site or a project Pages site. No build system is required.
+The included `.nojekyll` file should remain in the repository root.
 
-## Structure
+## Main structure
 
-- `index.html` — training home page
-- `FRC-trainings/frc-trainings.html` — FRC module catalog
-- `FTC-training/ftc-trainings.html` — FTC module catalog
-- `FRC-trainings/modules/` — converted FRC module pages and original module assets/scripts
-- `FTC-training/modules/` — converted FTC module pages and original module assets/scripts
-- `shared/` — original shared 5041 CSS/JS/assets used by the modules
-- `site-assets/` — new documentation shell, Reveal compatibility shim, navigation, and site styling
+- `index.html` — documentation-style training home page
+- `site-assets/` — shared site shell, navigation manifest, compatibility layer, and documentation CSS
+- `FRC-trainings/modules/` — FRC module HTML and module-specific CSS/JS
+- `FTC-training/modules/` — FTC module HTML and module-specific CSS/JS
+- `shared/` — assets and shared code actually used by the retained modules
 
-## How the conversion works
+## Navigation
 
-The original `<section>` slide content remains in each module. Reveal.js presentation CSS/runtime is replaced with `site-assets/js/reveal-compat.js`, which provides the limited Reveal API used by the existing interaction scripts. `site-assets/js/docs-shell.js` then presents the same sections as a vertical documentation page with a left module navigation and on-page table of contents.
+`site-assets/js/site-manifest.js` is the single source of truth for module order, program, category, title, description, slug, and path.
 
-Quiz grading and certificate PDF generation remain in the original module JavaScript. The documentation shell observes the existing `#complete.locked` state to keep certificates blocked until the quiz passes and records completion in browser local storage for the green completion check mark.
+`site-assets/js/docs-shell.js` reads that manifest and builds the same:
 
-## Editing a module
+- top header
+- searchable left navigation
+- program/category groups
+- completion check marks
+- breadcrumbs
+- right-side "On this page" navigation
+- previous/next module links
 
-Edit the module HTML/CSS/JS in its existing module folder. Keep the `site-assets` references at the bottom of each converted page. If you add a new module, add it to `site-assets/js/site-manifest.js` and the desired program catalog.
+for every module. The landing page uses this same shell, so module lists do not need to be duplicated in `index.html`.
+
+## Editing or adding a module
+
+Edit the module HTML/CSS/JS in its existing module folder. To add a new module, add one object to `site-assets/js/site-manifest.js` and make sure the module page loads:
+
+```html
+<script src="../../site-assets/js/site-manifest.js"></script>
+<script src="../../site-assets/js/docs-shell.js"></script>
+```
+
+and has the correct body metadata:
+
+```html
+<body data-program="FRC" data-module-slug="your-slug">
+```
+
+Use `FTC` instead of `FRC` for FTC modules.
+
+## Certificates
+
+The original module JavaScript still controls quiz grading and certificate unlocking. The documentation shell observes the existing `#complete.locked` state and records passed modules in browser local storage so completed modules receive a green check mark in the sidebar.

@@ -575,7 +575,7 @@ function loadAudioForSlide(slide) {
 
    Example:
    <section
-     data-audio="audio/slide-4.mp3"
+     data-audio="../../shared/assets/audio/culture-2.mp3"
      data-audio-title="Drivetrain Types"
    >
   */
