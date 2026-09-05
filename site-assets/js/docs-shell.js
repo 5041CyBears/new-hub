@@ -557,7 +557,7 @@
       return;
     }
 
-    document.body.dataset.docsShellReady = "true";
+    document.body.dataset.docsShellReady = "building";
     document.body.classList.add("docs-module");
 
     const reveal = document.querySelector(".reveal");
@@ -565,11 +565,13 @@
 
     if (!isHomePage && !reveal) {
       console.warn("5041 training shell: no Reveal module content was found.");
+      document.body.dataset.docsShellReady = "error";
       return;
     }
 
     if (isHomePage && !homeContent) {
       console.warn("5041 training shell: no landing-page content was found.");
+      document.body.dataset.docsShellReady = "error";
       return;
     }
 
@@ -617,6 +619,8 @@
 
     updateDoneStates();
     watchActiveSection(sections);
+
+    document.body.dataset.docsShellReady = "true";
   }
 
 

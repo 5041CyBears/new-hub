@@ -35,6 +35,22 @@ body.docs-catalog {
 }
 
 
+
+/* =========================================================
+   Prevent Raw Landing-Page Flash Before Shell Loads
+   ========================================================= */
+
+body[data-page="home"] > #docs-home-content {
+  opacity: 0;
+  animation: docs-shell-home-fallback 0s linear 2s forwards;
+}
+
+@keyframes docs-shell-home-fallback {
+  to {
+    opacity: 1;
+  }
+}
+
 /* =========================================================
    Header
    ========================================================= */

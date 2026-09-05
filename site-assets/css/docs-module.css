@@ -5,6 +5,35 @@
    ========================================================= */
 
 
+
+/* =========================================================
+   Prevent Raw Module Flash Before Documentation Shell Loads
+   ========================================================= */
+
+/*
+ * Module HTML exists as a direct child of <body> for a brief moment
+ * before docs-shell.js moves it into .docs-article. Hide only that raw
+ * state so users never see the old standalone Reveal layout.
+ *
+ * The fallback animation reveals the raw module after 2 seconds if the
+ * documentation shell ever fails to load, so the content is still usable.
+ */
+body[data-module-slug] {
+  margin: 0;
+  background: #f7f7f7;
+}
+
+body[data-module-slug] > .reveal {
+  opacity: 0;
+  animation: docs-shell-fallback 0s linear 2s forwards;
+}
+
+@keyframes docs-shell-fallback {
+  to {
+    opacity: 1;
+  }
+}
+
 /* =========================================================
    Page / Reveal Container
    ========================================================= */

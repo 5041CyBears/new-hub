@@ -888,12 +888,14 @@ SAFE EDITING WORKFLOW
 </div>
     <!-- STUDENT NOTE: Loads JavaScript from https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js. Scripts near the end of <body> run after most HTML has been parsed. -->
     <!-- STUDENT NOTE: Loads JavaScript from https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js. Scripts near the end of <body> run after most HTML has been parsed. -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+        <!-- Build the documentation shell before loading heavier module libraries. -->
+    <script src="../../site-assets/js/site-manifest.js"></script>
+    <script src="../../site-assets/js/docs-shell.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <!-- STUDENT NOTE: Loads JavaScript from https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js. Scripts near the end of <body> run after most HTML has been parsed. -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <!-- STUDENT NOTE: Loads JavaScript from inclusion.js. Scripts near the end of <body> run after most HTML has been parsed. -->
     <script src="inclusion.js"></script>
-      <script src="../../site-assets/js/site-manifest.js"></script>
-    <script src="../../site-assets/js/docs-shell.js"></script>
-  </body>
+</body>
 </html>
