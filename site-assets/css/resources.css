@@ -1,0 +1,201 @@
+/* =========================================================
+   5041 Resource Library Pages
+   ========================================================= */
+
+/* Prevent the unwrapped resource page from flashing before docs-shell.js runs. */
+body[data-page="resource"] > #docs-resource-content {
+  opacity: 0;
+  animation: docs-resource-fallback 0s linear 2s forwards;
+}
+
+@keyframes docs-resource-fallback {
+  to { opacity: 1; }
+}
+
+.docs-resource-article > .docs-page-section {
+  background: #fff;
+  border: 1px solid var(--cy-border);
+  border-top: 6px solid var(--cy-red);
+  border-radius: 6px;
+  padding: clamp(18px, 3vw, 32px);
+  margin: 0 0 22px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+  scroll-margin-top: 145px;
+}
+
+.docs-resource-article h1,
+.docs-resource-article h2,
+.docs-resource-article h3 {
+  font-family: "Droid Sans", Arial, sans-serif;
+}
+
+.docs-resource-article .docs-page-title {
+  font-family: "Audiowide", "Droid Sans", sans-serif;
+}
+
+.docs-resource-article p {
+  line-height: 1.55;
+}
+
+.resource-eyebrow,
+.resource-section-kicker {
+  display: inline-block;
+  font: 700 0.72rem "Droid Sans", Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #760000;
+}
+
+.resource-callout {
+  margin: 20px 0 26px;
+  padding: 15px 17px;
+  background: #f6f6f6;
+  border-left: 6px solid var(--cy-red);
+  font: 400 0.92rem/1.5 "Droid Sans", Arial, sans-serif;
+}
+
+.resource-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(235px, 1fr));
+  gap: 12px;
+}
+
+.resource-quick-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 112px;
+  padding: 14px 15px;
+  background: #111;
+  border-top: 5px solid var(--cy-red);
+  border-radius: 5px;
+  color: #fff;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.resource-quick-card:hover,
+.resource-quick-card:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.16);
+}
+
+.resource-quick-card strong {
+  font: 700 0.95rem/1.25 "Droid Sans", Arial, sans-serif;
+}
+
+.resource-quick-card span {
+  color: #ddd;
+  font: 400 0.78rem/1.4 "Droid Sans", Arial, sans-serif;
+}
+
+.resource-section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 14px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.resource-section-heading h2 {
+  margin: 3px 0 0;
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+}
+
+.resource-count {
+  flex: 0 0 auto;
+  color: #777;
+  font: 700 0.72rem "Droid Sans", Arial, sans-serif;
+  text-transform: uppercase;
+}
+
+.resource-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 12px;
+}
+
+.resource-item {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 15px 16px;
+  background: #fafafa;
+  border: 1px solid #dedede;
+  border-left: 5px solid #aaa;
+  border-radius: 5px;
+}
+
+.resource-item:hover {
+  border-left-color: var(--cy-red);
+  background: #fff;
+}
+
+.resource-item-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px 10px;
+}
+
+.resource-item h3 {
+  flex: 1 1 190px;
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.25;
+}
+
+.resource-item p {
+  margin: 10px 0 14px;
+  color: #444;
+  font: 400 0.85rem/1.48 "Droid Sans", Arial, sans-serif;
+}
+
+.resource-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.resource-badge {
+  display: inline-block;
+  padding: 3px 6px;
+  border-radius: 999px;
+  background: #eee0e0;
+  color: #700;
+  font: 700 0.62rem "Droid Sans", Arial, sans-serif;
+  white-space: nowrap;
+}
+
+.resource-badge-muted {
+  background: #e9e9e9;
+  color: #555;
+}
+
+.resource-link {
+  margin-top: auto;
+  align-self: flex-start;
+  color: #760000;
+  text-decoration: none;
+  font: 700 0.78rem "Droid Sans", Arial, sans-serif;
+}
+
+.resource-link:hover,
+.resource-link:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 620px) {
+  .resource-list {
+    grid-template-columns: 1fr;
+  }
+
+  .resource-section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

@@ -27,8 +27,14 @@
   const manifest =
     (window.TRAINING_SITE_MANIFEST || {}).modules || [];
 
+  const resourceManifest =
+    (window.TRAINING_SITE_MANIFEST || {}).resources || [];
+
   const isHomePage =
     document.body.dataset.page === "home";
+
+  const isResourcePage =
+    document.body.dataset.page === "resource";
 
   const program =
     document.body.dataset.program || "FRC";
@@ -51,6 +57,15 @@
     manifest.find(
       (module) =>
         new URL(module.path, root).pathname ===
+        location.pathname
+    ) ||
+
+    {};
+
+  const resourceMeta =
+    resourceManifest.find(
+      (resource) =>
+        new URL(resource.path, root).pathname ===
         location.pathname
     ) ||
 
@@ -297,13 +312,13 @@
       make(
         "span",
         "docs-brand-title",
-        "5041 CyBears Training"
+        "5041 FIRST Programs"
       ),
 
       make(
         "span",
         "docs-brand-subtitle",
-        "Documentation & Certification"
+        "Training and Resources"
       )
     );
 
@@ -320,7 +335,9 @@
     const pillText =
       isHomePage
         ? "Training Home"
-        : program + " Training";
+        : isResourcePage
+          ? program + " Resources"
+          : program + " Training";
 
 
     /* -------------------------------------------------------
@@ -416,6 +433,76 @@
 
     homeGroup.append(homeLink);
     sidebar.append(homeGroup);
+
+
+    /* -------------------------------------------------------
+       Resource Libraries
+       Keep these directly below Getting Started so students
+       can reach the resource hubs before the training lists.
+       ------------------------------------------------------- */
+
+    if (resourceManifest.length) {
+      const resourcesGroup =
+        make(
+          "nav",
+          "docs-nav-group docs-nav-resource-group"
+        );
+
+      resourcesGroup.append(
+        make(
+          "div",
+          "docs-nav-heading",
+          "Resources"
+        )
+      );
+
+      const resourcesCategory =
+        make(
+          "div",
+          "docs-nav-category"
+        );
+
+      resourcesCategory.dataset.category =
+        "Resources";
+
+      resourceManifest.forEach(
+        (resource) => {
+          const resourceLink =
+            makeLink(
+              new URL(
+                resource.path,
+                root
+              ),
+              "docs-nav-link docs-nav-resource-link",
+              resource.title
+            );
+
+          resourceLink.dataset.resourcePath =
+            resource.path;
+
+          if (
+            isResourcePage &&
+            resource.path === resourceMeta.path
+          ) {
+            resourceLink.classList.add(
+              "active"
+            );
+          }
+
+          resourcesCategory.append(
+            resourceLink
+          );
+        }
+      );
+
+      resourcesGroup.append(
+        resourcesCategory
+      );
+
+      sidebar.append(
+        resourcesGroup
+      );
+    }
 
 
     /* -------------------------------------------------------
@@ -786,6 +873,15 @@
     return [
       ...document.querySelectorAll(
         "#docs-home-content > section"
+      )
+    ];
+  }
+
+
+  function prepareResourceSections() {
+    return [
+      ...document.querySelectorAll(
+        "#docs-resource-content > section"
       )
     ];
   }
@@ -1194,6 +1290,38 @@
     }
 
 
+    if (isResourcePage) {
+      breadcrumbs.append(
+        makeLink(
+          new URL("index.html", root),
+          "",
+          "Training & Resources"
+        ),
+
+        document.createTextNode(
+          " / "
+        ),
+
+        makeLink(
+          new URL(
+            "index.html#" +
+            program.toLowerCase(),
+            root
+          ),
+          "",
+          program
+        ),
+
+        document.createTextNode(
+          " / " +
+          (resourceMeta.title || document.title)
+        )
+      );
+
+      return breadcrumbs;
+    }
+
+
     breadcrumbs.append(
       makeLink(
         new URL("index.html", root),
@@ -1319,9 +1447,15 @@
         "docs-home-content"
       );
 
+    const resourceContent =
+      document.getElementById(
+        "docs-resource-content"
+      );
+
 
     if (
       !isHomePage &&
+      !isResourcePage &&
       !reveal
     ) {
       console.warn(
@@ -1350,10 +1484,27 @@
     }
 
 
+    if (
+      isResourcePage &&
+      !resourceContent
+    ) {
+      console.warn(
+        "5041 training shell: no resource-page content was found."
+      );
+
+      document.body.dataset.docsShellReady =
+        "error";
+
+      return;
+    }
+
+
     const sections =
       isHomePage
         ? prepareHomeSections()
-        : prepareRevealSections();
+        : isResourcePage
+          ? prepareResourceSections()
+          : prepareRevealSections();
 
 
     const header =
@@ -1382,7 +1533,9 @@
         "article",
         isHomePage
           ? "docs-article docs-home-article"
-          : "docs-article"
+          : isResourcePage
+            ? "docs-article docs-resource-article"
+            : "docs-article"
       );
 
 
@@ -1405,6 +1558,23 @@
       );
 
       homeContent.remove();
+
+      main.append(
+        article
+      );
+    }
+
+
+    /* -------------------------------------------------------
+       Resource Library Page
+       ------------------------------------------------------- */
+
+    else if (isResourcePage) {
+      article.append(
+        ...resourceContent.children
+      );
+
+      resourceContent.remove();
 
       main.append(
         article
@@ -1476,7 +1646,10 @@
        Module Completion Logic
        ------------------------------------------------------- */
 
-    if (!isHomePage) {
+    if (
+      !isHomePage &&
+      !isResourcePage
+    ) {
       addLockBanner();
     }
 

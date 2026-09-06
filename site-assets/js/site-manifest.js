@@ -120,5 +120,21 @@ window.TRAINING_SITE_MANIFEST = {
       "category": "Robot Design",
       "path": "FTC-training/modules/ftc-drivetrain.html"
     }
+  ],
+  "resources": [
+    {
+      "program": "FRC",
+      "slug": "frc-resources",
+      "title": "FRC Resource Library",
+      "description": "Evergreen online resources for FIRST Robotics Competition students, mentors, and teams.",
+      "path": "FRC-resources.html"
+    },
+    {
+      "program": "FTC",
+      "slug": "ftc-resources",
+      "title": "FTC Resource Library",
+      "description": "Evergreen online resources for FIRST Tech Challenge students, mentors, and teams.",
+      "path": "FTC-resources.html"
+    }
   ]
 };
