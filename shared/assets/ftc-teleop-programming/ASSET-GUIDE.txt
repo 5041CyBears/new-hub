@@ -1,0 +1,12 @@
+5041 FTC TeleOp Programming — custom asset guide
+
+Place custom photos/diagrams in shared/assets/ftc-teleop-programming/
+
+Suggested files:
+- ftc-teleop-programming-overview.jpg
+- ftc-teleop-programming-workflow.png
+- ftc-teleop-programming-testing.jpg
+- ftc-teleop-programming-competition.jpg
+
+Replace a placeholder with:
+<img class="topic-wide-photo" src="../../shared/assets/ftc-teleop-programming/FILENAME" alt="Describe the image">

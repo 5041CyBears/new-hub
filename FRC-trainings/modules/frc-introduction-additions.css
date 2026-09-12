@@ -220,9 +220,9 @@
   transform-origin: center;
 }
 
-/* STUDENT NOTE: Interaction state for `.frcintro-role-card.revealed, .frcintro-role-card[aria-pressed=""].revealed`. JavaScript may add/remove this class to provide visual feedback or control access. */
-.frcintro-role-card.revealed,
-.frcintro-role-card[aria-pressed="true"].revealed {
+/* STUDENT NOTE: Interaction state for `.frcintro-role-card.docs-native-articleed, .frcintro-role-card[aria-pressed=""].docs-native-articleed`. JavaScript may add/remove this class to provide visual feedback or control access. */
+.frcintro-role-card.docs-native-articleed,
+.frcintro-role-card[aria-pressed="true"].docs-native-articleed {
   background: var(--black) !important;
   color: var(--white) !important;
 }
@@ -444,71 +444,71 @@
 }
 
 @media (max-width: 900px) {
-  /* STUDENT NOTE: Layout rule for `.reveal .frcintro-grid-3, .reveal .frcintro-grid-4, .reveal .frcintro-role-grid, .reveal .behavior-click-grid, .reveal .frcintro-process, .reveal .season-sort-targets, .reveal .regional-match-grid`. Grid properties here control columns, gaps, and alignment. */
-  .reveal .frcintro-grid-3,
-  .reveal .frcintro-grid-4,
-  .reveal .frcintro-role-grid,
-  .reveal .behavior-click-grid,
-  .reveal .frcintro-process,
-  .reveal .season-sort-targets,
-  .reveal .regional-match-grid {
+  /* STUDENT NOTE: Layout rule for `.docs-native-article .frcintro-grid-3, .docs-native-article .frcintro-grid-4, .docs-native-article .frcintro-role-grid, .docs-native-article .behavior-click-grid, .docs-native-article .frcintro-process, .docs-native-article .season-sort-targets, .docs-native-article .regional-match-grid`. Grid properties here control columns, gaps, and alignment. */
+  .docs-native-article .frcintro-grid-3,
+  .docs-native-article .frcintro-grid-4,
+  .docs-native-article .frcintro-role-grid,
+  .docs-native-article .behavior-click-grid,
+  .docs-native-article .frcintro-process,
+  .docs-native-article .season-sort-targets,
+  .docs-native-article .regional-match-grid {
     grid-template-columns: 1fr 1fr;
   }
 
-  /* STUDENT NOTE: Layout rule for `.reveal .frcintro-grid-2`. Grid properties here control columns, gaps, and alignment. */
-  .reveal .frcintro-grid-2 {
+  /* STUDENT NOTE: Layout rule for `.docs-native-article .frcintro-grid-2`. Grid properties here control columns, gaps, and alignment. */
+  .docs-native-article .frcintro-grid-2 {
     grid-template-columns: 1fr;
   }
-/* STUDENT NOTE: Styles elements matched by `} .reveal .regional-match-slide.present`. Search the HTML for these class/id names before changing a shared rule. */
+/* STUDENT NOTE: Styles elements matched by `} .docs-native-article .regional-match-slide.present`. Search the HTML for these class/id names before changing a shared rule. */
 }
 
 
 /* Robust regional matching interaction */
-.reveal .regional-match-slide.present {
-  /* STUDENT NOTE: Button styling for `pointer-events: auto !important; isolation: isolate; } .reveal .regional-match-slide .regional-match-bank, .reveal .regional-match-slide .regional-match-grid, .reveal .regional-match-slide .regional-match-zone, .reveal .regional-match-slide .regional-match-drop, .reveal .regional-match-slide .regional-match-chip, .reveal .regional-match-slide .activity-controls, .reveal .regional-match-slide .quiz-button`. Keep hover/selected/correct states visually consistent with the base button. */
+.docs-native-article .regional-match-slide.present {
+  /* STUDENT NOTE: Button styling for `pointer-events: auto !important; isolation: isolate; } .docs-native-article .regional-match-slide .regional-match-bank, .docs-native-article .regional-match-slide .regional-match-grid, .docs-native-article .regional-match-slide .regional-match-zone, .docs-native-article .regional-match-slide .regional-match-drop, .docs-native-article .regional-match-slide .regional-match-chip, .docs-native-article .regional-match-slide .activity-controls, .docs-native-article .regional-match-slide .quiz-button`. Keep hover/selected/correct states visually consistent with the base button. */
   pointer-events: auto !important;
   isolation: isolate;
 }
 
-.reveal .regional-match-slide .regional-match-bank,
-.reveal .regional-match-slide .regional-match-grid,
-.reveal .regional-match-slide .regional-match-zone,
-.reveal .regional-match-slide .regional-match-drop,
-.reveal .regional-match-slide .regional-match-chip,
-.reveal .regional-match-slide .activity-controls,
-.reveal .regional-match-slide .quiz-button {
-  /* STUDENT NOTE: Layout rule for `position: relative; pointer-events: auto !important; } .reveal .regional-match-slide .regional-match-bank, .reveal .regional-match-slide .regional-match-grid, .reveal .regional-match-slide .activity-controls`. Grid properties here control columns, gaps, and alignment. */
+.docs-native-article .regional-match-slide .regional-match-bank,
+.docs-native-article .regional-match-slide .regional-match-grid,
+.docs-native-article .regional-match-slide .regional-match-zone,
+.docs-native-article .regional-match-slide .regional-match-drop,
+.docs-native-article .regional-match-slide .regional-match-chip,
+.docs-native-article .regional-match-slide .activity-controls,
+.docs-native-article .regional-match-slide .quiz-button {
+  /* STUDENT NOTE: Layout rule for `position: relative; pointer-events: auto !important; } .docs-native-article .regional-match-slide .regional-match-bank, .docs-native-article .regional-match-slide .regional-match-grid, .docs-native-article .regional-match-slide .activity-controls`. Grid properties here control columns, gaps, and alignment. */
   position: relative;
   pointer-events: auto !important;
 }
 
-.reveal .regional-match-slide .regional-match-bank,
-.reveal .regional-match-slide .regional-match-grid,
-.reveal .regional-match-slide .activity-controls {
-  /* STUDENT NOTE: Styles elements matched by `z-index: 10; } .reveal .regional-match-slide .regional-match-zone, .reveal .regional-match-slide .regional-match-drop`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .regional-match-slide .regional-match-bank,
+.docs-native-article .regional-match-slide .regional-match-grid,
+.docs-native-article .regional-match-slide .activity-controls {
+  /* STUDENT NOTE: Styles elements matched by `z-index: 10; } .docs-native-article .regional-match-slide .regional-match-zone, .docs-native-article .regional-match-slide .regional-match-drop`. Search the HTML for these class/id names before changing a shared rule. */
   z-index: 10;
 }
 
-.reveal .regional-match-slide .regional-match-zone,
-.reveal .regional-match-slide .regional-match-drop {
-  /* STUDENT NOTE: Button styling for `z-index: 11; } .reveal .regional-match-slide .regional-match-chip, .reveal .regional-match-slide .quiz-button`. Keep hover/selected/correct states visually consistent with the base button. */
+.docs-native-article .regional-match-slide .regional-match-zone,
+.docs-native-article .regional-match-slide .regional-match-drop {
+  /* STUDENT NOTE: Button styling for `z-index: 11; } .docs-native-article .regional-match-slide .regional-match-chip, .docs-native-article .regional-match-slide .quiz-button`. Keep hover/selected/correct states visually consistent with the base button. */
   z-index: 11;
 }
 
-.reveal .regional-match-slide .regional-match-chip,
-.reveal .regional-match-slide .quiz-button {
-  /* STUDENT NOTE: Styles elements matched by `z-index: 12; } .reveal .regional-match-slide .regional-match-chip`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .regional-match-slide .regional-match-chip,
+.docs-native-article .regional-match-slide .quiz-button {
+  /* STUDENT NOTE: Styles elements matched by `z-index: 12; } .docs-native-article .regional-match-slide .regional-match-chip`. Search the HTML for these class/id names before changing a shared rule. */
   z-index: 12;
 }
 
-.reveal .regional-match-slide .regional-match-chip {
-  /* STUDENT NOTE: Styles elements matched by `-webkit-user-drag: element; user-select: none; -webkit-user-select: none; touch-action: manipulation; } .reveal .regional-match-slide .regional-match-zone`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .regional-match-slide .regional-match-chip {
+  /* STUDENT NOTE: Styles elements matched by `-webkit-user-drag: element; user-select: none; -webkit-user-select: none; touch-action: manipulation; } .docs-native-article .regional-match-slide .regional-match-zone`. Search the HTML for these class/id names before changing a shared rule. */
   -webkit-user-drag: element;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
 }
 
-.reveal .regional-match-slide .regional-match-zone {
+.docs-native-article .regional-match-slide .regional-match-zone {
   cursor: pointer;
 }

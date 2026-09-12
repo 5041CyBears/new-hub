@@ -1,0 +1,12 @@
+5041 FTC Engineering Portfolio — custom asset guide
+
+Place custom photos/diagrams in shared/assets/ftc-engineering-portfolio/
+
+Suggested files:
+- ftc-engineering-portfolio-overview.jpg
+- ftc-engineering-portfolio-workflow.png
+- ftc-engineering-portfolio-testing.jpg
+- ftc-engineering-portfolio-competition.jpg
+
+Replace a placeholder with:
+<img class="topic-wide-photo" src="../../shared/assets/ftc-engineering-portfolio/FILENAME" alt="Describe the image">

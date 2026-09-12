@@ -1,0 +1,12 @@
+5041 FTC Motors, Servos & Motion Hardware — custom asset guide
+
+Place custom photos/diagrams in shared/assets/ftc-motors-servos-motion/
+
+Suggested files:
+- ftc-motors-servos-motion-overview.jpg
+- ftc-motors-servos-motion-workflow.png
+- ftc-motors-servos-motion-testing.jpg
+- ftc-motors-servos-motion-competition.jpg
+
+Replace a placeholder with:
+<img class="topic-wide-photo" src="../../shared/assets/ftc-motors-servos-motion/FILENAME" alt="Describe the image">

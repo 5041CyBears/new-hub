@@ -1,0 +1,188 @@
+<!-- 5041 Training Hub page: FRC-trainings/modules/flywheel-shooters.html -->
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>5041 FRC Flywheel Shooters Training</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&amp;family=Droid+Sans:wght@400;700&amp;family=Droid+Serif:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="../../shared/css/styles.css" rel="stylesheet"/>
+<link href="flywheel-shooters-additions.css" rel="stylesheet"/>
+<link href="../../site-assets/css/docs-site.css" rel="stylesheet"/>
+
+<link href="../../site-assets/css/native-module.css" rel="stylesheet"/></head>
+<body data-module-slug="flywheel-shooters" data-native-module="true" data-program="FRC">
+<script src="../../site-assets/js/reveal-compat.js"></script>
+<div id="docs-native-module-content"><section class="topic-slide native-module-section" id="module-goals"><span class="tag">Module Goals</span><h2>By the end, students should be able to:</h2><div class="bar"></div><ul><li>Explain how a flywheel shooter stores and transfers rotational energy to a game piece.</li><li>Choose single-wheel, hooded, dual-wheel, and multi-wheel layouts based on shot requirements.</li><li>Relate wheel diameter, RPM, surface speed, compression, contact length, inertia, and recovery time to shot consistency.</li><li>Design a repeatable feeding path, compliant compression, guarding, and serviceable wheel/shaft support.</li><li>Use velocity feedback plus feedforward, logging, and controlled tests to tune a shooter instead of guessing.</li><li>Diagnose common shooter failures such as RPM sag, inconsistent exit angle, slip, jams, vibration, and changing shot distance.</li></ul></section><section class="topic-vertical native-module-section" id="before-you-start"><span class="tag">Before You Start</span><h2>Who is completing this module?</h2><div class="topic-callout">
+<label class="topic-name-label" for="participantName">Student name</label>
+<input autocomplete="name" class="topic-name-input" id="participantName" placeholder="Enter your name for the certificate" type="text"/>
+<p>Your name is used only to populate the completion certificate in this browser.</p>
+</div></section><section class="topic-vertical native-module-section" id="big-idea"><span class="tag">Big Idea</span><h2>A good shooter is an energy-transfer system, not just a fast motor</h2><div class="topic-grid-3">
+<div class="topic-card"><h3>Store</h3><p>The rotating wheel(s) store kinetic energy. More inertia reduces speed drop per shot, but usually increases spin-up time and mass.</p></div>
+<div class="topic-card"><h3>Transfer</h3><p>Compression, friction, contact length, wheel material, geometry, and feed timing determine how consistently energy reaches the game piece.</p></div>
+<div class="topic-card"><h3>Recover</h3><p>Motors and control software must restore wheel speed quickly enough for the desired shot cadence.</p></div>
+</div>
+<div class="topic-callout"><strong>Practical rule:</strong> optimize for repeatable exit velocity and angle. Maximum free speed by itself does not make a good FRC shooter.</div></section><section class="topic-vertical native-module-section" id="common-architectures"><span class="tag">Common Architectures</span><h2>Know what each layout makes easy—and what it makes hard</h2><div class="topic-grid-4">
+<div class="topic-card"><h3>Single wheel + hood</h3><p>Compact and common. The fixed hood reacts against the game piece and usually creates backspin.</p></div>
+<div class="topic-card"><h3>Opposed wheels</h3><p>Two powered surfaces can control exit speed and spin. Requires careful speed matching and structure.</p></div>
+<div class="topic-card"><h3>Side-by-side wheels</h3><p>Useful where the game piece is wide or needs lateral centering. Differential speed can intentionally add spin.</p></div>
+<div class="topic-card"><h3>Staged wheels</h3><p>Multiple acceleration contacts can reduce load per contact but add synchronization and packaging complexity.</p></div>
+</div><!-- CUSTOM IMAGE SLOT #1: shooter-architectures.jpg -->
+<div class="topic-image-slot">Custom image slot: photos or diagrams of several FRC flywheel shooter layouts<br/><code>shared/assets/flywheel-shooters/shooter-architectures.jpg</code></div></section><section class="topic-vertical native-module-section" id="interactive-1-architecture-chooser"><span class="tag">Interactive 1 — Architecture Chooser</span><h2>Pick the layout that best matches the requirement</h2><div class="topic-prompt">A robot needs a compact shooter, a controlled launch angle, and intentional backspin with only one powered shaft. Which architecture is the best starting point?</div>
+<div class="topic-choice-grid" data-answer="hood" data-choice-group="" data-feedback="flyArchFeedback">
+<button class="topic-choice" data-choice="hood" data-explain="A powered flywheel against a shaped hood is a direct fit for the requirements.">Single flywheel + hood</button>
+<button class="topic-choice" data-choice="opposed" data-explain="Opposed wheels can work, but add a second powered surface that the requirement does not need.">Opposed flywheels</button>
+<button class="topic-choice" data-choice="roller" data-explain="A passive roller alone does not provide the same controlled hood contact path.">Flywheel + free roller</button>
+</div><div class="topic-feedback" id="flyArchFeedback">Choose an architecture.</div></section><section class="topic-vertical native-module-section" id="surface-speed"><span class="tag">Surface Speed</span><h2>RPM matters because it produces wheel surface speed</h2><div class="topic-callout"><strong>Wheel surface speed:</strong> <code>v = π × diameter × RPM ÷ 60</code>. Keep units consistent.</div>
+<p class="topic-small">The game piece will generally leave slower than the wheel surface because the contact is compliant and may slip. Use the calculation as a design/tuning reference, not a promise of exact projectile speed.</p></section><section class="topic-vertical native-module-section" id="interactive-2-surface-speed-calculator"><span class="tag">Interactive 2 — Surface-Speed Calculator</span><h2>Compare wheel diameter, RPM, and gearing</h2><div class="topic-form-grid">
+<label>Wheel diameter (in)<input id="flyDiameter" min="1" step="0.1" type="number" value="4"/></label>
+<label>Wheel RPM<input id="flyRpm" min="1" step="50" type="number" value="4500"/></label>
+<label>Estimated transfer efficiency (%)<input id="flyEff" max="100" min="10" step="1" type="number" value="75"/></label>
+</div><button class="topic-action" id="flySpeedCalc">Calculate</button><div class="topic-output" id="flySpeedOut">Enter values and calculate.</div></section><section class="topic-vertical native-module-section" id="compression-contact"><span class="tag">Compression &amp; Contact</span><h2>Compression creates normal force; too much creates heat, deformation, drag, and jams</h2><table class="topic-table"><tr><th>Too little</th><th>Useful zone</th><th>Too much</th></tr><tr><td>Slip, inconsistent exit speed, poor acceleration.</td><td>Repeatable traction without permanently deforming the game piece or overloading structure.</td><td>Large current spikes, piece damage, wheel wear, frame deflection, jam risk.</td></tr></table>
+<p class="topic-small">Measure the actual game piece population. Worn and new pieces may differ substantially. Design adjustable prototypes before freezing geometry.</p><!-- CUSTOM IMAGE SLOT #2: compression-path.png -->
+<div class="topic-image-slot">Custom image slot: CAD cross-section showing wheel, game piece, hood, compression, and wrap angle<br/><code>shared/assets/flywheel-shooters/compression-path.png</code></div></section><section class="topic-vertical native-module-section" id="interactive-3-compression-explorer"><span class="tag">Interactive 3 — Compression Explorer</span><h2>Estimate nominal compression and evaluate risk</h2><div class="topic-form-grid"><label>Game piece nominal diameter/thickness (in)<input id="flyPiece" step="0.1" type="number" value="9.5"/></label><label>Shooter gap (in)<input id="flyGap" step="0.05" type="number" value="8.75"/></label><label>Game piece variation ± (in)<input id="flyVariation" step="0.05" type="number" value="0.25"/></label></div><button class="topic-action" id="flyCompressionCalc">Evaluate compression</button><div class="topic-output" id="flyCompressionOut">Compression results will appear here.</div></section><section class="topic-vertical native-module-section" id="flywheel-inertia"><span class="tag">Flywheel Inertia</span><h2>More inertia reduces shot-to-shot RPM drop—but costs weight and spin-up response</h2><div class="topic-callout">For a solid disk approximation: <code>I = ½mr²</code> and rotational energy <code>E = ½Iω²</code>. Real wheels, hubs, shafts, and multiple rotating parts should be summed.</div>
+<p class="topic-small">A steel ring near the outside radius stores more energy per unit mass than the same mass near the center. Never add rotating mass without checking retention, balance, shaft/bearing load, and safety.</p></section><section class="topic-vertical native-module-section" id="interactive-4-stored-energy-explorer"><span class="tag">Interactive 4 — Stored-Energy Explorer</span><h2>See how radius, mass, and RPM affect stored energy</h2><div class="topic-form-grid"><label>Approx. rotating mass (kg)<input id="flyMass" step="0.01" type="number" value="0.45"/></label><label>Effective radius (m)<input id="flyRadius" step="0.001" type="number" value="0.0508"/></label><label>RPM<input id="flyEnergyRpm" step="50" type="number" value="4500"/></label></div><button class="topic-action" id="flyEnergyCalc">Calculate stored energy</button><div class="topic-output" id="flyEnergyOut">Results will appear here.</div></section><section class="topic-vertical native-module-section" id="feeding-is-part-of-the-shooter"><span class="tag">Feeding Is Part of the Shooter</span><h2>A consistent shooter can still miss if the piece enters differently every time</h2><div class="topic-grid-3"><div class="topic-card"><h3>Stage the piece</h3><p>Use a sensor or physical stop so the shot begins from a known position.</p></div><div class="topic-card"><h3>Wait for readiness</h3><p>Require wheel speed—and often aim/robot velocity conditions—before feeding.</p></div><div class="topic-card"><h3>Control the handoff</h3><p>Prevent the feeder from changing piece angle, side-load, or compression unpredictably.</p></div></div><!-- CUSTOM IMAGE SLOT #3: feeder-to-flywheel.jpg -->
+<div class="topic-image-slot">Custom image slot: photo or CAD of a staged game piece and feeder path<br/><code>shared/assets/flywheel-shooters/feeder-to-flywheel.jpg</code></div></section><section class="topic-vertical native-module-section" id="closed-loop-velocity"><span class="tag">Closed-Loop Velocity</span><h2>Use feedforward for the predictable motor demand and feedback for the remaining error</h2><div class="topic-code">// Conceptual Java pattern
+SimpleMotorFeedforward ff = new SimpleMotorFeedforward(kS, kV, kA);
+PIDController pid = new PIDController(kP, 0.0, kD);
+
+double volts = ff.calculate(targetRadPerSec)
+             + pid.calculate(measuredRadPerSec, targetRadPerSec);
+shooterMotor.setVoltage(volts);</div>
+<div class="topic-callout"><strong>Readiness:</strong> do not define “at speed” as one sample. Use a tolerance and often require it to remain in tolerance for a short window.</div><div class="topic-source-note"><strong>WPILib:</strong> WPILib identifies SimpleMotorFeedforward as appropriate for mechanisms such as flywheels and recommends combining physically meaningful feedforward with feedback where needed. <a href="https://docs.wpilib.org/en/latest/docs/software/advanced-controls/controllers/feedforward.html" rel="noopener" target="_blank">Open documentation</a></div></section><section class="topic-vertical native-module-section" id="testing"><span class="tag">Testing</span><h2>Build a shot map with evidence, not memory</h2><div class="topic-grid-2"><div class="topic-card"><h3>Log</h3><ul><li>target and measured RPM</li><li>battery voltage/current</li><li>feed time</li><li>robot pose/range</li><li>shot result</li></ul></div><div class="topic-card"><h3>Control variables</h3><ul><li>same piece condition</li><li>same launch position</li><li>repeat several shots</li><li>change one variable at a time</li><li>retest after mechanical changes</li></ul></div></div></section><section class="topic-vertical native-module-section" id="interactive-5-failure-diagnosis"><span class="tag">Interactive 5 — Failure Diagnosis</span><h2>Choose the first thing you would investigate</h2><div class="topic-prompt" id="flyDiagPrompt">The first shot is accurate, but rapid second shots are consistently short. Wheel RPM drops heavily after each shot.</div><div class="topic-choice-grid" data-answer="recovery" data-choice-group="" data-feedback="flyDiagFeedback"><button class="topic-choice" data-choice="recovery" data-explain="The evidence points directly at energy recovery: stored inertia, motor power, gearing, voltage, and feed delay are the first places to investigate.">Recovery / RPM sag</button><button class="topic-choice" data-choice="hood" data-explain="Hood angle can change trajectory, but it does not explain the measured RPM sag.">Change hood angle</button><button class="topic-choice" data-choice="vision" data-explain="Vision cannot fix a shooter that is measurably below speed.">Retune vision</button></div><div class="topic-feedback" id="flyDiagFeedback">Choose a diagnosis.</div></section><section class="topic-vertical native-module-section" id="interactive-6-design-review-checklist"><span class="tag">Interactive 6 — Design Review Checklist</span><h2>A shooter should be inspectable before it becomes a projectile launcher</h2><div class="topic-checklist" id="flyChecklist">
+<label class="topic-checkitem"><input type="checkbox"/>Wheel retention positively prevents axial escape.</label><label class="topic-checkitem"><input type="checkbox"/>Rotating parts are balanced and guarded.</label><label class="topic-checkitem"><input type="checkbox"/>Bearings/shafts are supported against expected load.</label><label class="topic-checkitem"><input type="checkbox"/>Compression is measured across real game pieces.</label><label class="topic-checkitem"><input type="checkbox"/>Feeder starts each shot from a repeatable state.</label><label class="topic-checkitem"><input type="checkbox"/>RPM is logged and “ready” has a tolerance.</label><label class="topic-checkitem"><input type="checkbox"/>The team has safe test boundaries and backstops.</label><label class="topic-checkitem"><input type="checkbox"/>Critical wheels/belts/shafts are serviceable and spares exist.</label>
+</div><div class="topic-meter"><span id="flyChecklistBar"></span></div><div class="topic-feedback" id="flyChecklistOut">0 of 8 checked.</div></section><section class="topic-vertical native-module-section" id="practical-advice"><span class="tag">Practical Advice</span><h2>What experienced students should insist on before calling a shooter “done”</h2><ul><li>Design adjustability into prototypes: hood angle, compression, wheel speed, and feeder timing are easier to tune when they are not hard-coded into metal.</li><li>Use the largest practical sample of real game pieces. A shooter tuned only on one pristine piece is not tuned.</li><li>Record changes. “We changed the RPM until it worked” is not a development process.</li><li>Guard stored rotational energy. Inspect wheel hubs, keys/hex interfaces, shaft collars, retaining hardware, and cracks every event.</li><li>Separate aim error from shooter error. Log robot pose/targeting, RPM, and feed timing so students know what actually caused a miss.</li><li>Prefer a stable operating region over an extreme one. Running every motor and wheel at its limit usually reduces reliability.</li></ul><!-- CUSTOM IMAGE SLOT #4: shooter-test-setup.jpg -->
+<div class="topic-image-slot">Custom image slot: safe shooter testing setup with backstop and marked distances<br/><code>shared/assets/flywheel-shooters/shooter-test-setup.jpg</code></div></section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q1">
+<span class="tag">Quiz Question 1</span><div class="progress-note">1 of 20</div>
+<div class="quiz-card"><p>What is the primary goal of a flywheel shooter?</p><label><input name="q1" type="radio" value="a"> Maximum free speed regardless of consistency</input></label>
+<label><input name="q1" type="radio" value="b"> Repeatable game-piece exit conditions</input></label>
+<label><input name="q1" type="radio" value="c"> The heaviest possible wheel</input></label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q2">
+<span class="tag">Quiz Question 2</span><div class="progress-note">2 of 20</div>
+<div class="quiz-card"><p>Wheel surface speed increases when:</p><label><input name="q2" type="radio" value="a"> RPM or wheel diameter increases</input></label>
+<label><input name="q2" type="radio" value="b"> Only wheel color changes</input></label>
+<label><input name="q2" type="radio" value="c"> Compression becomes zero</input></label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q3">
+<span class="tag">Quiz Question 3</span><div class="progress-note">3 of 20</div>
+<div class="quiz-card"><p>A single flywheel against a hood commonly produces:</p><label><input name="q3" type="radio" value="a"> Backspin</input></label>
+<label><input name="q3" type="radio" value="b"> No contact force</input></label>
+<label><input name="q3" type="radio" value="c"> Only sideways motion</input></label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q4">
+<span class="tag">Quiz Question 4</span><div class="progress-note">4 of 20</div>
+<div class="quiz-card"><p>Too little compression often causes:</p><label><input name="q4" type="radio" value="a"> Slip and inconsistent acceleration</input></label>
+<label><input name="q4" type="radio" value="b"> Guaranteed jams</input></label>
+<label><input name="q4" type="radio" value="c"> Higher normal force</input></label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q5">
+<span class="tag">Quiz Question 5</span><div class="progress-note">5 of 20</div>
+<div class="quiz-card"><p>Too much compression can cause:</p><label><input name="q5" type="radio" value="a"> High current, deformation, and jams</input></label>
+<label><input name="q5" type="radio" value="b"> No change in motor load</input></label>
+<label><input name="q5" type="radio" value="c"> Less contact force</input></label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q6">
+<span class="tag">Quiz Question 6</span><div class="progress-note">6 of 20</div>
+<div class="quiz-card"><p>Why add flywheel inertia?</p><label><input name="q6" type="radio" value="a"> Reduce speed drop during a shot</input></label>
+<label><input name="q6" type="radio" value="b"> Eliminate the need for guarding</input></label>
+<label><input name="q6" type="radio" value="c"/> Make RPM irrelevant</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q7">
+<span class="tag">Quiz Question 7</span><div class="progress-note">7 of 20</div>
+<div class="quiz-card"><p>What is a tradeoff of more inertia?</p><label><input name="q7" type="radio" value="a"/> Longer spin-up and added mass</label>
+<label><input name="q7" type="radio" value="b"/> No stored energy</label>
+<label><input name="q7" type="radio" value="c"/> Always lower shot consistency</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q8">
+<span class="tag">Quiz Question 8</span><div class="progress-note">8 of 20</div>
+<div class="quiz-card"><p>Why stage a game piece before firing?</p><label><input name="q8" type="radio" value="a"/> Start each shot from a repeatable state</label>
+<label><input name="q8" type="radio" value="b"/> Increase camera latency</label>
+<label><input name="q8" type="radio" value="c"/> Remove the need for a feeder</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q9">
+<span class="tag">Quiz Question 9</span><div class="progress-note">9 of 20</div>
+<div class="quiz-card"><p>A readiness check should usually use:</p><label><input name="q9" type="radio" value="a"/> A velocity tolerance over time</label>
+<label><input name="q9" type="radio" value="b"/> One random RPM sample</label>
+<label><input name="q9" type="radio" value="c"/> Only motor command percent</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q10">
+<span class="tag">Quiz Question 10</span><div class="progress-note">10 of 20</div>
+<div class="quiz-card"><p>For a flywheel, WPILib SimpleMotorFeedforward models:</p><label><input name="q10" type="radio" value="a"/> Predictable voltage demand vs velocity/acceleration</label>
+<label><input name="q10" type="radio" value="b"/> Camera calibration</label>
+<label><input name="q10" type="radio" value="c"/> CAN IDs</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q11">
+<span class="tag">Quiz Question 11</span><div class="progress-note">11 of 20</div>
+<div class="quiz-card"><p>If rapid second shots are short and RPM sags, first investigate:</p><label><input name="q11" type="radio" value="a"/> Energy recovery and feed timing</label>
+<label><input name="q11" type="radio" value="b"/> Robot paint</label>
+<label><input name="q11" type="radio" value="c"/> AprilTag IDs</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q12">
+<span class="tag">Quiz Question 12</span><div class="progress-note">12 of 20</div>
+<div class="quiz-card"><p>Why log target and measured RPM?</p><label><input name="q12" type="radio" value="a"/> Separate control/recovery problems from aim problems</label>
+<label><input name="q12" type="radio" value="b"/> Because RPM never changes</label>
+<label><input name="q12" type="radio" value="c"/> To replace mechanical inspection</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q13">
+<span class="tag">Quiz Question 13</span><div class="progress-note">13 of 20</div>
+<div class="quiz-card"><p>A larger wheel at the same RPM has:</p><label><input name="q13" type="radio" value="a"/> Higher surface speed</label>
+<label><input name="q13" type="radio" value="b"/> Lower surface speed</label>
+<label><input name="q13" type="radio" value="c"/> Identical surface speed</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q14">
+<span class="tag">Quiz Question 14</span><div class="progress-note">14 of 20</div>
+<div class="quiz-card"><p>Why is exit speed not exactly equal to wheel surface speed?</p><label><input name="q14" type="radio" value="a"/> Slip/compliance/contact dynamics</label>
+<label><input name="q14" type="radio" value="b"/> Because π changes in FRC</label>
+<label><input name="q14" type="radio" value="c"/> Because encoders cannot measure RPM</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q15">
+<span class="tag">Quiz Question 15</span><div class="progress-note">15 of 20</div>
+<div class="quiz-card"><p>What should be checked on high-speed rotating parts?</p><label><input name="q15" type="radio" value="a"/> Balance, retention, cracks, and guarding</label>
+<label><input name="q15" type="radio" value="b"/> Only team number</label>
+<label><input name="q15" type="radio" value="c"/> Only software version</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q16">
+<span class="tag">Quiz Question 16</span><div class="progress-note">16 of 20</div>
+<div class="quiz-card"><p>When tuning compression, teams should:</p><label><input name="q16" type="radio" value="a"/> Test multiple real game pieces</label>
+<label><input name="q16" type="radio" value="b"/> Use one perfect game piece only</label>
+<label><input name="q16" type="radio" value="c"/> Assume the nominal CAD size is exact</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q17">
+<span class="tag">Quiz Question 17</span><div class="progress-note">17 of 20</div>
+<div class="quiz-card"><p>Feedforward is useful because it:</p><label><input name="q17" type="radio" value="a"/> Applies predictable control effort before error grows</label>
+<label><input name="q17" type="radio" value="b"/> Measures camera pose</label>
+<label><input name="q17" type="radio" value="c"/> Physically tensions belts</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q18">
+<span class="tag">Quiz Question 18</span><div class="progress-note">18 of 20</div>
+<div class="quiz-card"><p>A good tuning process changes:</p><label><input name="q18" type="radio" value="a"/> One major variable at a time</label>
+<label><input name="q18" type="radio" value="b"/> Everything at once</label>
+<label><input name="q18" type="radio" value="c"/> Nothing after first success</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q19">
+<span class="tag">Quiz Question 19</span><div class="progress-note">19 of 20</div>
+<div class="quiz-card"><p>If shot angle varies but RPM is stable, a likely area to inspect is:</p><label><input name="q19" type="radio" value="a"/> Piece path/hood/feed geometry</label>
+<label><input name="q19" type="radio" value="b"/> Systemcore imaging</label>
+<label><input name="q19" type="radio" value="c"/> Driver Station joystick order</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q20">
+<span class="tag">Quiz Question 20</span><div class="progress-note">20 of 20</div>
+<div class="quiz-card"><p>A shooter should be considered competition-ready only after:</p><label><input name="q20" type="radio" value="a"/> Repeated safe testing and inspection across conditions</label>
+<label><input name="q20" type="radio" value="b"/> One successful shot</label>
+<label><input name="q20" type="radio" value="c"/> The CAD looks complete</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-results-section" id="quiz-results">
+<span class="tag">Quiz Results</span>
+<h2>Check your understanding</h2>
+<p class="small">You need at least 18 out of 20 to unlock the completion certificate.</p>
+<div class="quiz-actions">
+<button class="quiz-button" id="gradeQuiz" type="button">Grade Quiz</button>
+<button class="quiz-button secondary" id="resetQuiz" type="button">Reset</button>
+</div>
+<div class="result" id="quizResult">Not submitted.</div>
+<p class="small" id="quizHint">After passing, advance to the final completion certificate.</p>
+</section><section class="center certificate-slide locked native-module-section native-certificate-section" id="complete">
+<div class="certificate-card"><div class="certificate-border">
+<p class="certificate-small">5041 CyBear Robotics</p>
+<h2>Certificate of Completion</h2>
+<p class="certificate-text">Presented to</p>
+<div class="certificate-name" id="certificateName">Student Name</div>
+<p class="certificate-text">for successfully completing the</p>
+<h3>FRC Flywheel Shooters Training Module</h3>
+<p class="certificate-score" id="completionNote">Complete after passing the required quiz.</p>
+<div class="certificate-line"></div>
+<p class="certificate-footer">Training complete after earning a passing quiz score.</p>
+</div></div>
+<div class="certificate-actions"><button class="quiz-button certificate-download" id="downloadCertificate" type="button">Download Certificate PDF</button></div>
+</section></div>
+<script src="../../site-assets/js/site-manifest.js"></script>
+<script src="../../site-assets/js/docs-shell.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="flywheel-shooters.js"></script>
+</body>
+</html>

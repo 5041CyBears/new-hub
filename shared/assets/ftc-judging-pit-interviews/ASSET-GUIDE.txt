@@ -1,0 +1,12 @@
+5041 FTC Judging & Pit Interviews — custom asset guide
+
+Place custom photos/diagrams in shared/assets/ftc-judging-pit-interviews/
+
+Suggested files:
+- ftc-judging-pit-interviews-overview.jpg
+- ftc-judging-pit-interviews-workflow.png
+- ftc-judging-pit-interviews-testing.jpg
+- ftc-judging-pit-interviews-competition.jpg
+
+Replace a placeholder with:
+<img class="topic-wide-photo" src="../../shared/assets/ftc-judging-pit-interviews/FILENAME" alt="Describe the image">

@@ -1,0 +1,12 @@
+5041 FTC Java Programming Foundations — custom asset guide
+
+Place custom photos/diagrams in shared/assets/ftc-java-foundations/
+
+Suggested files:
+- ftc-java-foundations-overview.jpg
+- ftc-java-foundations-workflow.png
+- ftc-java-foundations-testing.jpg
+- ftc-java-foundations-competition.jpg
+
+Replace a placeholder with:
+<img class="topic-wide-photo" src="../../shared/assets/ftc-java-foundations/FILENAME" alt="Describe the image">

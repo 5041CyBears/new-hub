@@ -1,0 +1,12 @@
+5041 FTC Linear Slides & Elevators — custom asset guide
+
+Place custom photos/diagrams in shared/assets/ftc-linear-slides-elevators/
+
+Suggested files:
+- ftc-linear-slides-elevators-overview.jpg
+- ftc-linear-slides-elevators-workflow.png
+- ftc-linear-slides-elevators-testing.jpg
+- ftc-linear-slides-elevators-competition.jpg
+
+Replace a placeholder with:
+<img class="topic-wide-photo" src="../../shared/assets/ftc-linear-slides-elevators/FILENAME" alt="Describe the image">

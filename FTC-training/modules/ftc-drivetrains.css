@@ -394,8 +394,8 @@
   transform-origin: center;
 }
 
-/* STUDENT NOTE: Interaction state for `.dt-reveal-card.revealed`. JavaScript may add/remove this class to provide visual feedback or control access. */
-.dt-reveal-card.revealed {
+/* STUDENT NOTE: Interaction state for `.dt-reveal-card.docs-native-articleed`. JavaScript may add/remove this class to provide visual feedback or control access. */
+.dt-reveal-card.docs-native-articleed {
   background: var(--black) !important;
   color: var(--white) !important;
 }
@@ -494,19 +494,19 @@
 }
 
 @media (max-width: 900px) {
-  /* STUDENT NOTE: Layout rule for `.reveal .dt-grid-3, .reveal .dt-grid-4, .reveal .dt-click-grid, .reveal .dt-reveal-grid, .reveal .dt-sort-targets`. Grid properties here control columns, gaps, and alignment. */
-  .reveal .dt-grid-3,
-  .reveal .dt-grid-4,
-  .reveal .dt-click-grid,
-  .reveal .dt-reveal-grid,
-  .reveal .dt-sort-targets {
+  /* STUDENT NOTE: Layout rule for `.docs-native-article .dt-grid-3, .docs-native-article .dt-grid-4, .docs-native-article .dt-click-grid, .docs-native-article .dt-reveal-grid, .docs-native-article .dt-sort-targets`. Grid properties here control columns, gaps, and alignment. */
+  .docs-native-article .dt-grid-3,
+  .docs-native-article .dt-grid-4,
+  .docs-native-article .dt-click-grid,
+  .docs-native-article .dt-reveal-grid,
+  .docs-native-article .dt-sort-targets {
     grid-template-columns: 1fr 1fr;
   }
-  /* STUDENT NOTE: Layout rule for `.reveal .dt-split, .reveal .dt-split.reverse, .reveal .dt-calc-grid, .reveal .dt-order-list`. Grid properties here control columns, gaps, and alignment. */
-  .reveal .dt-split,
-  .reveal .dt-split.reverse,
-  .reveal .dt-calc-grid,
-  .reveal .dt-order-list {
+  /* STUDENT NOTE: Layout rule for `.docs-native-article .dt-split, .docs-native-article .dt-split.reverse, .docs-native-article .dt-calc-grid, .docs-native-article .dt-order-list`. Grid properties here control columns, gaps, and alignment. */
+  .docs-native-article .dt-split,
+  .docs-native-article .dt-split.reverse,
+  .docs-native-article .dt-calc-grid,
+  .docs-native-article .dt-order-list {
     grid-template-columns: 1fr;
   }
 /* STUDENT NOTE: Styles elements matched by `} .activity-controls`. Search the HTML for these class/id names before changing a shared rule. */

@@ -1,0 +1,12 @@
+5041 FTC PID & Closed-Loop Control — custom asset guide
+
+Place custom photos/diagrams in shared/assets/ftc-pid-closed-loop/
+
+Suggested files:
+- ftc-pid-closed-loop-overview.jpg
+- ftc-pid-closed-loop-workflow.png
+- ftc-pid-closed-loop-testing.jpg
+- ftc-pid-closed-loop-competition.jpg
+
+Replace a placeholder with:
+<img class="topic-wide-photo" src="../../shared/assets/ftc-pid-closed-loop/FILENAME" alt="Describe the image">

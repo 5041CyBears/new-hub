@@ -1,0 +1,12 @@
+5041 FTC Electronics & Wiring — custom asset guide
+
+Place custom photos/diagrams in shared/assets/ftc-electronics-wiring/
+
+Suggested files:
+- ftc-electronics-wiring-overview.jpg
+- ftc-electronics-wiring-workflow.png
+- ftc-electronics-wiring-testing.jpg
+- ftc-electronics-wiring-competition.jpg
+
+Replace a placeholder with:
+<img class="topic-wide-photo" src="../../shared/assets/ftc-electronics-wiring/FILENAME" alt="Describe the image">

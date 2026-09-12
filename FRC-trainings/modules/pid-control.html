@@ -1,0 +1,157 @@
+<!-- 5041 Training Hub page: FRC-trainings/modules/pid-control.html -->
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>5041 PID Control Loops in FRC Training</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&amp;family=Droid+Sans:wght@400;700&amp;family=Droid+Serif:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="../../shared/css/styles.css" rel="stylesheet"/>
+<link href="pid-control-additions.css" rel="stylesheet"/>
+<link href="../../site-assets/css/docs-site.css" rel="stylesheet"/>
+
+<link href="../../site-assets/css/native-module.css" rel="stylesheet"/></head>
+<body data-module-slug="pid-control" data-native-module="true" data-program="FRC">
+<script src="../../site-assets/js/reveal-compat.js"></script>
+<div id="docs-native-module-content"><section class="topic-slide native-module-section" id="module-goals"><span class="tag">Module Goals</span><h2>By the end, students should be able to:</h2><div class="bar"></div><ul><li>Explain proportional, integral, and derivative terms using error, accumulated error, and rate of error change.</li><li>Use the current WPILib PIDController correctly with consistent units and loop period.</li><li>Tune P first in many FRC cases, use I cautiously, add D only when it solves an observed problem, and combine feedforward with feedback.</li><li>Use tolerances, continuous input for angles, integrator limits/IZone strategies, logging, and controlled tests.</li><li>Recognize when motion profiling or ProfiledPIDController is more appropriate than jumping the position setpoint.</li><li>Diagnose oscillation, slow response, steady-state error, noise sensitivity, saturation, and windup.</li></ul></section><section class="topic-vertical native-module-section" id="before-you-start"><span class="tag">Before You Start</span><h2>Who is completing this module?</h2><div class="topic-callout">
+<label class="topic-name-label" for="participantName">Student name</label>
+<input autocomplete="name" class="topic-name-input" id="participantName" placeholder="Enter your name for the certificate" type="text"/>
+<p>Your name is used only to populate the completion certificate in this browser.</p>
+</div></section><section class="topic-vertical native-module-section" id="pid-in-one-sentence"><span class="tag">PID in One Sentence</span><h2>PID changes the actuator command based on the difference between what you want and what you measure</h2><div class="topic-callout"><code>error = setpoint − measurement</code><br/><code>output = kP·error + kI·∫error dt + kD·d(error)/dt</code></div><p class="topic-small">Always know the units of the setpoint, measurement, and output. A controller tuned in rotations cannot be copied directly to degrees or meters.</p><div class="topic-source-note"><strong>WPILib:</strong> WPILib provides PIDController, tolerance handling, continuous input, and related features; the default controller period is 20 ms unless configured otherwise. <a href="https://docs.wpilib.org/en/stable/docs/software/advanced-controls/controllers/pidcontroller.html" rel="noopener" target="_blank">Open documentation</a></div></section><section class="topic-vertical native-module-section" id="p-i-and-d"><span class="tag">P, I, and D</span><h2>Each term addresses a different shape of error</h2><div class="topic-grid-3"><div class="topic-card"><h3>P — present error</h3><p>Pushes harder when farther from the setpoint. Too high often oscillates or becomes unstable.</p></div><div class="topic-card"><h3>I — accumulated error</h3><p>Can remove persistent bias but can wind up while saturated. Often avoidable in FRC when feedforward handles known loads.</p></div><div class="topic-card"><h3>D — error trend</h3><p>Adds damping based on changing error. Can amplify noisy measurements and should solve a real problem, not be added automatically.</p></div></div></section><section class="topic-vertical native-module-section" id="interactive-1-pid-term-calculator"><span class="tag">Interactive 1 — PID Term Calculator</span><h2>Calculate the three terms from a snapshot</h2><div class="topic-form-grid"><label>Error<input id="pidError" step="0.1" type="number" value="5"/></label><label>Accumulated error·s<input id="pidIntegral" step="0.1" type="number" value="1.2"/></label><label>Error rate /s<input id="pidDerivative" step="0.1" type="number" value="-8"/></label><label>kP<input id="pidKP" step="0.05" type="number" value="0.6"/></label><label>kI<input id="pidKI" step="0.01" type="number" value="0"/></label><label>kD<input id="pidKD" step="0.01" type="number" value="0.08"/></label></div><button class="topic-action" id="pidTermCalc">Calculate terms</button><div class="topic-output" id="pidTermOut">Results will appear here.</div></section><section class="topic-vertical native-module-section" id="a-practical-frc-tuning-order"><span class="tag">A Practical FRC Tuning Order</span><h2>Do not tune three gains at once</h2><ol><li>Verify sensor sign, actuator sign, units, and output limits.</li><li>Build the best feedforward/model you reasonably can for mechanisms with predictable physics.</li><li>Start P low and increase until response is useful but not unstable.</li><li>Add D only if damping/overshoot needs it and the sensor is clean enough.</li><li>Add I only when a persistent residual error remains and you understand saturation/windup.</li><li>Log setpoint, measurement, error, output, battery voltage, and relevant current.</li></ol><div class="topic-source-note"><strong>WPILib:</strong> WPILib notes that accurate feedforward is often highly beneficial and can reduce how much feedback must correct. <a href="https://docs.wpilib.org/en/latest/docs/software/advanced-controls/controllers/feedforward.html" rel="noopener" target="_blank">Open documentation</a></div></section><section class="topic-vertical native-module-section" id="interactive-2-symptom-tuner"><span class="tag">Interactive 2 — Symptom Tuner</span><h2>Match a response symptom to the first change you would consider</h2><div class="topic-prompt">The mechanism reaches the target quickly but oscillates back and forth around it. Sensor data is fairly clean and there is little steady-state bias.</div><div class="topic-choice-grid" data-answer="damp" data-choice-group="" data-feedback="pidSymptomFeedback"><button class="topic-choice" data-choice="damp" data-explain="Reduce excessive P and/or add modest damping (D) after verifying mechanics and loop timing.">Reduce aggressive P / add damping</button><button class="topic-choice" data-choice="integral" data-explain="More I usually makes oscillation/windup worse if persistent bias is not the issue.">Add a large I term</button><button class="topic-choice" data-choice="camera" data-explain="Camera calibration is unrelated to this mechanism response.">Recalibrate vision</button></div><div class="topic-feedback" id="pidSymptomFeedback">Choose a tuning direction.</div></section><section class="topic-vertical native-module-section" id="saturation-windup"><span class="tag">Saturation &amp; Windup</span><h2>The controller cannot command more voltage than the system can deliver</h2><div class="topic-warning">If output is saturated at its limit while I keeps accumulating, the stored integral can drive the mechanism past the target even after the error changes sign. Limit integral contribution or use an IZone strategy where appropriate—and fix the underlying impossible demand.</div></section><section class="topic-vertical native-module-section" id="interactive-3-response-simulator"><span class="tag">Interactive 3 — Response Simulator</span><h2>See how P, I, and D change a simple first-order simulated mechanism</h2><div class="topic-form-grid"><label>kP<input id="simKP" step="0.1" type="number" value="1.2"/></label><label>kI<input id="simKI" step="0.05" type="number" value="0"/></label><label>kD<input id="simKD" step="0.02" type="number" value="0.1"/></label><label>Setpoint<input id="simSet" step="0.1" type="number" value="1"/></label></div><button class="topic-action" id="pidSimRun">Run simulation</button><div class="topic-canvas-wrap"><canvas height="280" id="pidCanvas" width="900"></canvas></div><p class="topic-small">This intentionally simplified simulation is for qualitative learning only. Real FRC mechanisms have voltage limits, nonlinear friction, backlash, gravity, flexible structure, and sensor noise.</p></section><section class="topic-vertical native-module-section" id="feedforward-feedback"><span class="tag">Feedforward + Feedback</span><h2>Ask feedforward to do the predictable work</h2><div class="topic-code">double ffVolts = elevatorFF.calculate(targetVelocity, targetAcceleration);
+double correction = pid.calculate(measuredPosition, targetPosition);
+motor.setVoltage(ffVolts + correction);</div><p class="topic-small">Exactly which state you feed into PID depends on the mechanism/controller design. Keep units and motor-controller semantics explicit.</p></section><section class="topic-vertical native-module-section" id="interactive-4-combined-output-calculator"><span class="tag">Interactive 4 — Combined Output Calculator</span><h2>See the relative size of feedforward and feedback</h2><div class="topic-form-grid"><label>Feedforward volts<input id="pidFF" step="0.1" type="number" value="5.5"/></label><label>PID correction volts<input id="pidCorr" step="0.1" type="number" value="0.8"/></label><label>Voltage limit<input id="pidLimit" step="0.1" type="number" value="12"/></label></div><button class="topic-action" id="pidCombine">Combine</button><div class="topic-output" id="pidCombineOut">Results will appear here.</div></section><section class="topic-vertical native-module-section" id="continuous-input"><span class="tag">Continuous Input</span><h2>Angles wrap; ordinary subtraction does not know that</h2><div class="topic-callout">For a heading domain such as −180° to +180°, enabling continuous input lets the controller choose the shorter wrapped error instead of commanding a 358° turn from +179° to −179°.</div></section><section class="topic-vertical native-module-section" id="interactive-5-angle-error-explorer"><span class="tag">Interactive 5 — Angle Error Explorer</span><h2>Compare ordinary and wrapped angular error</h2><div class="topic-form-grid"><label>Measurement (deg)<input id="pidAngleMeas" type="number" value="179"/></label><label>Setpoint (deg)<input id="pidAngleSet" type="number" value="-179"/></label></div><button class="topic-action" id="pidAngleCalc">Compare errors</button><div class="topic-output" id="pidAngleOut">Results will appear here.</div></section><section class="topic-vertical native-module-section" id="motion-profiling"><span class="tag">Motion Profiling</span><h2>PID tracks; a profile decides how aggressively the setpoint moves</h2><div class="topic-callout"><code>ProfiledPIDController</code> combines a trapezoidal setpoint profile with PID tracking. This is often better for elevators, arms, turrets, and mechanisms where an instantaneous position jump would demand unrealistic acceleration.</div><div class="topic-source-note"><strong>WPILib:</strong> WPILib’s ProfiledPIDController accepts maximum velocity/acceleration constraints and generates intermediate setpoints toward a goal. <a href="https://docs.wpilib.org/en/latest/docs/software/advanced-controls/controllers/profiled-pidcontroller.html" rel="noopener" target="_blank">Open documentation</a></div></section><section class="topic-vertical native-module-section" id="interactive-6-pid-readiness-checklist"><span class="tag">Interactive 6 — PID Readiness Checklist</span><h2>Controls tuning starts with measurement quality</h2><div class="topic-checklist" id="pidChecklist"><label class="topic-checkitem"><input type="checkbox"/>Sensor direction and actuator direction are verified.</label><label class="topic-checkitem"><input type="checkbox"/>Setpoint/measurement units match.</label><label class="topic-checkitem"><input type="checkbox"/>Loop period is known and consistent.</label><label class="topic-checkitem"><input type="checkbox"/>Output is clamped to a safe range.</label><label class="topic-checkitem"><input type="checkbox"/>Mechanics move freely without binding.</label><label class="topic-checkitem"><input type="checkbox"/>Setpoint, measurement, error, and output are logged.</label><label class="topic-checkitem"><input type="checkbox"/>Feedforward/gravity terms are considered where appropriate.</label><label class="topic-checkitem"><input type="checkbox"/>Tolerance and finish/readiness behavior are defined.</label></div><div class="topic-meter"><span id="pidChecklistBar"></span></div><div class="topic-feedback" id="pidChecklistOut">0 of 8 checked.</div></section><section class="topic-vertical native-module-section" id="practical-advice"><span class="tag">Practical Advice</span><h2>Most “PID problems” are not fixed by randomly changing PID</h2><ul><li>Fix loose chain, backlash, flex, encoder slip, wrong conversion factors, and current limits before tuning.</li><li>Tune at realistic battery voltage and payload. Gravity and friction change with mechanism configuration.</li><li>Use conservative output limits during first tests.</li><li>Never compare gains without comparing units and controller period.</li><li>Log a step or profile response and annotate what gain changed between runs.</li><li>If the setpoint itself is physically impossible, motion profiling is often a better fix than enormous gains.</li></ul><!-- CUSTOM IMAGE SLOT #1: pid-response-examples.png -->
+<div class="topic-image-slot">Custom image slot: plots showing underdamped, overdamped, steady-state error, and noisy responses<br/><code>shared/assets/pid-control/pid-response-examples.png</code></div><!-- CUSTOM IMAGE SLOT #2: pid-log-dashboard.png -->
+<div class="topic-image-slot">Custom image slot: your team’s AdvantageScope/Elastic tuning log view<br/><code>shared/assets/pid-control/pid-log-dashboard.png</code></div></section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q1">
+<span class="tag">Quiz Question 1</span><div class="progress-note">1 of 20</div>
+<div class="quiz-card"><p>PID error is generally:</p><label><input name="q1" type="radio" value="a"> Setpoint minus measurement</input></label>
+<label><input name="q1" type="radio" value="b"> Measurement plus voltage</input></label>
+<label><input name="q1" type="radio" value="c"> RPM times current</input></label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q2">
+<span class="tag">Quiz Question 2</span><div class="progress-note">2 of 20</div>
+<div class="quiz-card"><p>The P term responds to:</p><label><input name="q2" type="radio" value="a"> Current error</input></label>
+<label><input name="q2" type="radio" value="b"> Only accumulated historical error</input></label>
+<label><input name="q2" type="radio" value="c"> Camera latency</input></label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q3">
+<span class="tag">Quiz Question 3</span><div class="progress-note">3 of 20</div>
+<div class="quiz-card"><p>The I term responds to:</p><label><input name="q3" type="radio" value="a"> Accumulated error over time</input></label>
+<label><input name="q3" type="radio" value="b"> Only current error</input></label>
+<label><input name="q3" type="radio" value="c"> Motor temperature only</input></label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q4">
+<span class="tag">Quiz Question 4</span><div class="progress-note">4 of 20</div>
+<div class="quiz-card"><p>The D term responds to:</p><label><input name="q4" type="radio" value="a"> How error is changing</input></label>
+<label><input name="q4" type="radio" value="b"> Only absolute setpoint</input></label>
+<label><input name="q4" type="radio" value="c"> CAN ID</input></label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q5">
+<span class="tag">Quiz Question 5</span><div class="progress-note">5 of 20</div>
+<div class="quiz-card"><p>Too much P often causes:</p><label><input name="q5" type="radio" value="a"> Oscillation/instability</input></label>
+<label><input name="q5" type="radio" value="b"> Perfect calibration</input></label>
+<label><input name="q5" type="radio" value="c"> No actuator command</input></label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q6">
+<span class="tag">Quiz Question 6</span><div class="progress-note">6 of 20</div>
+<div class="quiz-card"><p>Why use I cautiously?</p><label><input name="q6" type="radio" value="a"> It can wind up during saturation</input></label>
+<label><input name="q6" type="radio" value="b"> It cannot change output</input></label>
+<label><input name="q6" type="radio" value="c"> It only controls cameras</input></label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q7">
+<span class="tag">Quiz Question 7</span><div class="progress-note">7 of 20</div>
+<div class="quiz-card"><p>Why can D be troublesome on noisy signals?</p><label><input name="q7" type="radio" value="a"> It reacts strongly to rapid changes/noise</input></label>
+<label><input name="q7" type="radio" value="b"> It eliminates measurement noise</input></label>
+<label><input name="q7" type="radio" value="c"> It changes gearing</input></label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q8">
+<span class="tag">Quiz Question 8</span><div class="progress-note">8 of 20</div>
+<div class="quiz-card"><p>WPILib PIDController default period is typically:</p><label><input name="q8" type="radio" value="a"> 20 ms</input></label>
+<label><input name="q8" type="radio" value="b"> 20 s</input></label>
+<label><input name="q8" type="radio" value="c"/> 2 min</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q9">
+<span class="tag">Quiz Question 9</span><div class="progress-note">9 of 20</div>
+<div class="quiz-card"><p>A useful FRC tuning order often starts with:</p><label><input name="q9" type="radio" value="a"/> Verify mechanics/units/signs and useful feedforward, then tune feedback</label>
+<label><input name="q9" type="radio" value="b"/> Set all gains very high</label>
+<label><input name="q9" type="radio" value="c"/> Tune I first regardless of mechanism</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q10">
+<span class="tag">Quiz Question 10</span><div class="progress-note">10 of 20</div>
+<div class="quiz-card"><p>Feedforward is valuable because it:</p><label><input name="q10" type="radio" value="a"/> Models predictable control effort</label>
+<label><input name="q10" type="radio" value="b"/> Measures AprilTag ambiguity</label>
+<label><input name="q10" type="radio" value="c"/> Sets subsystem requirements</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q11">
+<span class="tag">Quiz Question 11</span><div class="progress-note">11 of 20</div>
+<div class="quiz-card"><p>Integral windup occurs when:</p><label><input name="q11" type="radio" value="a"/> Integral accumulates while output cannot satisfy the demand</label>
+<label><input name="q11" type="radio" value="b"/> The robot is disabled</label>
+<label><input name="q11" type="radio" value="c"/> A belt is too loose</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q12">
+<span class="tag">Quiz Question 12</span><div class="progress-note">12 of 20</div>
+<div class="quiz-card"><p>Continuous input is especially useful for:</p><label><input name="q12" type="radio" value="a"/> Wrapped angles/headings</label>
+<label><input name="q12" type="radio" value="b"/> Elevator cable tension</label>
+<label><input name="q12" type="radio" value="c"/> Image exposure</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q13">
+<span class="tag">Quiz Question 13</span><div class="progress-note">13 of 20</div>
+<div class="quiz-card"><p>From +179° to −179°, the shortest angular error is about:</p><label><input name="q13" type="radio" value="a"/> 2°</label>
+<label><input name="q13" type="radio" value="b"/> 358° only</label>
+<label><input name="q13" type="radio" value="c"/> 180°</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q14">
+<span class="tag">Quiz Question 14</span><div class="progress-note">14 of 20</div>
+<div class="quiz-card"><p>What does a tolerance define?</p><label><input name="q14" type="radio" value="a"/> How close is close enough for atSetpoint-style decisions</label>
+<label><input name="q14" type="radio" value="b"/> Motor CAN ID</label>
+<label><input name="q14" type="radio" value="c"/> Camera FOV</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q15">
+<span class="tag">Quiz Question 15</span><div class="progress-note">15 of 20</div>
+<div class="quiz-card"><p>ProfiledPIDController adds:</p><label><input name="q15" type="radio" value="a"/> A constrained motion profile for generated setpoints</label>
+<label><input name="q15" type="radio" value="b"/> AprilTag detection</label>
+<label><input name="q15" type="radio" value="c"/> Driver Station logging only</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q16">
+<span class="tag">Quiz Question 16</span><div class="progress-note">16 of 20</div>
+<div class="quiz-card"><p>If a mechanism binds mechanically, the first fix is:</p><label><input name="q16" type="radio" value="a"/> Mechanical correction</label>
+<label><input name="q16" type="radio" value="b"/> Increase every gain</label>
+<label><input name="q16" type="radio" value="c"/> Add vision</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q17">
+<span class="tag">Quiz Question 17</span><div class="progress-note">17 of 20</div>
+<div class="quiz-card"><p>Why log setpoint and measurement together?</p><label><input name="q17" type="radio" value="a"/> See tracking error and response shape</label>
+<label><input name="q17" type="radio" value="b"/> They are always identical</label>
+<label><input name="q17" type="radio" value="c"/> To replace sensor calibration</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q18">
+<span class="tag">Quiz Question 18</span><div class="progress-note">18 of 20</div>
+<div class="quiz-card"><p>A controller output should usually be:</p><label><input name="q18" type="radio" value="a"/> Limited to a safe/physical actuator range</label>
+<label><input name="q18" type="radio" value="b"/> Unlimited</label>
+<label><input name="q18" type="radio" value="c"/> Randomized</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q19">
+<span class="tag">Quiz Question 19</span><div class="progress-note">19 of 20</div>
+<div class="quiz-card"><p>If a target jump requires impossible acceleration, consider:</p><label><input name="q19" type="radio" value="a"/> Motion profiling</label>
+<label><input name="q19" type="radio" value="b"/> More integral windup</label>
+<label><input name="q19" type="radio" value="c"/> Removing sensors</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q20">
+<span class="tag">Quiz Question 20</span><div class="progress-note">20 of 20</div>
+<div class="quiz-card"><p>PID gains are only comparable when:</p><label><input name="q20" type="radio" value="a"/> Units, mechanism, and loop semantics are comparable</label>
+<label><input name="q20" type="radio" value="b"/> Team numbers match</label>
+<label><input name="q20" type="radio" value="c"/> Robots use the same color</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-results-section" id="quiz-results">
+<span class="tag">Quiz Results</span>
+<h2>Check your understanding</h2>
+<p class="small">You need at least 18 out of 20 to unlock the completion certificate.</p>
+<div class="quiz-actions">
+<button class="quiz-button" id="gradeQuiz" type="button">Grade Quiz</button>
+<button class="quiz-button secondary" id="resetQuiz" type="button">Reset</button>
+</div>
+<div class="result" id="quizResult">Not submitted.</div>
+<p class="small" id="quizHint">After passing, advance to the final completion certificate.</p>
+</section><section class="center certificate-slide locked native-module-section native-certificate-section" id="complete">
+<div class="certificate-card"><div class="certificate-border">
+<p class="certificate-small">5041 CyBear Robotics</p>
+<h2>Certificate of Completion</h2>
+<p class="certificate-text">Presented to</p>
+<div class="certificate-name" id="certificateName">Student Name</div>
+<p class="certificate-text">for successfully completing the</p>
+<h3>PID Control Loops in FRC Training Module</h3>
+<p class="certificate-score" id="completionNote">Complete after passing the required quiz.</p>
+<div class="certificate-line"></div>
+<p class="certificate-footer">Training complete after earning a passing quiz score.</p>
+</div></div>
+<div class="certificate-actions"><button class="quiz-button certificate-download" id="downloadCertificate" type="button">Download Certificate PDF</button></div>
+</section></div>
+<script src="../../site-assets/js/site-manifest.js"></script>
+<script src="../../site-assets/js/docs-shell.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="pid-control.js"></script>
+</body>
+</html>

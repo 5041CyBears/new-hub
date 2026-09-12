@@ -1,0 +1,12 @@
+5041 FTC Mechanism Design — custom asset guide
+
+Place custom photos/diagrams in shared/assets/ftc-mechanism-design/
+
+Suggested files:
+- ftc-mechanism-design-overview.jpg
+- ftc-mechanism-design-workflow.png
+- ftc-mechanism-design-testing.jpg
+- ftc-mechanism-design-competition.jpg
+
+Replace a placeholder with:
+<img class="topic-wide-photo" src="../../shared/assets/ftc-mechanism-design/FILENAME" alt="Describe the image">

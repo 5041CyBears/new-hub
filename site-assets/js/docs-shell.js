@@ -71,6 +71,9 @@
 
     {};
 
+  const isComingSoonModule =
+    Boolean(meta.comingSoon);
+
 
   /* =========================================================
      Storage Keys
@@ -228,6 +231,126 @@
   }
 
 
+  function buildComingSoonBadge(inline = false) {
+    return make(
+      "span",
+      inline
+        ? "docs-coming-soon-badge docs-coming-soon-badge-inline"
+        : "docs-coming-soon-badge",
+      "Coming Soon"
+    );
+  }
+
+
+  function decorateComingSoonLink(link) {
+    link.classList.add("coming-soon");
+    link.append(buildComingSoonBadge());
+    return link;
+  }
+
+
+  function buildModulePageTitle() {
+    const title =
+      make(
+        "h1",
+        "docs-page-title",
+        meta.title || document.title
+      );
+
+    if (isComingSoonModule) {
+      title.append(
+        document.createTextNode(" "),
+        buildComingSoonBadge(true)
+      );
+    }
+
+    return title;
+  }
+
+
+  function applyComingSoonState(main, article, toc) {
+    document.body.classList.add(
+      "docs-coming-soon-module"
+    );
+
+    main.classList.add(
+      "docs-coming-soon-main"
+    );
+
+    article.classList.add(
+      "docs-coming-soon-article"
+    );
+
+    const progress =
+      main.querySelector(
+        ".docs-progress"
+      );
+
+    if (progress) {
+      progress.remove();
+    }
+
+    if (toc) {
+      toc.hidden = true;
+    }
+
+    const notice =
+      make(
+        "div",
+        "docs-coming-soon-notice"
+      );
+
+    notice.append(
+      make(
+        "div",
+        "docs-coming-soon-notice-title",
+        "Coming Soon"
+      ),
+      make(
+        "p",
+        "docs-coming-soon-notice-text",
+        "This training module is still being finalized. The content is temporarily blurred while the full version is completed."
+      )
+    );
+
+    const lead =
+      main.querySelector(
+        ".docs-lead"
+      );
+
+    if (lead) {
+      lead.insertAdjacentElement(
+        "afterend",
+        notice
+      );
+    }
+    else {
+      main.append(notice);
+    }
+
+    const overlay =
+      make(
+        "div",
+        "docs-coming-soon-overlay"
+      );
+
+    overlay.append(
+      make(
+        "div",
+        "docs-coming-soon-overlay-title",
+        "Coming Soon"
+      ),
+      make(
+        "p",
+        "docs-coming-soon-overlay-text",
+        "This module is under development."
+      )
+    );
+
+    article.append(overlay);
+  }
+
+
   /* =========================================================
      Header
      ========================================================= */
@@ -377,6 +500,122 @@
 
 
     /* -------------------------------------------------------
+       Navigation Configuration
+       ------------------------------------------------------- */
+
+    const categoryOrder = {
+      FRC: [
+        "Foundations",
+        "Robot Design",
+        "Programming",
+        "Team Operations"
+      ],
+
+      FTC: [
+        "Foundations",
+        "Robot Design"
+      ]
+    };
+
+
+    function collapseStorageKey(
+      programName,
+      categoryName
+    ) {
+      return (
+        "5041-training-nav-collapsed:" +
+        programName +
+        ":" +
+        categoryName
+      );
+    }
+
+
+    function setCategoryExpanded(
+      category,
+      expanded,
+      persist = false
+    ) {
+      const toggle =
+        category.querySelector(
+          ".docs-nav-category-toggle"
+        );
+
+      const content =
+        category.querySelector(
+          ".docs-nav-category-content"
+        );
+
+      if (!toggle || !content) {
+        return;
+      }
+
+      category.classList.toggle(
+        "collapsed",
+        !expanded
+      );
+
+      toggle.setAttribute(
+        "aria-expanded",
+        String(expanded)
+      );
+
+      content.hidden =
+        !expanded;
+
+
+      if (persist) {
+        localStorage.setItem(
+          collapseStorageKey(
+            category.dataset.program || "",
+            category.dataset.category || ""
+          ),
+          expanded ? "0" : "1"
+        );
+      }
+    }
+
+
+    function restoreCategoryExpandedState(
+      category
+    ) {
+      const hasActiveModule =
+        Boolean(
+          category.querySelector(
+            ".docs-nav-link.active"
+          )
+        );
+
+      const savedState =
+        localStorage.getItem(
+          collapseStorageKey(
+            category.dataset.program || "",
+            category.dataset.category || ""
+          )
+        );
+
+      /*
+       * Categories are collapsed by default. If the user has
+       * explicitly expanded or collapsed a category before,
+       * preserve that choice. The category containing the active
+       * module opens automatically so the current page remains
+       * visible in the navigation.
+       */
+      const expandedByUser =
+        savedState === "0";
+
+      const shouldExpand =
+        hasActiveModule || expandedByUser;
+
+      setCategoryExpanded(
+        category,
+        shouldExpand,
+        false
+      );
+    }
+
+
+    /* -------------------------------------------------------
        Search
        ------------------------------------------------------- */
 
@@ -390,18 +629,18 @@
       "search";
 
     search.placeholder =
-      "Filter modules…";
+      "Filter training & resources…";
 
     search.setAttribute(
       "aria-label",
-      "Filter training modules"
+      "Filter training and resources"
     );
 
     sidebar.append(search);
 
 
     /* -------------------------------------------------------
-       Training Overview
+       Getting Started
        ------------------------------------------------------- */
 
     const homeGroup =
@@ -436,9 +675,10 @@
 
 
     /* -------------------------------------------------------
-       Resource Libraries
-       Keep these directly below Getting Started so students
-       can reach the resource hubs before the training lists.
+       Resources
+       Exact order: 5041 program materials, FTC, then FRC.
+       These links stay permanently visible and are not
+       collapsible.
        ------------------------------------------------------- */
 
     if (resourceManifest.length) {
@@ -456,17 +696,19 @@
         )
       );
 
-      const resourcesCategory =
-        make(
-          "div",
-          "docs-nav-category"
-        );
+      ["5041", "FTC", "FRC"].forEach(
+        (resourceProgram) => {
+          const resource =
+            resourceManifest.find(
+              (item) =>
+                item.program ===
+                resourceProgram
+            );
 
-      resourcesCategory.dataset.category =
-        "Resources";
+          if (!resource) {
+            return;
+          }
 
-      resourceManifest.forEach(
-        (resource) => {
           const resourceLink =
             makeLink(
               new URL(
@@ -482,21 +724,18 @@
 
           if (
             isResourcePage &&
-            resource.path === resourceMeta.path
+            resource.path ===
+              resourceMeta.path
           ) {
             resourceLink.classList.add(
               "active"
             );
           }
 
-          resourcesCategory.append(
+          resourcesGroup.append(
             resourceLink
           );
         }
-      );
-
-      resourcesGroup.append(
-        resourcesCategory
       );
 
       sidebar.append(
@@ -506,7 +745,7 @@
 
 
     /* -------------------------------------------------------
-       FRC and FTC Program Groups
+       FRC and FTC Training
        ------------------------------------------------------- */
 
     ["FRC", "FTC"].forEach(
@@ -515,7 +754,8 @@
         const programModules =
           manifest.filter(
             (module) =>
-              module.program === programName
+              module.program ===
+              programName
           );
 
         if (!programModules.length) {
@@ -526,7 +766,7 @@
         const programGroup =
           make(
             "nav",
-            "docs-nav-group"
+            "docs-nav-group docs-nav-program-group"
           );
 
         programGroup.dataset.program =
@@ -550,7 +790,6 @@
 
         programModules.forEach(
           (module) => {
-
             const categoryName =
               module.category || "Other";
 
@@ -564,17 +803,38 @@
             categories
               .get(categoryName)
               .push(module);
-
           }
         );
 
 
+        const configuredOrder =
+          categoryOrder[programName] || [];
+
+        const remainingCategories =
+          [...categories.keys()].filter(
+            (categoryName) =>
+              !configuredOrder.includes(
+                categoryName
+              )
+          );
+
+        const orderedCategories = [
+          ...configuredOrder.filter(
+            (categoryName) =>
+              categories.has(categoryName)
+          ),
+          ...remainingCategories
+        ];
+
+
         /* ---------------------------------------------------
-           Build Category Groups
+           Build Collapsible Category Groups
            --------------------------------------------------- */
 
-        categories.forEach(
-          (modules, categoryName) => {
+        orderedCategories.forEach(
+          (categoryName) => {
+            const modules =
+              categories.get(categoryName) || [];
 
             const category =
               make(
@@ -582,21 +842,55 @@
                 "docs-nav-category"
               );
 
+            category.dataset.program =
+              programName;
+
             category.dataset.category =
               categoryName;
 
-            category.append(
+
+            const categoryToggle =
               make(
-                "div",
-                "docs-nav-category-heading",
+                "button",
+                "docs-nav-category-toggle"
+              );
+
+            categoryToggle.type =
+              "button";
+
+            categoryToggle.append(
+              make(
+                "span",
+                "docs-nav-category-label",
                 categoryName
+              ),
+
+              make(
+                "span",
+                "docs-nav-category-chevron",
+                "›"
               )
             );
+
+            categoryToggle
+              .querySelector(
+                ".docs-nav-category-chevron"
+              )
+              .setAttribute(
+                "aria-hidden",
+                "true"
+              );
+
+
+            const categoryContent =
+              make(
+                "div",
+                "docs-nav-category-content"
+              );
 
 
             modules.forEach(
               (module) => {
-
                 const moduleLink =
                   makeLink(
                     new URL(
@@ -613,6 +907,7 @@
 
                 if (
                   !isHomePage &&
+                  !isResourcePage &&
                   module.path === meta.path
                 ) {
                   moduleLink.classList.add(
@@ -627,19 +922,49 @@
                   );
                 }
 
+                if (module.comingSoon) {
+                  decorateComingSoonLink(
+                    moduleLink
+                  );
+                }
 
-                category.append(
+                categoryContent.append(
                   moduleLink
                 );
-
               }
             );
 
 
-            programGroup.append(
+            category.append(
+              categoryToggle,
+              categoryContent
+            );
+
+
+            categoryToggle.addEventListener(
+              "click",
+              () => {
+                const expanded =
+                  categoryToggle.getAttribute(
+                    "aria-expanded"
+                  ) === "true";
+
+                setCategoryExpanded(
+                  category,
+                  !expanded,
+                  true
+                );
+              }
+            );
+
+
+            restoreCategoryExpandedState(
               category
             );
 
+            programGroup.append(
+              category
+            );
           }
         );
 
@@ -647,51 +972,97 @@
         sidebar.append(
           programGroup
         );
-
       }
     );
 
 
     /* -------------------------------------------------------
        Search Filtering
+       Matching categories are automatically opened while the
+       user searches. Clearing the search restores the saved
+       collapsed/expanded state.
        ------------------------------------------------------- */
 
     search.addEventListener(
       "input",
       () => {
-
         const query =
           search.value
             .trim()
             .toLowerCase();
 
+        const searching =
+          Boolean(query);
+
+
+        /* Getting Started */
+
+        const homeMatches =
+          (
+            "getting started training overview"
+          ).includes(query);
+
+        homeGroup.hidden =
+          searching && !homeMatches;
+
+
+        /* Resources */
+
+        const resourcesGroup =
+          sidebar.querySelector(
+            ".docs-nav-resource-group"
+          );
+
+        if (resourcesGroup) {
+          const resourcesHeadingMatches =
+            "resources".includes(query);
+
+          let visibleResources = 0;
+
+          resourcesGroup
+            .querySelectorAll(
+              ".docs-nav-resource-link"
+            )
+            .forEach((resourceLink) => {
+              const matches =
+                !searching ||
+                resourcesHeadingMatches ||
+                resourceLink.textContent
+                  .toLowerCase()
+                  .includes(query);
+
+              resourceLink.hidden =
+                !matches;
+
+              if (matches) {
+                visibleResources += 1;
+              }
+            });
+
+          resourcesGroup.hidden =
+            searching &&
+            visibleResources === 0;
+        }
+
+
+        /* Program Categories */
 
         sidebar
           .querySelectorAll(
-            ".docs-nav-group"
+            ".docs-nav-program-group"
           )
           .forEach((group) => {
-
-            if (
-              group.classList.contains(
-                "docs-nav-home-group"
-              )
-            ) {
-              group.hidden =
-                Boolean(query) &&
-                !"training overview".includes(query);
-
-              return;
-            }
-
-
             const programName =
               (group.dataset.program || "")
                 .toLowerCase();
 
             const programMatches =
-              Boolean(query) &&
-              programName.includes(query);
+              searching &&
+              (
+                programName.includes(query) ||
+                (programName + " training")
+                  .includes(query)
+              );
 
             let visibleCategories = 0;
 
@@ -701,13 +1072,12 @@
                 ".docs-nav-category"
               )
               .forEach((category) => {
-
                 const categoryName =
                   (category.dataset.category || "")
                     .toLowerCase();
 
                 const categoryMatches =
-                  Boolean(query) &&
+                  searching &&
                   categoryName.includes(query);
 
                 let visibleLinks = 0;
@@ -715,17 +1085,16 @@
 
                 category
                   .querySelectorAll(
-                    ".docs-nav-link"
+                    ".docs-nav-module-link"
                   )
                   .forEach((moduleLink) => {
-
                     const moduleMatches =
                       moduleLink.textContent
                         .toLowerCase()
                         .includes(query);
 
                     const show =
-                      !query ||
+                      !searching ||
                       programMatches ||
                       categoryMatches ||
                       moduleMatches;
@@ -736,25 +1105,41 @@
                     if (show) {
                       visibleLinks += 1;
                     }
-
                   });
 
 
                 category.hidden =
+                  searching &&
                   visibleLinks === 0;
+
 
                 if (!category.hidden) {
                   visibleCategories += 1;
                 }
 
+
+                if (
+                  searching &&
+                  visibleLinks > 0
+                ) {
+                  setCategoryExpanded(
+                    category,
+                    true,
+                    false
+                  );
+                }
+                else if (!searching) {
+                  restoreCategoryExpandedState(
+                    category
+                  );
+                }
               });
 
 
             group.hidden =
+              searching &&
               visibleCategories === 0;
-
           });
-
       }
     );
 
@@ -781,7 +1166,6 @@
     sidebar.addEventListener(
       "click",
       (event) => {
-
         const clickedLink =
           event.target.closest("a");
 
@@ -794,7 +1178,6 @@
         document.body.classList.remove(
           "docs-nav-open"
         );
-
       }
     );
 
@@ -887,6 +1270,28 @@
   }
 
 
+  function prepareNativeModuleSections() {
+    const sections = [
+      ...document.querySelectorAll(
+        "#docs-native-module-content > section"
+      )
+    ];
+
+    let generatedId = 0;
+
+    sections.forEach((section) => {
+      section.classList.add("docs-page-section");
+
+      if (!section.id) {
+        generatedId += 1;
+        section.id = "section-" + generatedId;
+      }
+    });
+
+    return sections;
+  }
+
+
   /* =========================================================
      Section Labels
      ========================================================= */
@@ -900,6 +1305,13 @@
     const heading =
       section.querySelector(
         ":scope > h1, :scope > h2, :scope > h3"
+      ) ||
+      (
+        isResourcePage
+          ? section.querySelector(
+              ".resource-section-heading h2, .resource-section-heading h3"
+            )
+          : null
       );
 
 
@@ -1237,6 +1649,11 @@
         )
       );
 
+      if (module.comingSoon) {
+        decorateComingSoonLink(
+          anchor
+        );
+      }
 
       anchor.addEventListener(
         "click",
@@ -1453,13 +1870,23 @@
       );
 
 
+    const nativeModuleContent =
+      document.getElementById(
+        "docs-native-module-content"
+      );
+
+    const isNativeModule =
+      Boolean(nativeModuleContent);
+
+
     if (
       !isHomePage &&
       !isResourcePage &&
+      !isNativeModule &&
       !reveal
     ) {
       console.warn(
-        "5041 training shell: no Reveal module content was found."
+        "5041 training shell: no module content was found."
       );
 
       document.body.dataset.docsShellReady =
@@ -1504,7 +1931,9 @@
         ? prepareHomeSections()
         : isResourcePage
           ? prepareResourceSections()
-          : prepareRevealSections();
+          : isNativeModule
+            ? prepareNativeModuleSections()
+            : prepareRevealSections();
 
 
     const header =
@@ -1535,7 +1964,9 @@
           ? "docs-article docs-home-article"
           : isResourcePage
             ? "docs-article docs-resource-article"
-            : "docs-article"
+            : isNativeModule
+              ? "docs-article docs-native-article"
+              : "docs-article"
       );
 
 
@@ -1588,11 +2019,7 @@
 
     else {
       main.append(
-        make(
-          "h1",
-          "docs-page-title",
-          meta.title || document.title
-        )
+        buildModulePageTitle()
       );
 
 
@@ -1607,13 +2034,32 @@
       }
 
 
-      main.append(
-        buildReadingProgress()
-      );
+      if (!isComingSoonModule) {
+        main.append(
+          buildReadingProgress()
+        );
+      }
 
-      article.append(
-        reveal
-      );
+      if (isNativeModule) {
+        article.append(
+          ...nativeModuleContent.children
+        );
+
+        nativeModuleContent.remove();
+      }
+      else {
+        article.append(
+          reveal
+        );
+      }
+
+      if (isComingSoonModule) {
+        applyComingSoonState(
+          main,
+          article,
+          toc
+        );
+      }
 
       main.append(
         article,

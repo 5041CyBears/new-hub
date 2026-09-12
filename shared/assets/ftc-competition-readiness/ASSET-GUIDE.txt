@@ -1,0 +1,12 @@
+5041 FTC Competition Readiness — custom asset guide
+
+Place custom photos/diagrams in shared/assets/ftc-competition-readiness/
+
+Suggested files:
+- ftc-competition-readiness-overview.jpg
+- ftc-competition-readiness-workflow.png
+- ftc-competition-readiness-testing.jpg
+- ftc-competition-readiness-competition.jpg
+
+Replace a placeholder with:
+<img class="topic-wide-photo" src="../../shared/assets/ftc-competition-readiness/FILENAME" alt="Describe the image">

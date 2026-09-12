@@ -1,0 +1,12 @@
+5041 FTC Reliability & Maintainability — custom asset guide
+
+Place custom photos/diagrams in shared/assets/ftc-reliability-maintainability/
+
+Suggested files:
+- ftc-reliability-maintainability-overview.jpg
+- ftc-reliability-maintainability-workflow.png
+- ftc-reliability-maintainability-testing.jpg
+- ftc-reliability-maintainability-competition.jpg
+
+Replace a placeholder with:
+<img class="topic-wide-photo" src="../../shared/assets/ftc-reliability-maintainability/FILENAME" alt="Describe the image">

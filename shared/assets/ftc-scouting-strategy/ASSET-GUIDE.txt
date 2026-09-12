@@ -1,0 +1,12 @@
+5041 FTC Scouting & Match Strategy — custom asset guide
+
+Place custom photos/diagrams in shared/assets/ftc-scouting-strategy/
+
+Suggested files:
+- ftc-scouting-strategy-overview.jpg
+- ftc-scouting-strategy-workflow.png
+- ftc-scouting-strategy-testing.jpg
+- ftc-scouting-strategy-competition.jpg
+
+Replace a placeholder with:
+<img class="topic-wide-photo" src="../../shared/assets/ftc-scouting-strategy/FILENAME" alt="Describe the image">

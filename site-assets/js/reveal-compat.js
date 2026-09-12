@@ -1,10 +1,16 @@
-/* 5041 documentation-mode compatibility layer for legacy Reveal.js modules. */
+
 (function () {
   const handlers = new Map();
   let currentSlide = null;
   let observerStarted = false;
 
   function leafSlides() {
+    const nativeSlides = Array.from(
+      document.querySelectorAll('.docs-native-article .native-module-section, #docs-native-module-content > .native-module-section')
+    );
+
+    if (nativeSlides.length) return nativeSlides;
+
     return Array.from(document.querySelectorAll('.reveal .slides section')).filter(
       (section) => !section.querySelector(':scope > section')
     );

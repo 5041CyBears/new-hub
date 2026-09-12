@@ -521,11 +521,11 @@
   .motor-modal-image {
     max-height: 190px;
   }
-/* STUDENT NOTE: Image styling for `} .reveal img.trade-off-img`. max-width/max-height/object-fit are commonly used to keep images inside the slide. */
+/* STUDENT NOTE: Image styling for `} .docs-native-article img.trade-off-img`. max-width/max-height/object-fit are commonly used to keep images inside the slide. */
 }
 
-.reveal img.trade-off-img {
-  /* STUDENT NOTE: Typography/spacing rule for `width: 50%; max-width: 600px; height: auto; display: block; margin-left: auto; margin-right: auto; } .motor-slide h2, .motor-vertical h2, .motor-quiz h2, .reveal .motor-slide h2, .reveal .motor-vertical h2, .reveal .motor-quiz h2`. These values affect readability and vertical space on slides. */
+.docs-native-article img.trade-off-img {
+  /* STUDENT NOTE: Typography/spacing rule for `width: 50%; max-width: 600px; height: auto; display: block; margin-left: auto; margin-right: auto; } .motor-slide h2, .motor-vertical h2, .motor-quiz h2, .docs-native-article .motor-slide h2, .docs-native-article .motor-vertical h2, .docs-native-article .motor-quiz h2`. These values affect readability and vertical space on slides. */
   width: 50%;
   max-width: 600px;
   height: auto;
@@ -542,17 +542,17 @@
 .motor-slide h2,
 .motor-vertical h2,
 .motor-quiz h2,
-.reveal .motor-slide h2,
-.reveal .motor-vertical h2,
-.reveal .motor-quiz h2 {
-  /* STUDENT NOTE: Styles elements matched by `font-size: 1.45em; margin-bottom: 0.45rem; } .motor-intro, .reveal .motor-intro`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .motor-slide h2,
+.docs-native-article .motor-vertical h2,
+.docs-native-article .motor-quiz h2 {
+  /* STUDENT NOTE: Styles elements matched by `font-size: 1.45em; margin-bottom: 0.45rem; } .motor-intro, .docs-native-article .motor-intro`. Search the HTML for these class/id names before changing a shared rule. */
   font-size: 1.45em;
   margin-bottom: 0.45rem;
 }
 
 .motor-intro,
-.reveal .motor-intro {
-  /* STUDENT NOTE: Layout rule for `max-width: 950px; margin: 0 auto 0.8rem; font-size: 0.62em; line-height: 1.25; } .motor-grid-2, .motor-grid-3, .motor-grid-4, .motor-click-grid, .reveal .motor-grid-2, .reveal .motor-grid-3, .reveal .motor-grid-4, .reveal .motor-click-grid`. Grid properties here control columns, gaps, and alignment. */
+.docs-native-article .motor-intro {
+  /* STUDENT NOTE: Layout rule for `max-width: 950px; margin: 0 auto 0.8rem; font-size: 0.62em; line-height: 1.25; } .motor-grid-2, .motor-grid-3, .motor-grid-4, .motor-click-grid, .docs-native-article .motor-grid-2, .docs-native-article .motor-grid-3, .docs-native-article .motor-grid-4, .docs-native-article .motor-click-grid`. Grid properties here control columns, gaps, and alignment. */
   max-width: 950px;
   margin: 0 auto 0.8rem;
   font-size: 0.62em;
@@ -563,11 +563,11 @@
 .motor-grid-3,
 .motor-grid-4,
 .motor-click-grid,
-.reveal .motor-grid-2,
-.reveal .motor-grid-3,
-.reveal .motor-grid-4,
-.reveal .motor-click-grid {
-  /* STUDENT NOTE: Styles elements matched by `gap: 0.8rem; max-width: 1050px; margin: 0 auto; } .motor-card, .motor-click-card, .meter-card, .scenario-card, .reveal .motor-card, .reveal .motor-click-card, .reveal .meter-card, .reveal .scenario-card`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .motor-grid-2,
+.docs-native-article .motor-grid-3,
+.docs-native-article .motor-grid-4,
+.docs-native-article .motor-click-grid {
+  /* STUDENT NOTE: Styles elements matched by `gap: 0.8rem; max-width: 1050px; margin: 0 auto; } .motor-card, .motor-click-card, .meter-card, .scenario-card, .docs-native-article .motor-card, .docs-native-article .motor-click-card, .docs-native-article .meter-card, .docs-native-article .scenario-card`. Search the HTML for these class/id names before changing a shared rule. */
   gap: 0.8rem;
   max-width: 1050px;
   margin: 0 auto;
@@ -577,11 +577,11 @@
 .motor-click-card,
 .meter-card,
 .scenario-card,
-.reveal .motor-card,
-.reveal .motor-click-card,
-.reveal .meter-card,
-.reveal .scenario-card {
-  /* STUDENT NOTE: Typography/spacing rule for `background: var(--light); border-left: 10px solid var(--red); border-radius: 8px; padding: 0.75rem 0.85rem; text-align: left; } .motor-card h3, .motor-click-card h3, .meter-card h3, .scenario-card h3, .reveal .motor-card h3, .reveal .motor-click-card h3, .reveal .meter-card h3, .reveal .scenario-card h3`. These values affect readability and vertical space on slides. */
+.docs-native-article .motor-card,
+.docs-native-article .motor-click-card,
+.docs-native-article .meter-card,
+.docs-native-article .scenario-card {
+  /* STUDENT NOTE: Typography/spacing rule for `background: var(--light); border-left: 10px solid var(--red); border-radius: 8px; padding: 0.75rem 0.85rem; text-align: left; } .motor-card h3, .motor-click-card h3, .meter-card h3, .scenario-card h3, .docs-native-article .motor-card h3, .docs-native-article .motor-click-card h3, .docs-native-article .meter-card h3, .docs-native-article .scenario-card h3`. These values affect readability and vertical space on slides. */
   background: var(--light);
   border-left: 10px solid var(--red);
   border-radius: 8px;
@@ -593,11 +593,11 @@
 .motor-click-card h3,
 .meter-card h3,
 .scenario-card h3,
-.reveal .motor-card h3,
-.reveal .motor-click-card h3,
-.reveal .meter-card h3,
-.reveal .scenario-card h3 {
-  /* STUDENT NOTE: Typography/spacing rule for `margin: 0 0 0.35rem; font-size: 0.72em; } .motor-card p, .motor-click-card p, .meter-card p, .scenario-card p, .reveal .motor-card p, .reveal .motor-click-card p, .reveal .meter-card p, .reveal .scenario-card p`. These values affect readability and vertical space on slides. */
+.docs-native-article .motor-card h3,
+.docs-native-article .motor-click-card h3,
+.docs-native-article .meter-card h3,
+.docs-native-article .scenario-card h3 {
+  /* STUDENT NOTE: Typography/spacing rule for `margin: 0 0 0.35rem; font-size: 0.72em; } .motor-card p, .motor-click-card p, .meter-card p, .scenario-card p, .docs-native-article .motor-card p, .docs-native-article .motor-click-card p, .docs-native-article .meter-card p, .docs-native-article .scenario-card p`. These values affect readability and vertical space on slides. */
   margin: 0 0 0.35rem;
   font-size: 0.72em;
 }
@@ -606,27 +606,27 @@
 .motor-click-card p,
 .meter-card p,
 .scenario-card p,
-.reveal .motor-card p,
-.reveal .motor-click-card p,
-.reveal .meter-card p,
-.reveal .scenario-card p {
-  /* STUDENT NOTE: Styles elements matched by `margin: 0; font-size: 0.45em; line-height: 1.25; } .motor-card li, .reveal .motor-card li`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .motor-card p,
+.docs-native-article .motor-click-card p,
+.docs-native-article .meter-card p,
+.docs-native-article .scenario-card p {
+  /* STUDENT NOTE: Styles elements matched by `margin: 0; font-size: 0.45em; line-height: 1.25; } .motor-card li, .docs-native-article .motor-card li`. Search the HTML for these class/id names before changing a shared rule. */
   margin: 0;
   font-size: 0.45em;
   line-height: 1.25;
 }
 
 .motor-card li,
-.reveal .motor-card li {
-  /* STUDENT NOTE: Styles elements matched by `font-size: 0.5em; line-height: 1.22; margin-bottom: 0.16rem; } .motor-callout, .reveal .motor-callout`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .motor-card li {
+  /* STUDENT NOTE: Styles elements matched by `font-size: 0.5em; line-height: 1.22; margin-bottom: 0.16rem; } .motor-callout, .docs-native-article .motor-callout`. Search the HTML for these class/id names before changing a shared rule. */
   font-size: 0.5em;
   line-height: 1.22;
   margin-bottom: 0.16rem;
 }
 
 .motor-callout,
-.reveal .motor-callout {
-  /* STUDENT NOTE: Typography/spacing rule for `max-width: 950px; margin: 0.8rem auto 0; padding: 0.6rem 0.8rem; background: var(--white); border-left: 10px solid var(--red); border-radius: 8px; } .motor-callout p, .reveal .motor-callout p`. These values affect readability and vertical space on slides. */
+.docs-native-article .motor-callout {
+  /* STUDENT NOTE: Typography/spacing rule for `max-width: 950px; margin: 0.8rem auto 0; padding: 0.6rem 0.8rem; background: var(--white); border-left: 10px solid var(--red); border-radius: 8px; } .motor-callout p, .docs-native-article .motor-callout p`. These values affect readability and vertical space on slides. */
   max-width: 950px;
   margin: 0.8rem auto 0;
   padding: 0.6rem 0.8rem;
@@ -636,23 +636,23 @@
 }
 
 .motor-callout p,
-.reveal .motor-callout p {
-  /* STUDENT NOTE: Styles elements matched by `margin: 0; font-size: 0.56em; line-height: 1.25; } .motor-flow, .reveal .motor-flow`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .motor-callout p {
+  /* STUDENT NOTE: Styles elements matched by `margin: 0; font-size: 0.56em; line-height: 1.25; } .motor-flow, .docs-native-article .motor-flow`. Search the HTML for these class/id names before changing a shared rule. */
   margin: 0;
   font-size: 0.56em;
   line-height: 1.25;
 }
 
 .motor-flow,
-.reveal .motor-flow {
-  /* STUDENT NOTE: Styles elements matched by `max-width: 1050px; margin: 0.8rem auto 0; } .motor-node, .reveal .motor-node`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .motor-flow {
+  /* STUDENT NOTE: Styles elements matched by `max-width: 1050px; margin: 0.8rem auto 0; } .motor-node, .docs-native-article .motor-node`. Search the HTML for these class/id names before changing a shared rule. */
   max-width: 1050px;
   margin: 0.8rem auto 0;
 }
 
 .motor-node,
-.reveal .motor-node {
-  /* STUDENT NOTE: Typography/spacing rule for `min-height: 92px; padding: 0.6rem 0.5rem; font-size: 0.48em; } .sort-bank, .sort-targets, .reveal .sort-bank, .reveal .sort-targets`. These values affect readability and vertical space on slides. */
+.docs-native-article .motor-node {
+  /* STUDENT NOTE: Typography/spacing rule for `min-height: 92px; padding: 0.6rem 0.5rem; font-size: 0.48em; } .sort-bank, .sort-targets, .docs-native-article .sort-bank, .docs-native-article .sort-targets`. These values affect readability and vertical space on slides. */
   min-height: 92px;
   padding: 0.6rem 0.5rem;
   font-size: 0.48em;
@@ -660,68 +660,68 @@
 
 .sort-bank,
 .sort-targets,
-.reveal .sort-bank,
-.reveal .sort-targets {
-  /* STUDENT NOTE: Styles elements matched by `max-width: 1050px; margin-left: auto; margin-right: auto; } .sort-bank, .reveal .sort-bank`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .sort-bank,
+.docs-native-article .sort-targets {
+  /* STUDENT NOTE: Styles elements matched by `max-width: 1050px; margin-left: auto; margin-right: auto; } .sort-bank, .docs-native-article .sort-bank`. Search the HTML for these class/id names before changing a shared rule. */
   max-width: 1050px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .sort-bank,
-.reveal .sort-bank {
-  /* STUDENT NOTE: Typography/spacing rule for `gap: 0.4rem; padding: 0.45rem; min-height: 86px; } .sort-chip, .reveal .sort-chip`. These values affect readability and vertical space on slides. */
+.docs-native-article .sort-bank {
+  /* STUDENT NOTE: Typography/spacing rule for `gap: 0.4rem; padding: 0.45rem; min-height: 86px; } .sort-chip, .docs-native-article .sort-chip`. These values affect readability and vertical space on slides. */
   gap: 0.4rem;
   padding: 0.45rem;
   min-height: 86px;
 }
 
 .sort-chip,
-.reveal .sort-chip {
-  /* STUDENT NOTE: Styles elements matched by `padding: 0.35rem 0.5rem; font-size: 0.42em; line-height: 1.15; } .sort-targets, .reveal .sort-targets`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .sort-chip {
+  /* STUDENT NOTE: Styles elements matched by `padding: 0.35rem 0.5rem; font-size: 0.42em; line-height: 1.15; } .sort-targets, .docs-native-article .sort-targets`. Search the HTML for these class/id names before changing a shared rule. */
   padding: 0.35rem 0.5rem;
   font-size: 0.42em;
   line-height: 1.15;
 }
 
 .sort-targets,
-.reveal .sort-targets {
-  /* STUDENT NOTE: Styles elements matched by `gap: 0.8rem; margin-top: 0.7rem; } .sort-zone, .reveal .sort-zone`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .sort-targets {
+  /* STUDENT NOTE: Styles elements matched by `gap: 0.8rem; margin-top: 0.7rem; } .sort-zone, .docs-native-article .sort-zone`. Search the HTML for these class/id names before changing a shared rule. */
   gap: 0.8rem;
   margin-top: 0.7rem;
 }
 
 .sort-zone,
-.reveal .sort-zone {
-  /* STUDENT NOTE: Typography/spacing rule for `min-height: 210px; padding: 0.55rem; } .sort-zone h3, .reveal .sort-zone h3`. These values affect readability and vertical space on slides. */
+.docs-native-article .sort-zone {
+  /* STUDENT NOTE: Typography/spacing rule for `min-height: 210px; padding: 0.55rem; } .sort-zone h3, .docs-native-article .sort-zone h3`. These values affect readability and vertical space on slides. */
   min-height: 210px;
   padding: 0.55rem;
 }
 
 .sort-zone h3,
-.reveal .sort-zone h3 {
-  /* STUDENT NOTE: Styles elements matched by `font-size: 0.68em; text-align: center; margin: 0 0 0.4rem; } .sort-list, .reveal .sort-list`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .sort-zone h3 {
+  /* STUDENT NOTE: Styles elements matched by `font-size: 0.68em; text-align: center; margin: 0 0 0.4rem; } .sort-list, .docs-native-article .sort-list`. Search the HTML for these class/id names before changing a shared rule. */
   font-size: 0.68em;
   text-align: center;
   margin: 0 0 0.4rem;
 }
 
 .sort-list,
-.reveal .sort-list {
-  /* STUDENT NOTE: Styles elements matched by `gap: 0.35rem; min-height: 150px; } .activity-controls, .reveal .activity-controls`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .sort-list {
+  /* STUDENT NOTE: Styles elements matched by `gap: 0.35rem; min-height: 150px; } .activity-controls, .docs-native-article .activity-controls`. Search the HTML for these class/id names before changing a shared rule. */
   gap: 0.35rem;
   min-height: 150px;
 }
 
 .activity-controls,
-.reveal .activity-controls {
-  /* STUDENT NOTE: Styles elements matched by `gap: 0.65rem; margin-top: 0.55rem; } .activity-feedback, .reveal .activity-feedback`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .activity-controls {
+  /* STUDENT NOTE: Styles elements matched by `gap: 0.65rem; margin-top: 0.55rem; } .activity-feedback, .docs-native-article .activity-feedback`. Search the HTML for these class/id names before changing a shared rule. */
   gap: 0.65rem;
   margin-top: 0.55rem;
 }
 
 .activity-feedback,
-.reveal .activity-feedback {
+.docs-native-article .activity-feedback {
   /* STUDENT NOTE: Shared CSS variables. Change these carefully because many pages may reuse these values. */
   min-width: 240px;
   font-size: 0.46em;
@@ -731,12 +731,12 @@
    Uses the widest recurring content width from the judging/motors/safety modules.
    Keep this block at the bottom of the file so it overrides earlier module rules. */
 :root {
-  /* STUDENT NOTE: Layout rule for `--shared-slide-width: 1120px; } .reveal .slides section > :is( [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], .quiz-card, .sort-bank, .sort-targets, .troubleshooting-sort, .order-list, .documentation-table, .component-grid, .sensor-grid, .doc-grid, figure, table, ul, ol )`. Grid properties here control columns, gaps, and alignment. */
+  /* STUDENT NOTE: Layout rule for `--shared-slide-width: 1120px; } .docs-native-article .native-module-section > :is( [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], .quiz-card, .sort-bank, .sort-targets, .troubleshooting-sort, .order-list, .documentation-table, .component-grid, .sensor-grid, .doc-grid, figure, table, ul, ol )`. Grid properties here control columns, gaps, and alignment. */
   --shared-slide-width: 1120px;
 }
 
 /* Main direct slide content containers */
-.reveal .slides section > :is(
+.docs-native-article .native-module-section > :is(
   [class*="intro"],
   [class*="grid"],
   [class*="layout"],
@@ -765,12 +765,12 @@
   ul,
   ol
 ) {
-  /* STUDENT NOTE: Layout rule for `max-width: var(--shared-slide-width); } .reveal :is( .elec-grid-2, .elec-grid-3, .elec-grid-4, .component-grid, .sensor-grid, .doc-grid, .power-flow, .can-chain, .sort-bank, .sort-targets, .troubleshooting-sort, .documentation-table-wrap, .judge-grid-2, .judge-grid-3, .judge-grid-4, .judge-photo-split, .dialogue-grid, .response-grid, .judge-sort-bank, .judge-sort-targets, .award-chip-grid, .award-output, .motor-grid-2, .motor-grid-3, .motor-grid-4, .motor-click-grid, .motor-flow, .speed-torque-layout, .safety-grid-2, .safety-grid-3, .safety-grid-4, .safety-source-grid, .safety-tool-grid, .safety-split, .review-grid, .safety-resource-grid, .impact-repair-grid, .three-choice-grid, .maintenance-grid, .weight-card-grid, .weight-do-dont, .wd-layout )`. Grid properties here control columns, gaps, and alignment. */
+  /* STUDENT NOTE: Layout rule for `max-width: var(--shared-slide-width); } .docs-native-article :is( .elec-grid-2, .elec-grid-3, .elec-grid-4, .component-grid, .sensor-grid, .doc-grid, .power-flow, .can-chain, .sort-bank, .sort-targets, .troubleshooting-sort, .documentation-table-wrap, .judge-grid-2, .judge-grid-3, .judge-grid-4, .judge-photo-split, .dialogue-grid, .response-grid, .judge-sort-bank, .judge-sort-targets, .award-chip-grid, .award-output, .motor-grid-2, .motor-grid-3, .motor-grid-4, .motor-click-grid, .motor-flow, .speed-torque-layout, .safety-grid-2, .safety-grid-3, .safety-grid-4, .safety-source-grid, .safety-tool-grid, .safety-split, .review-grid, .safety-resource-grid, .impact-repair-grid, .three-choice-grid, .maintenance-grid, .weight-card-grid, .weight-do-dont, .wd-layout )`. Grid properties here control columns, gaps, and alignment. */
   max-width: var(--shared-slide-width);
 }
 
 /* Common module-specific containers that may not be direct children */
-.reveal :is(
+.docs-native-article :is(
   .elec-grid-2,
   .elec-grid-3,
   .elec-grid-4,
@@ -814,18 +814,18 @@
   .weight-do-dont,
   .wd-layout
 ) {
-  /* STUDENT NOTE: Styles elements matched by `max-width: var(--shared-slide-width); } .reveal .slides section .motor-card.dark`. Search the HTML for these class/id names before changing a shared rule. */
+  /* STUDENT NOTE: Styles elements matched by `max-width: var(--shared-slide-width); } .docs-native-article .native-module-section .motor-card.dark`. Search the HTML for these class/id names before changing a shared rule. */
   max-width: var(--shared-slide-width);
 }
 
-.reveal .slides section .motor-card.dark {
-  /* STUDENT NOTE: Typography/spacing rule for `background: var(--black) !important; color: var(--white) !important; } .reveal .slides section .motor-card.dark h3, .reveal .slides section .motor-card.dark p, .reveal .slides section .motor-card.dark li`. These values affect readability and vertical space on slides. */
+.docs-native-article .native-module-section .motor-card.dark {
+  /* STUDENT NOTE: Typography/spacing rule for `background: var(--black) !important; color: var(--white) !important; } .docs-native-article .native-module-section .motor-card.dark h3, .docs-native-article .native-module-section .motor-card.dark p, .docs-native-article .native-module-section .motor-card.dark li`. These values affect readability and vertical space on slides. */
   background: var(--black) !important;
   color: var(--white) !important;
 }
 
-.reveal .slides section .motor-card.dark h3,
-.reveal .slides section .motor-card.dark p,
-.reveal .slides section .motor-card.dark li {
+.docs-native-article .native-module-section .motor-card.dark h3,
+.docs-native-article .native-module-section .motor-card.dark p,
+.docs-native-article .native-module-section .motor-card.dark li {
   color: var(--white) !important;
 }

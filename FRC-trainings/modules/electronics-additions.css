@@ -664,10 +664,10 @@
   .component-modal-content {
     grid-template-columns: 1fr;
   }
-/* STUDENT NOTE: Image styling for `} .reveal .poster-img`. max-width/max-height/object-fit are commonly used to keep images inside the slide. */
+/* STUDENT NOTE: Image styling for `} .docs-native-article .poster-img`. max-width/max-height/object-fit are commonly used to keep images inside the slide. */
 }
 
-.reveal .poster-img {
+.docs-native-article .poster-img {
   /* STUDENT NOTE: Styles elements matched by `max-width: 100%; max-height: 520px; display: block; margin: 0.2em auto; border: 1px solid #ddd; } .awg-vertical-slide`. Search the HTML for these class/id names before changing a shared rule. */
   max-width: 100%;
   max-height: 520px;
@@ -1945,11 +1945,11 @@
 }
 
 .label-process-strip {
-  /* STUDENT NOTE: Image styling for `margin-bottom: 0.7rem; } .reveal img.max-width-img`. max-width/max-height/object-fit are commonly used to keep images inside the slide. */
+  /* STUDENT NOTE: Image styling for `margin-bottom: 0.7rem; } .docs-native-article img.max-width-img`. max-width/max-height/object-fit are commonly used to keep images inside the slide. */
   margin-bottom: 0.7rem;
 }
 
-.reveal img.max-width-img {
+.docs-native-article img.max-width-img {
   /* STUDENT NOTE: Shared CSS variables. Change these carefully because many pages may reuse these values. */
   width: 100%;
   max-width: 100%;
@@ -1964,12 +1964,12 @@
    Uses the widest recurring content width from the judging/motors/safety modules.
    Keep this block at the bottom of the file so it overrides earlier module rules. */
 :root {
-  /* STUDENT NOTE: Layout rule for `--shared-slide-width: 1120px; } .reveal .slides section > :is( [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], .quiz-card, .sort-bank, .sort-targets, .troubleshooting-sort, .order-list, .documentation-table, .component-grid, .sensor-grid, .doc-grid, figure, table, ul, ol )`. Grid properties here control columns, gaps, and alignment. */
+  /* STUDENT NOTE: Layout rule for `--shared-slide-width: 1120px; } .docs-native-article .native-module-section > :is( [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], .quiz-card, .sort-bank, .sort-targets, .troubleshooting-sort, .order-list, .documentation-table, .component-grid, .sensor-grid, .doc-grid, figure, table, ul, ol )`. Grid properties here control columns, gaps, and alignment. */
   --shared-slide-width: 1120px;
 }
 
 /* Main direct slide content containers */
-.reveal .slides section > :is(
+.docs-native-article .native-module-section > :is(
   [class*="intro"],
   [class*="grid"],
   [class*="layout"],
@@ -1998,12 +1998,12 @@
   ul,
   ol
 ) {
-  /* STUDENT NOTE: Layout rule for `max-width: var(--shared-slide-width); } .reveal :is( .elec-grid-2, .elec-grid-3, .elec-grid-4, .component-grid, .sensor-grid, .doc-grid, .power-flow, .can-chain, .sort-bank, .sort-targets, .troubleshooting-sort, .documentation-table-wrap, .judge-grid-2, .judge-grid-3, .judge-grid-4, .judge-photo-split, .dialogue-grid, .response-grid, .judge-sort-bank, .judge-sort-targets, .award-chip-grid, .award-output, .motor-grid-2, .motor-grid-3, .motor-grid-4, .motor-click-grid, .motor-flow, .speed-torque-layout, .safety-grid-2, .safety-grid-3, .safety-grid-4, .safety-source-grid, .safety-tool-grid, .safety-split, .review-grid, .safety-resource-grid, .impact-repair-grid, .three-choice-grid, .maintenance-grid, .weight-card-grid, .weight-do-dont, .wd-layout )`. Grid properties here control columns, gaps, and alignment. */
+  /* STUDENT NOTE: Layout rule for `max-width: var(--shared-slide-width); } .docs-native-article :is( .elec-grid-2, .elec-grid-3, .elec-grid-4, .component-grid, .sensor-grid, .doc-grid, .power-flow, .can-chain, .sort-bank, .sort-targets, .troubleshooting-sort, .documentation-table-wrap, .judge-grid-2, .judge-grid-3, .judge-grid-4, .judge-photo-split, .dialogue-grid, .response-grid, .judge-sort-bank, .judge-sort-targets, .award-chip-grid, .award-output, .motor-grid-2, .motor-grid-3, .motor-grid-4, .motor-click-grid, .motor-flow, .speed-torque-layout, .safety-grid-2, .safety-grid-3, .safety-grid-4, .safety-source-grid, .safety-tool-grid, .safety-split, .review-grid, .safety-resource-grid, .impact-repair-grid, .three-choice-grid, .maintenance-grid, .weight-card-grid, .weight-do-dont, .wd-layout )`. Grid properties here control columns, gaps, and alignment. */
   max-width: var(--shared-slide-width);
 }
 
 /* Common module-specific containers that may not be direct children */
-.reveal :is(
+.docs-native-article :is(
   .elec-grid-2,
   .elec-grid-3,
   .elec-grid-4,

@@ -1,0 +1,584 @@
+/* =========================================================
+   5041 Native Scroll Module Example
+   FTC Electronics & Wiring
+
+   This stylesheet intentionally uses normal document sizing instead
+   of Reveal.js slide-relative font sizes.
+   ========================================================= */
+
+:root {
+  --red: #980000;
+  --black: #090909;
+  --gray: #666;
+  --light: #f4f4f4;
+  --white: #fff;
+  --border: #d8d8d8;
+  --success: #2e7d32;
+  --danger: #b42318;
+  --warning: #d97706;
+}
+
+/* Prevent raw content from flashing before docs-shell.js wraps it. */
+body[data-native-module="true"] > #docs-native-module-content {
+  opacity: 0;
+  animation: native-shell-fallback 0s linear 2s forwards;
+}
+
+@keyframes native-shell-fallback {
+  to { opacity: 1; }
+}
+
+/* Once moved into .docs-article, the content is visible normally. */
+.docs-native-article {
+  min-width: 0;
+}
+
+.native-module-section {
+  scroll-margin-top: 150px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-top: 6px solid var(--red);
+  border-radius: 7px;
+  padding: clamp(20px, 3vw, 34px);
+  margin: 0 0 22px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.native-module-section > h1,
+.native-module-section > h2 {
+  margin: 0 0 0.7rem;
+  font-family: "Droid Sans", Arial, sans-serif;
+  line-height: 1.15;
+}
+
+.native-module-section > h2 {
+  font-size: clamp(1.45rem, 2.4vw, 2rem);
+}
+
+.native-module-section p,
+.native-module-section li {
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+.native-module-section ul,
+.native-module-section ol {
+  padding-left: 1.4rem;
+}
+
+.native-module-section li + li {
+  margin-top: 0.35rem;
+}
+
+.tag {
+  display: inline-block;
+  margin-bottom: 0.7rem;
+  padding: 5px 9px;
+  background: var(--red);
+  color: #fff;
+  font: 700 0.76rem "Droid Sans", Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.055em;
+}
+
+.bar {
+  width: 110px;
+  height: 5px;
+  margin: 0.55rem 0 1rem;
+  background: var(--red);
+}
+
+.topic-grid-2,
+.topic-grid-3,
+.topic-grid-4 {
+  display: grid;
+  gap: 0.85rem;
+  margin: 1rem 0;
+}
+
+.topic-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.topic-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.topic-grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+
+.topic-card,
+.topic-callout,
+.topic-warning,
+.topic-source-note,
+.topic-feedback,
+.topic-output,
+.topic-prompt {
+  background: var(--light);
+  border-left: 8px solid var(--red);
+  border-radius: 7px;
+  padding: 0.9rem 1rem;
+  text-align: left;
+}
+
+.topic-card h3,
+.topic-output h3 {
+  margin: 0 0 0.35rem;
+  font: 700 1.02rem "Droid Sans", Arial, sans-serif;
+}
+
+.topic-card p,
+.topic-card li,
+.topic-callout,
+.topic-warning,
+.topic-source-note,
+.topic-feedback,
+.topic-output,
+.topic-prompt {
+  font-size: 0.96rem;
+  line-height: 1.5;
+}
+
+.topic-callout,
+.topic-warning,
+.topic-source-note,
+.topic-feedback,
+.topic-output,
+.topic-prompt {
+  margin: 0.9rem 0;
+}
+
+.topic-warning {
+  border-left-color: var(--warning);
+  background: #fff4e5;
+}
+
+.topic-source-note {
+  border-left-color: #666;
+  background: #f7f7f7;
+}
+
+.topic-source-note a {
+  color: var(--red);
+  font-weight: 700;
+}
+
+.topic-image-slot {
+  min-height: 180px;
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 3px dashed #999;
+  border-radius: 8px;
+  background: repeating-linear-gradient(
+    135deg,
+    #fafafa,
+    #fafafa 14px,
+    #f0f0f0 14px,
+    #f0f0f0 28px
+  );
+  color: #555;
+  padding: 1rem;
+  text-align: center;
+  font: 700 0.92rem/1.5 "Droid Sans", Arial, sans-serif;
+}
+
+.topic-button-grid,
+.topic-choice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.65rem;
+  margin: 1rem 0;
+}
+
+.topic-button,
+.topic-choice {
+  border: 2px solid #aaa;
+  border-left: 7px solid var(--red);
+  border-radius: 7px;
+  background: #fff;
+  padding: 0.8rem 0.85rem;
+  color: #111;
+  text-align: left;
+  font: 700 0.93rem/1.35 "Droid Sans", Arial, sans-serif;
+  cursor: pointer;
+}
+
+.topic-button:hover,
+.topic-choice:hover {
+  background: #f5eaea;
+}
+
+.topic-button.active,
+.topic-choice.correct {
+  border-color: var(--success);
+  background: #edf7ee;
+}
+
+.topic-choice.incorrect {
+  border-color: var(--danger);
+  background: #fff1f0;
+}
+
+.topic-feedback {
+  border-left-color: #777;
+}
+
+.topic-feedback.correct {
+  border-left-color: var(--success);
+  background: #edf7ee;
+}
+
+.topic-feedback.incorrect {
+  border-left-color: var(--danger);
+  background: #fff1f0;
+}
+
+.topic-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+  margin: 1rem 0;
+}
+
+.topic-form-grid label,
+.topic-name-label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font: 700 0.9rem/1.25 "Droid Sans", Arial, sans-serif;
+}
+
+.topic-form-grid input,
+.topic-form-grid select,
+.topic-name-input {
+  width: 100%;
+  padding: 0.65rem;
+  border: 2px solid #aaa;
+  border-radius: 6px;
+  background: #fff;
+  font: 400 1rem "Droid Sans", Arial, sans-serif;
+}
+
+.topic-action,
+.quiz-button {
+  display: inline-block;
+  border: 0;
+  border-radius: 6px;
+  background: var(--red);
+  color: #fff;
+  padding: 0.7rem 0.95rem;
+  font: 700 0.92rem "Droid Sans", Arial, sans-serif;
+  cursor: pointer;
+  margin: 0.15rem;
+}
+
+.topic-action.secondary,
+.quiz-button.secondary {
+  background: #555;
+}
+
+.topic-action:disabled,
+.quiz-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.topic-flow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 1rem 0;
+}
+
+.topic-flow-node {
+  background: #fff;
+  border: 2px solid #bbb;
+  border-left: 7px solid var(--red);
+  border-radius: 7px;
+  padding: 0.65rem 0.75rem;
+  font: 700 0.88rem/1.3 "Droid Sans", Arial, sans-serif;
+}
+
+.topic-flow-arrow {
+  color: var(--red);
+  font: 900 1.3rem/1 "Droid Sans", Arial, sans-serif;
+}
+
+.topic-meter {
+  height: 18px;
+  background: #ddd;
+  border-radius: 99px;
+  overflow: hidden;
+  margin: 0.65rem 0;
+}
+
+.topic-meter > span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--red);
+  transition: width 0.2s ease;
+}
+
+.topic-small,
+.small {
+  font-size: 0.9rem !important;
+  line-height: 1.45 !important;
+}
+
+.topic-table {
+  width: 100%;
+  margin: 1rem 0;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+.topic-table th,
+.topic-table td {
+  border: 1px solid #bbb;
+  padding: 0.55rem;
+  vertical-align: top;
+}
+
+.topic-table th {
+  background: #ddd;
+  font-family: "Droid Sans", Arial, sans-serif;
+}
+
+.topic-checklist {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.topic-checkitem {
+  background: #fff;
+  border: 1px solid #ccc;
+  border-left: 7px solid var(--red);
+  border-radius: 6px;
+  padding: 0.7rem;
+  font: 700 0.9rem/1.35 "Droid Sans", Arial, sans-serif;
+}
+
+.topic-checkitem input {
+  transform: scale(1.2);
+  margin-right: 0.35rem;
+}
+
+.topic-sequence-built {
+  min-height: 54px;
+  margin: 0.75rem 0;
+  background: #fff;
+  border: 2px dashed #aaa;
+  border-radius: 7px;
+  padding: 0.65rem;
+  font: 700 0.9rem/1.4 "Droid Sans", Arial, sans-serif;
+}
+
+.topic-sequence-built span {
+  display: inline-block;
+  background: #eee;
+  border-radius: 5px;
+  padding: 0.4rem 0.5rem;
+  margin: 0.15rem;
+}
+
+/* =========================================================
+   Native Quiz
+   ========================================================= */
+
+.native-quiz-list {
+  display: grid;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.native-quiz-question {
+  background: #fafafa;
+  border: 1px solid #ccc;
+  border-left: 7px solid var(--red);
+  border-radius: 7px;
+  padding: 1rem;
+}
+
+.native-quiz-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.native-quiz-meta .tag {
+  margin: 0;
+}
+
+.progress-note {
+  color: #666;
+  font: 700 0.78rem "Droid Sans", Arial, sans-serif;
+}
+
+.quiz-card {
+  max-width: none;
+}
+
+.quiz-card > p {
+  margin-top: 0;
+  font: 700 1rem/1.45 "Droid Sans", Arial, sans-serif;
+}
+
+.quiz-card label {
+  display: block;
+  margin: 0.45rem 0;
+  padding: 0.55rem 0.65rem;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font: 400 0.95rem/1.4 "Droid Sans", Arial, sans-serif;
+}
+
+.quiz-card input {
+  margin-right: 0.5rem;
+}
+
+.native-quiz-results {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 2px solid #ddd;
+}
+
+.quiz-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.75rem 0;
+}
+
+.result {
+  margin-top: 0.75rem;
+  padding: 0.8rem;
+  border-left: 7px solid #777;
+  background: #f4f4f4;
+  font: 700 0.94rem/1.4 "Droid Sans", Arial, sans-serif;
+}
+
+.result.success {
+  border-left-color: var(--success);
+  background: #edf7ee;
+}
+
+/* =========================================================
+   Certificate
+   ========================================================= */
+
+.native-certificate-section {
+  text-align: center;
+}
+
+.certificate-card {
+  width: min(1000px, 100%);
+  margin: 0 auto;
+  background: #fff;
+  border: 6px solid var(--black);
+  border-left: 22px solid var(--red);
+  padding: 1rem;
+  box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.18);
+  transition: filter 0.2s ease, opacity 0.2s ease;
+}
+
+.certificate-border {
+  border: 4px solid var(--red);
+  padding: 1.5rem;
+  min-height: 430px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.certificate-small {
+  margin: 0;
+  color: var(--red);
+  font: 700 0.82rem "Droid Sans", Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.certificate-card h2 {
+  margin: 0.25rem 0;
+  color: var(--red);
+  font: 700 clamp(1.8rem, 4vw, 2.8rem) "Audiowide", "Droid Sans", sans-serif;
+}
+
+.certificate-card h3 {
+  margin: 0.35rem 0;
+  font: 700 clamp(1.1rem, 2.2vw, 1.5rem) "Droid Sans", Arial, sans-serif;
+}
+
+.certificate-text {
+  margin: 0.2rem 0;
+}
+
+.certificate-name {
+  width: min(650px, 90%);
+  padding: 0.6rem 0.8rem;
+  font: 700 clamp(1.2rem, 3vw, 1.8rem) "Droid Sans", Arial, sans-serif;
+  border: 4px solid var(--black);
+  border-left: 12px solid var(--red);
+  background: #fff;
+}
+
+.certificate-score {
+  color: var(--red);
+  font-weight: 700;
+}
+
+.certificate-line {
+  width: 55%;
+  height: 4px;
+  margin: 0.6rem auto 0.2rem;
+  background: linear-gradient(90deg, var(--black), var(--red), var(--black));
+}
+
+.certificate-footer {
+  color: var(--gray);
+  font-size: 0.9rem !important;
+}
+
+.certificate-actions {
+  margin-top: 1.2rem;
+}
+
+#complete.locked .certificate-card {
+  filter: blur(5px);
+  opacity: 0.45;
+  user-select: none;
+  pointer-events: none;
+}
+
+.docs-lock-banner {
+  text-align: left;
+}
+
+code {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+  .topic-grid-2,
+  .topic-grid-3,
+  .topic-grid-4,
+  .topic-checklist {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .native-module-section {
+    padding: 17px;
+  }
+
+  .native-quiz-meta {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

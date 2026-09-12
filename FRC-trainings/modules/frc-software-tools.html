@@ -1,0 +1,839 @@
+<!-- 5041 Training Hub page: FRC-trainings/modules/frc-software-tools.html -->
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>5041 FRC Software &amp; Programming Tools Training</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&amp;family=Droid+Sans:wght@400;700&amp;family=Droid+Serif:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="../../shared/css/styles.css" rel="stylesheet"/>
+<link href="frc-software-tools-additions.css" rel="stylesheet"/>
+<link href="../../site-assets/css/docs-site.css" rel="stylesheet"/>
+
+<link href="../../site-assets/css/native-module.css" rel="stylesheet"/></head>
+<body data-module-slug="frc-software-tools" data-native-module="true" data-program="FRC">
+<script src="../../site-assets/js/reveal-compat.js"></script>
+<div id="docs-native-module-content"><section class="fsw-slide native-module-section" id="module-goals">
+<span class="tag">Module Goals</span>
+<h2>By the end, students should be able to:</h2>
+<div class="bar"></div>
+<ul>
+<li>Identify the major software used to program, deploy, run, configure, and troubleshoot an FRC robot.</li>
+<li>Explain the role of WPILib, the annual WPILib installer, and the WPILib-specific copy of Visual Studio Code.</li>
+<li>Use the 2027 FIRST Driver Station as the center of robot enable/disable, controller, match-state, and communications workflows.</li>
+<li>Explain how the 2027 Systemcore changes controller imaging, deployment, networking, and diagnostic workflows.</li>
+<li>Choose between Elastic, AdvantageScope, and Glass for different dashboard and debugging jobs.</li>
+<li>Recognize common vendor utilities such as REV Hardware Client 2 and Phoenix Tuner X.</li>
+<li>Understand where autonomous tools, vision tools, simulation, Git/GitHub, and vendor dependencies fit into the software stack.</li>
+<li>Build a practical competition-ready software workflow instead of installing tools only when something breaks.</li>
+</ul>
+</section><section class="fsw-vertical native-module-section" id="important-2027-note">
+<span class="tag">Important 2027 Note</span>
+<h2>FRC software is in a major control-system transition</h2>
+<div class="fsw-warning">
+<h3>This module is updated for the 2027 preseason as of September 2026.</h3>
+<p>The 2027 software stack is still being refined before kickoff. Always check the current WPILib documentation and FIRST season documentation before competition.</p>
+</div>
+<div class="fsw-grid-2">
+<div class="fsw-card">
+<h3>2026 and Earlier</h3>
+<ul>
+<li>roboRIO / roboRIO 2.0 controller</li>
+<li>NI-based FRC Driver Station</li>
+<li>roboRIO Imaging Tool</li>
+<li>OpenMesh or VH-109-era transition networking</li>
+</ul>
+</div>
+<div class="fsw-card accent-card">
+<h3>2027 Direction</h3>
+<ul>
+<li><strong>Systemcore</strong> replaces roboRIO as the competition robot controller.</li>
+<li>A new <strong>FIRST Driver Station</strong> supports Systemcore and newer WPILib features.</li>
+<li>Systemcore OS updates use its web interface and <code>.llupdate</code> files.</li>
+<li>WPILib has major API and tool changes for the new control system.</li>
+</ul>
+</div>
+</div>
+<div class="fsw-source-note">
+<strong>Current official references:</strong>
+<a href="https://docs.wpilib.org/en/latest/docs/yearly-overview/yearly-changelog.html" rel="noopener" target="_blank">WPILib — New for 2027</a>
+            and
+            <a href="https://wpilib.org/blog/the-2027-first-driver-station" rel="noopener" target="_blank">WPILib — The 2027 FIRST Driver Station</a>.
+          </div>
+</section><section class="fsw-vertical native-module-section" id="big-idea">
+<span class="tag">Big Idea</span>
+<h2>There is not one “FRC program”</h2>
+<div class="fsw-stack-map">
+<div class="fsw-stack-item"><strong>Develop</strong><span>WPILib VS Code + Git</span></div>
+<div class="fsw-stack-arrow">↓</div>
+<div class="fsw-stack-item"><strong>Build &amp; Deploy</strong><span>GradleRIO + vendor dependencies</span></div>
+<div class="fsw-stack-arrow">↓</div>
+<div class="fsw-stack-item"><strong>Run</strong><span>FIRST Driver Station + Systemcore</span></div>
+<div class="fsw-stack-arrow">↓</div>
+<div class="fsw-stack-item"><strong>Observe</strong><span>Elastic / Glass / AdvantageScope</span></div>
+<div class="fsw-stack-arrow">↓</div>
+<div class="fsw-stack-item"><strong>Configure</strong><span>REV Hardware Client 2 / Phoenix Tuner X / web UIs</span></div>
+</div>
+<!-- CUSTOM IMAGE SLOT #1 -->
+<div class="fsw-image-slot">Custom image slot: software ecosystem diagram showing laptop → Systemcore → CAN devices → dashboard/logging</div>
+</section><section class="fsw-vertical native-module-section" id="interactive-1-tool-role-matcher">
+<span class="tag">Interactive 1 — Tool Role Matcher</span>
+<h2>What software would you reach for first?</h2>
+<div aria-label="Software scenarios" class="fsw-scenario-tabs" role="tablist">
+<button class="fsw-scenario-tab active" data-scenario="deploy" type="button">Deploy robot code</button>
+<button class="fsw-scenario-tab" data-scenario="enable" type="button">Enable robot</button>
+<button class="fsw-scenario-tab" data-scenario="spark" type="button">Configure a SPARK</button>
+<button class="fsw-scenario-tab" data-scenario="talon" type="button">Configure a Talon</button>
+<button class="fsw-scenario-tab" data-scenario="logs" type="button">Analyze a match log</button>
+<button class="fsw-scenario-tab" data-scenario="update" type="button">Update Systemcore</button>
+</div>
+<div class="fsw-prompt" id="fswRolePrompt"></div>
+<div class="fsw-choice-grid compact">
+<button class="fsw-choice-button" data-tool="vscode" type="button">WPILib VS Code</button>
+<button class="fsw-choice-button" data-tool="ds" type="button">FIRST Driver Station</button>
+<button class="fsw-choice-button" data-tool="rev" type="button">REV Hardware Client 2</button>
+<button class="fsw-choice-button" data-tool="ctre" type="button">Phoenix Tuner X</button>
+<button class="fsw-choice-button" data-tool="advantage" type="button">AdvantageScope</button>
+<button class="fsw-choice-button" data-tool="systemcore" type="button">Systemcore Web Dashboard</button>
+</div>
+<div aria-live="polite" class="fsw-feedback" id="fswRoleFeedback">Select a tool to see the reasoning.</div>
+</section><section class="fsw-vertical native-module-section" id="wpilib-installer">
+<span class="tag">WPILib Installer</span>
+<h2>The annual installer creates the FRC development environment</h2>
+<div class="fsw-grid-3">
+<div class="fsw-card">
+<h3>WPILib Libraries</h3>
+<p>Robot-side APIs for motors, sensors, command frameworks, geometry, kinematics, logging, simulation, and more.</p>
+</div>
+<div class="fsw-card">
+<h3>Build Toolchain</h3>
+<p>Java/C++ compiler support, Gradle/GradleRIO, JDK, native libraries, and deploy tooling.</p>
+</div>
+<div class="fsw-card">
+<h3>Desktop Tools</h3>
+<p>Tools such as Glass, SysId, AdvantageScope, Elastic, OutlineViewer, simulation tools, and documentation.</p>
+</div>
+</div>
+<div class="fsw-callout">
+<p><strong>Practical rule:</strong> install the WPILib release for the season you are programming. FRC projects, vendor libraries, controller software, and desktop tools are version-sensitive.</p>
+</div>
+<div class="fsw-source-note">
+            The 2027 installer documentation says the package includes VS Code, Gradle, Java tooling, WPILib dependencies, desktop tools, extensions, and offline documentation.
+            <a href="https://docs.wpilib.org/en/latest/docs/zero-to-robot/step-2/wpilib-setup.html" rel="noopener" target="_blank">WPILib Installation Guide</a>
+</div>
+</section><section class="fsw-vertical native-module-section" id="visual-studio-code">
+<span class="tag">Visual Studio Code</span>
+<h2>Use the WPILib copy of VS Code</h2>
+<div class="fsw-grid-2">
+<div class="fsw-card accent-card">
+<h3>What students do here</h3>
+<ul>
+<li>Create or import robot projects.</li>
+<li>Edit Java, C++, or Python robot code.</li>
+<li>Build and deploy to Systemcore.</li>
+<li>Install and update vendor dependencies.</li>
+<li>Run simulation.</li>
+<li>View robot console output and deploy errors.</li>
+<li>Use WPILib examples and documentation.</li>
+</ul>
+</div>
+<div class="fsw-card">
+<h3>Why the special copy?</h3>
+<p>The WPILib installer sets up a dedicated VS Code environment with the correct WPILib extension and matching development tools.</p>
+<p><strong>Do not assume your normal personal VS Code install is equivalent.</strong></p>
+</div>
+</div>
+<!-- CUSTOM IMAGE SLOT #2 -->
+<div class="fsw-image-slot">Custom image slot: screenshot of WPILib VS Code with the WPILib icon, command palette, project tree, and terminal labeled</div>
+</section><section class="fsw-vertical native-module-section" id="vs-code-practical-habits">
+<span class="tag">VS Code Practical Habits</span>
+<h2>Know the WPILib commands instead of hunting through menus</h2>
+<div class="fsw-grid-2">
+<div class="fsw-card">
+<h3>Commands worth memorizing</h3>
+<ul>
+<li>Create a New Project</li>
+<li>Build Robot Code</li>
+<li>Deploy Robot Code</li>
+<li>Simulate Robot Code</li>
+<li>Manage Vendor Libraries / Dependency Manager</li>
+<li>Set Team Number</li>
+<li>Import a previous-year project</li>
+</ul>
+</div>
+<div class="fsw-card">
+<h3>Good workflow</h3>
+<ul>
+<li>Build before walking to the robot.</li>
+<li>Read the first meaningful compiler error, not just the last red line.</li>
+<li>Commit working code before a risky refactor.</li>
+<li>Do not update libraries in the queue at competition.</li>
+<li>Keep one known-good deployable branch/tag.</li>
+</ul>
+</div>
+</div>
+</section><section class="fsw-vertical native-module-section" id="interactive-2-vs-code-command-coach">
+<span class="tag">Interactive 2 — VS Code Command Coach</span>
+<h2>Pick a task and identify the correct workflow</h2>
+<div class="fsw-control-grid">
+<label>
+            Task
+            <select id="fswVsTask">
+<option value="new">Start a new robot project</option>
+<option value="build">Check whether the project compiles</option>
+<option value="deploy">Send code to the robot</option>
+<option value="sim">Run code without the physical robot</option>
+<option value="vendor">Add REV, CTRE, PathPlanner, PhotonVision, etc.</option>
+<option value="upgrade">Bring a 2026 project into 2027</option>
+</select>
+</label>
+</div>
+<button class="fsw-action-button" id="fswShowVsCommand" type="button">Show Recommended Command</button>
+<div aria-live="polite" class="fsw-output" id="fswVsOutput"></div>
+</section><section class="fsw-vertical native-module-section" id="gradlerio">
+<span class="tag">GradleRIO</span>
+<h2>VS Code is the interface; GradleRIO does much of the building and deploying</h2>
+<div class="fsw-flow">
+<div class="fsw-flow-node">Source Code</div>
+<div class="fsw-flow-arrow">→</div>
+<div class="fsw-flow-node accent">Gradle / GradleRIO</div>
+<div class="fsw-flow-arrow">→</div>
+<div class="fsw-flow-node">Compile + Dependencies</div>
+<div class="fsw-flow-arrow">→</div>
+<div class="fsw-flow-node accent">Deploy</div>
+<div class="fsw-flow-arrow">→</div>
+<div class="fsw-flow-node">Systemcore</div>
+</div>
+<div class="fsw-callout">
+<p>Students do not need to become Gradle experts immediately, but they should recognize <code>build.gradle</code>, <code>vendordeps/</code>, and the deploy directory as important parts of an FRC project.</p>
+</div>
+</section><section class="fsw-vertical native-module-section" id="vendor-dependencies">
+<span class="tag">Vendor Dependencies</span>
+<h2>Hardware libraries are installed per project</h2>
+<div class="fsw-grid-3">
+<div class="fsw-card">
+<h3>REVLib</h3>
+<p>Code API for SPARK MAX, SPARK Flex, and other REV ION devices.</p>
+</div>
+<div class="fsw-card">
+<h3>Phoenix 6</h3>
+<p>CTRE software API for Talon FX, CANcoder, Pigeon, and CTRE devices.</p>
+</div>
+<div class="fsw-card">
+<h3>Other Libraries</h3>
+<p>PathPlannerLib, ChoreoLib, PhotonLib, AdvantageKit, sensor libraries, and other supported dependencies.</p>
+</div>
+</div>
+<div class="fsw-warning">
+<h3>Version discipline matters</h3>
+<p>Do not casually mix vendor-dependency versions from different WPILib years. Update on a controlled schedule, build, deploy, and test before competition.</p>
+</div>
+<div class="fsw-source-note">
+            WPILib's current Dependency Manager installs Java/C++ vendor dependencies per project and recommends vendor offline installers when they include useful device-management tools.
+            <a href="https://docs.wpilib.org/en/latest/docs/software/vscode-overview/3rd-party-libraries.html" rel="noopener" target="_blank">3rd Party Libraries</a>
+</div>
+</section><section class="fsw-vertical native-module-section" id="2027-systemcore">
+<span class="tag">2027 Systemcore</span>
+<h2>The robot controller is now part of the software workflow</h2>
+<div class="fsw-grid-2">
+<div class="fsw-card accent-card">
+<h3>What Systemcore does</h3>
+<ul>
+<li>Runs your deployed robot program.</li>
+<li>Hosts robot networking and web-based configuration.</li>
+<li>Connects to CAN, USB, Ethernet, I2C, and reconfigurable I/O.</li>
+<li>Provides onboard status information and an IMU.</li>
+</ul>
+</div>
+<div class="fsw-card">
+<h3>Programmer responsibilities</h3>
+<ul>
+<li>Keep its OS version compatible with the team's software stack.</li>
+<li>Know how to reach its web dashboard.</li>
+<li>Know the team number and robot network.</li>
+<li>Do not update it immediately before an important match.</li>
+</ul>
+</div>
+</div>
+<div class="fsw-source-note">
+            The 2027 Systemcore is a Raspberry Pi Compute Module 5-based controller with built-in robotics I/O and networking.
+            <a href="https://docs.wpilib.org/en/latest/docs/software/systemcore-info/systemcore-introduction.html" rel="noopener" target="_blank">Systemcore Introduction</a>
+</div>
+</section><section class="fsw-vertical native-module-section" id="systemcore-updating-imaging">
+<span class="tag">Systemcore Updating / “Imaging”</span>
+<h2>Do not use the old roboRIO Imaging Tool on a Systemcore</h2>
+<div class="fsw-step-grid">
+<div class="fsw-step"><span>1</span><strong>Download</strong><p>Get the correct current <code>.llupdate</code> release file.</p></div>
+<div class="fsw-step"><span>2</span><strong>Connect</strong><p>Connect to Systemcore by USB or network.</p></div>
+<div class="fsw-step"><span>3</span><strong>Open Web UI</strong><p>Open the Systemcore dashboard, normally at <code>robot.local</code>.</p></div>
+<div class="fsw-step"><span>4</span><strong>Update</strong><p>Use the Configure &amp; Update area to select and flash the update.</p></div>
+<div class="fsw-step"><span>5</span><strong>Verify</strong><p>Confirm the update succeeds, then reconnect and test communications.</p></div>
+</div>
+<div class="fsw-warning">
+<h3>Preseason hardware note</h3>
+<p>Some older alpha/beta Systemcore images may require the Limelight Hardware Manager for an initial update. Follow current official instructions for the hardware version in front of you.</p>
+</div>
+<!-- CUSTOM IMAGE SLOT #3 -->
+<div class="fsw-image-slot">Custom image slot: Systemcore web dashboard with the update/configuration area labeled</div>
+<div class="fsw-source-note">
+<a href="https://docs.wpilib.org/en/latest/docs/zero-to-robot/step-3/imaging-your-systemcore.html" rel="noopener" target="_blank">WPILib — Imaging your Systemcore</a>
+</div>
+</section><section class="fsw-vertical native-module-section" id="legacy-robot-software">
+<span class="tag">Legacy Robot Software</span>
+<h2>Know what still belongs to older roboRIO robots</h2>
+<div class="fsw-grid-2">
+<div class="fsw-card legacy-card">
+<h3>roboRIO Imaging Tool</h3>
+<p>Still relevant if your team maintains a 2026-or-earlier roboRIO practice robot. It is not the normal Systemcore update method.</p>
+</div>
+<div class="fsw-card legacy-card">
+<h3>NI FRC Game Tools / NI Driver Station</h3>
+<p>Important for roboRIO-era systems. For 2027 Systemcore competition development, learn the new FIRST Driver Station workflow.</p>
+</div>
+</div>
+<div class="fsw-callout">
+<p><strong>Practical advice:</strong> label practice laptops and robots by control-system generation. “This worked on our old roboRIO robot” does not mean the same tool is correct for Systemcore.</p>
+</div>
+</section><section class="fsw-vertical native-module-section" id="interactive-3-2027-transition-check">
+<span class="tag">Interactive 3 — 2027 Transition Check</span>
+<h2>Is this a legacy roboRIO task or a Systemcore-era task?</h2>
+<div class="fsw-prompt" id="fswTransitionPrompt"></div>
+<div class="fsw-choice-row">
+<button class="fsw-choice-button" id="fswLegacyChoice" type="button">Legacy roboRIO workflow</button>
+<button class="fsw-choice-button" id="fswSystemcoreChoice" type="button">2027 Systemcore workflow</button>
+</div>
+<button class="fsw-action-button secondary" id="fswNextTransition" type="button">Next Scenario</button>
+<div aria-live="polite" class="fsw-feedback" id="fswTransitionFeedback"></div>
+</section><section class="fsw-vertical native-module-section" id="first-driver-station">
+<span class="tag">FIRST Driver Station</span>
+<h2>The Driver Station is the operational center of the robot</h2>
+<div class="fsw-grid-3">
+<div class="fsw-card"><h3>Robot State</h3><p>Enable, disable, E-stop, autonomous, teleoperated, utility, and match operation.</p></div>
+<div class="fsw-card"><h3>Controllers</h3><p>Detects and assigns joysticks/gamepads and sends operator input to robot code.</p></div>
+<div class="fsw-card"><h3>Health</h3><p>Shows communications, robot code, battery/status information, errors, and logs.</p></div>
+</div>
+<div class="fsw-warning">
+<h3>2027 is a new Driver Station generation</h3>
+<p>The 2027 FIRST Driver Station is built for Systemcore and adds newer features such as OpMode selection, Alerts, modern gamepad handling, and WPILog-based DS logs.</p>
+</div>
+<!-- CUSTOM IMAGE SLOT #4 -->
+<div class="fsw-image-slot">Custom image slot: 2027 FIRST Driver Station screenshot with communications, enable state, controller list, and mode selector labeled</div>
+<div class="fsw-source-note">
+            The April 2026 WPILib announcement describes the new DS as cross-platform for development, Systemcore-only, and planned for 2027 FRC. FRC event/FMS support has additional platform restrictions, so follow final season rules.
+            <a href="https://wpilib.org/blog/the-2027-first-driver-station" rel="noopener" target="_blank">2027 FIRST Driver Station</a>
+</div>
+</section><section class="fsw-vertical native-module-section" id="driver-station-practical-advice">
+<span class="tag">Driver Station Practical Advice</span>
+<h2>Treat the drive laptop as competition equipment</h2>
+<div class="fsw-grid-2">
+<div class="fsw-card accent-card">
+<h3>Do</h3>
+<ul>
+<li>Use a dedicated driver laptop when possible.</li>
+<li>Prefer a reliable built-in Ethernet port.</li>
+<li>Keep Windows, FRC software, and drivers intentionally managed.</li>
+<li>Lock controller order and label USB devices/cables.</li>
+<li>Test a full match cycle before the event.</li>
+<li>Know how to access Driver Station logs.</li>
+</ul>
+</div>
+<div class="fsw-card danger-card">
+<h3>Avoid</h3>
+<ul>
+<li>Discord, game launchers, cloud sync, CAD updaters, or unnecessary background software while driving.</li>
+<li>Windows updates in the queue.</li>
+<li>Cheap unknown USB/Ethernet adapters.</li>
+<li>Changing controller USB ports between matches.</li>
+<li>Installing new robot software while queued for a match.</li>
+</ul>
+</div>
+</div>
+<div class="fsw-source-note">
+            WPILib's current Driver Station best-practices guide emphasizes dedicated, reliable hardware and minimizing background software.
+            <a href="https://docs.wpilib.org/en/latest/docs/software/driverstation/driver-station-best-practices.html" rel="noopener" target="_blank">Driver Station Best Practices</a>
+</div>
+</section><section class="fsw-vertical native-module-section" id="interactive-4-driver-station-triage">
+<span class="tag">Interactive 4 — Driver Station Triage</span>
+<h2>What should you check first?</h2>
+<div class="fsw-scenario-tabs" id="fswDsTabs">
+<button class="fsw-scenario-tab active" data-ds="comms" type="button">No robot communications</button>
+<button class="fsw-scenario-tab" data-ds="code" type="button">Comms good, robot code missing</button>
+<button class="fsw-scenario-tab" data-ds="controller" type="button">Wrong controller input</button>
+<button class="fsw-scenario-tab" data-ds="random" type="button">Robot disables during practice</button>
+</div>
+<div class="fsw-prompt" id="fswDsPrompt"></div>
+<div class="fsw-choice-grid" id="fswDsChoices"></div>
+<div aria-live="polite" class="fsw-feedback" id="fswDsFeedback"></div>
+</section><section class="fsw-vertical native-module-section" id="dashboards">
+<span class="tag">Dashboards</span>
+<h2>Driver information and programmer diagnostics are different jobs</h2>
+<div class="fsw-comparison-table-wrap">
+<table class="fsw-comparison-table">
+<thead>
+<tr><th>Tool</th><th>Best Use</th><th>Strength</th></tr>
+</thead>
+<tbody>
+<tr><td><strong>Elastic</strong></td><td>Driver dashboard</td><td>Modern drag-and-drop match display and operator controls.</td></tr>
+<tr><td><strong>AdvantageScope</strong></td><td>Logs + deep diagnostics</td><td>Graphs, field/3D visualization, DS logs, robot logs, replay and comparison.</td></tr>
+<tr><td><strong>Glass</strong></td><td>Live programmer debugging</td><td>NetworkTables inspection, plots, mechanisms, field views, simulation integration.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="fsw-warning">
+<h3>2027 removal alert</h3>
+<p>WPILib's 2027 changelog says <strong>Shuffleboard, SmartDashboard, PathWeaver, and RobotBuilder are removed</strong>. Do not build new 2027 workflows around them.</p>
+</div>
+<div class="fsw-source-note">
+<a href="https://docs.wpilib.org/en/latest/docs/software/dashboards/dashboard-intro.html" rel="noopener" target="_blank">Choosing a Dashboard</a>
+            ·
+            <a href="https://docs.wpilib.org/en/latest/docs/yearly-overview/yearly-changelog.html" rel="noopener" target="_blank">New for 2027</a>
+</div>
+</section><section class="fsw-vertical native-module-section" id="elastic">
+<span class="tag">Elastic</span>
+<h2>Keep the driver dashboard simple</h2>
+<div class="fsw-grid-2">
+<div class="fsw-card"><h3>Good driver data</h3><ul><li>Auto selection</li><li>Mechanism ready/not-ready</li><li>Piece detected</li><li>Critical fault alert</li><li>Match-relevant status</li></ul></div>
+<div class="fsw-card danger-card"><h3>Bad driver dashboard habits</h3><ul><li>Twenty tiny gauges</li><li>Raw encoder values</li><li>Every motor temperature</li><li>Information the driver cannot act on</li><li>Layouts changed on event morning</li></ul></div>
+</div>
+<p class="fsw-small-note">A drive team's eyes belong on the field. The dashboard should answer a small number of important questions instantly.</p>
+</section><section class="fsw-vertical native-module-section" id="advantagescope-glass">
+<span class="tag">AdvantageScope &amp; Glass</span>
+<h2>Use data to troubleshoot instead of guessing</h2>
+<div class="fsw-grid-2">
+<div class="fsw-card"><h3>AdvantageScope</h3><p>Excellent for post-match analysis, WPILOG/DS logs, pose visualization, swerve vectors, console review, and comparing signals over time.</p></div>
+<div class="fsw-card"><h3>Glass</h3><p>Excellent for live NetworkTables inspection, plots, Field2d/Mechanism2d-style views, and simulation/debug workflows.</p></div>
+</div>
+<!-- CUSTOM IMAGE SLOT #5 -->
+<div class="fsw-image-slot">Custom image slot: side-by-side Elastic, AdvantageScope, and Glass screenshots</div>
+</section><section class="fsw-vertical native-module-section" id="interactive-5-dashboard-chooser">
+<span class="tag">Interactive 5 — Dashboard Chooser</span>
+<h2>Pick the best tool for the job</h2>
+<div class="fsw-prompt" id="fswDashPrompt"></div>
+<div class="fsw-choice-row">
+<button class="fsw-choice-button" data-dashboard="elastic" type="button">Elastic</button>
+<button class="fsw-choice-button" data-dashboard="glass" type="button">Glass</button>
+<button class="fsw-choice-button" data-dashboard="advantage" type="button">AdvantageScope</button>
+</div>
+<button class="fsw-action-button secondary" id="fswNextDash" type="button">Next Scenario</button>
+<div class="fsw-feedback" id="fswDashFeedback"></div>
+</section><section class="fsw-vertical native-module-section" id="vendor-device-utilities">
+<span class="tag">Vendor Device Utilities</span>
+<h2>Your code library and your hardware configuration tool are not the same thing</h2>
+<div class="fsw-grid-2">
+<div class="fsw-card accent-card">
+<h3>REV Hardware Client 2</h3>
+<ul>
+<li>Detect compatible REV devices.</li>
+<li>Update firmware.</li>
+<li>Configure devices.</li>
+<li>Back up and restore device data.</li>
+<li>View telemetry and test hardware.</li>
+</ul>
+<p>REV says teams using REV ION products with REVLib 2026 or newer should use <strong>REV Hardware Client 2</strong>.</p>
+</div>
+<div class="fsw-card accent-card">
+<h3>Phoenix Tuner X</h3>
+<ul>
+<li>Discover CTRE devices.</li>
+<li>Update firmware.</li>
+<li>Set CAN IDs and names.</li>
+<li>Configure and test CTRE hardware.</li>
+<li>Manage Phoenix licensing/features where applicable.</li>
+</ul>
+<p>Phoenix 6 is the current CTRE software family for modern FRC CTRE devices.</p>
+</div>
+</div>
+<div class="fsw-warning">
+<h3>Competition habit</h3>
+<p>Record device firmware versions and CAN IDs before events. Do not update every motor controller because an updater says “new version available” unless the team has time to rebuild, reboot, and fully retest.</p>
+</div>
+<!-- CUSTOM IMAGE SLOT #6 -->
+<div class="fsw-image-slot">Custom image slot: REV Hardware Client 2 and Phoenix Tuner X screenshots with device list, firmware, CAN ID, and telemetry areas labeled</div>
+<div class="fsw-source-note">
+<a href="https://docs.revrobotics.com/rev-hardware-client-2" rel="noopener" target="_blank">REV Hardware Client 2</a>
+            ·
+            <a href="https://v6.docs.ctr-electronics.com/en/stable/docs/installation/index.html" rel="noopener" target="_blank">Phoenix 6 / Tuner X</a>
+</div>
+</section><section class="fsw-vertical native-module-section" id="network-radio-configuration">
+<span class="tag">Network &amp; Radio Configuration</span>
+<h2>The 2027 workflow is increasingly web-based</h2>
+<div class="fsw-grid-2">
+<div class="fsw-card">
+<h3>VH-109 Radio</h3>
+<p>Current WPILib guidance configures VH-109 radios through their web page, normally reached at <code>radio.local</code> while directly connected.</p>
+</div>
+<div class="fsw-card">
+<h3>Systemcore</h3>
+<p>Systemcore configuration and updates are also exposed through its local web dashboard.</p>
+</div>
+</div>
+<div class="fsw-callout">
+<p>Programmers should know basic FRC networking: team number, Ethernet vs. Wi-Fi, local hostnames, IP addresses, and how to physically tether when wireless troubleshooting is ambiguous.</p>
+</div>
+</section><section class="fsw-vertical native-module-section" id="interactive-6-vendor-tool-router">
+<span class="tag">Interactive 6 — Vendor Tool Router</span>
+<h2>Which software owns this job?</h2>
+<div class="fsw-control-grid">
+<label>
+            Hardware / Task
+            <select id="fswVendorTask">
+<option value="sparkfw">Update a SPARK Flex firmware</option>
+<option value="talonid">Change a Talon FX CAN ID</option>
+<option value="revcode">Use SPARK Flex methods in Java code</option>
+<option value="ctrecode">Use Talon FX methods in Java code</option>
+<option value="radio">Configure a VH-109 practice radio</option>
+<option value="sysupdate">Install a Systemcore OS update</option>
+</select>
+</label>
+</div>
+<button class="fsw-action-button" id="fswRouteVendor" type="button">Route the Task</button>
+<div class="fsw-output" id="fswVendorOutput"></div>
+</section><section class="fsw-vertical native-module-section" id="robot-simulation">
+<span class="tag">Robot Simulation</span>
+<h2>Test logic before the robot is available</h2>
+<div class="fsw-grid-2">
+<div class="fsw-card"><h3>Simulation can help with</h3><ul><li>Command scheduling</li><li>Autonomous sequencing</li><li>Dashboard and NetworkTables behavior</li><li>Basic drivetrain/mechanism models</li><li>Input handling</li></ul></div>
+<div class="fsw-card"><h3>Simulation cannot prove</h3><ul><li>Real mechanism friction</li><li>Bad wiring</li><li>Loose chains/belts</li><li>Real sensor mounting errors</li><li>CAN wiring reliability</li></ul></div>
+</div>
+<div class="fsw-callout">
+<p>Use <strong>WPILib: Simulate Robot Code</strong>, not the generic VS Code “Run” button. Some vendor libraries may have limited simulation support.</p>
+</div>
+<div class="fsw-source-note">
+<a href="https://docs.wpilib.org/en/latest/docs/software/wpilib-tools/robot-simulation/introduction.html" rel="noopener" target="_blank">WPILib Robot Simulation</a>
+</div>
+</section><section class="fsw-vertical native-module-section" id="specialized-wpilib-tools">
+<span class="tag">Specialized WPILib Tools</span>
+<h2>Useful tools programmers should recognize</h2>
+<div class="fsw-grid-3">
+<div class="fsw-card"><h3>SysId</h3><p>Collects mechanism data for characterization and feedforward/control-system analysis.</p></div>
+<div class="fsw-card"><h3>OutlineViewer</h3><p>Inspect NetworkTables topics/values when a dashboard is hiding too much detail.</p></div>
+<div class="fsw-card"><h3>Data Log Tools</h3><p>Review and process robot logs instead of relying only on live console text.</p></div>
+</div>
+</section><section class="fsw-vertical native-module-section" id="autonomous-planning-software">
+<span class="tag">Autonomous Planning Software</span>
+<h2>Path tools generate plans; robot code still has to execute them correctly</h2>
+<div class="fsw-grid-2">
+<div class="fsw-card accent-card">
+<h3>Choreo</h3>
+<p>A time-optimal trajectory planning tool listed directly in WPILib documentation. Supports swerve and differential drive trajectories and a robot-side ChoreoLib.</p>
+</div>
+<div class="fsw-card accent-card">
+<h3>PathPlanner</h3>
+<p>A widely used FRC autonomous/path planning application with a companion PathPlannerLib vendor dependency.</p>
+</div>
+</div>
+<div class="fsw-warning">
+<h3>2027 change</h3>
+<p>WPILib has removed PathWeaver for 2027 and points teams toward modern options such as Choreo, PathPlanner, or Bline.</p>
+</div>
+<div class="fsw-callout">
+<p><strong>Practical advice:</strong> keep path files in version control, verify field coordinates, test alliance flipping/mirroring, and validate autonomous routines on the real robot before relying on them in a match.</p>
+</div>
+<div class="fsw-source-note">
+<a href="https://choreo.autos/" rel="noopener" target="_blank">Choreo</a>
+            ·
+            <a href="https://github.com/mjansen4857/pathplanner" rel="noopener" target="_blank">PathPlanner</a>
+</div>
+</section><section class="fsw-vertical native-module-section" id="vision-software">
+<span class="tag">Vision Software</span>
+<h2>Vision usually has its own configuration application or web interface</h2>
+<div class="fsw-grid-2">
+<div class="fsw-card">
+<h3>PhotonVision</h3>
+<p>Free FRC vision-processing software with a web UI and PhotonLib vendor dependency for reading vision results in robot code.</p>
+</div>
+<div class="fsw-card">
+<h3>Limelight</h3>
+<p>Limelight devices use browser-based configuration for pipelines, cameras, networking, targeting, and diagnostics. Systemcore is also made by Limelight but has its own controller role.</p>
+</div>
+</div>
+<div class="fsw-callout">
+<p>Do not treat “vision works in the web UI” as proof that robot code is using it correctly. Verify timestamps, transforms, target ambiguity, coordinate systems, and how measurements are fused into robot state estimation.</p>
+</div>
+<div class="fsw-source-note">
+<a href="https://docs.photonvision.org/en/latest/" rel="noopener" target="_blank">PhotonVision Documentation</a>
+</div>
+</section><section class="fsw-vertical native-module-section" id="git-github">
+<span class="tag">Git &amp; GitHub</span>
+<h2>Version control is not optional on a serious programming team</h2>
+<div class="fsw-grid-2">
+<div class="fsw-card accent-card">
+<h3>Git gives you</h3>
+<ul>
+<li>A history of working code.</li>
+<li>Branches for experiments.</li>
+<li>The ability to compare exactly what changed.</li>
+<li>A recovery path when a change breaks the robot.</li>
+</ul>
+</div>
+<div class="fsw-card">
+<h3>GitHub gives the team</h3>
+<ul>
+<li>A shared remote repository.</li>
+<li>Pull requests and code review.</li>
+<li>Issues and documentation.</li>
+<li>Offsite backup and collaboration.</li>
+</ul>
+</div>
+</div>
+<div class="fsw-warning">
+<h3>Competition rule of thumb</h3>
+<p>Commit before a major pit change. If the robot worked in the previous match, you should be able to identify and reverse the exact software change made since then.</p>
+</div>
+<!-- CUSTOM IMAGE SLOT #7 -->
+<div class="fsw-image-slot">Custom image slot: 5041 GitHub robot-code repository showing branches, commits, and a pull request</div>
+</section><section class="fsw-vertical native-module-section" id="interactive-7-software-workflow-builder">
+<span class="tag">Interactive 7 — Software Workflow Builder</span>
+<h2>Bring a new robot from blank laptop to useful data</h2>
+<p class="fsw-small-note">Click the steps in the order you think makes the most sense. This is a training sequence, not the only possible workflow.</p>
+<div class="fsw-choice-grid workflow-grid" id="fswWorkflowChoices"></div>
+<div class="fsw-workflow-sequence" id="fswWorkflowSequence">Your sequence will appear here.</div>
+<div class="fsw-choice-row">
+<button class="fsw-action-button" id="fswCheckWorkflow" type="button">Check Sequence</button>
+<button class="fsw-action-button secondary" id="fswResetWorkflow" type="button">Reset</button>
+</div>
+<div class="fsw-feedback" id="fswWorkflowFeedback"></div>
+</section><section class="fsw-vertical native-module-section" id="competition-software-kit">
+<span class="tag">Competition Software Kit</span>
+<h2>Prepare before you leave for the event</h2>
+<div class="fsw-checklist-grid">
+<label><input class="fsw-kit-check" type="checkbox"/> Correct season WPILib installed</label>
+<label><input class="fsw-kit-check" type="checkbox"/> Current tested Driver Station installed</label>
+<label><input class="fsw-kit-check" type="checkbox"/> Systemcore update file saved locally</label>
+<label><input class="fsw-kit-check" type="checkbox"/> REV Hardware Client 2 installed if needed</label>
+<label><input class="fsw-kit-check" type="checkbox"/> Phoenix Tuner X installed if needed</label>
+<label><input class="fsw-kit-check" type="checkbox"/> Offline vendor dependencies available</label>
+<label><input class="fsw-kit-check" type="checkbox"/> Known-good robot code cloned locally</label>
+<label><input class="fsw-kit-check" type="checkbox"/> Git remote synchronized before travel</label>
+<label><input class="fsw-kit-check" type="checkbox"/> Dashboard layout tested and saved</label>
+<label><input class="fsw-kit-check" type="checkbox"/> Driver Station controllers labeled and tested</label>
+<label><input class="fsw-kit-check" type="checkbox"/> Ethernet/USB cables and adapters tested</label>
+<label><input class="fsw-kit-check" type="checkbox"/> Device firmware/CAN-ID reference documented</label>
+</div>
+<div class="fsw-kit-status" id="fswKitStatus">0 of 12 preparation items checked.</div>
+</section><section class="fsw-vertical native-module-section" id="pit-troubleshooting-order">
+<span class="tag">Pit Troubleshooting Order</span>
+<h2>Diagnose layers instead of changing random things</h2>
+<div class="fsw-step-grid six">
+<div class="fsw-step"><span>1</span><strong>Power</strong><p>Is the controller/device actually powered?</p></div>
+<div class="fsw-step"><span>2</span><strong>Network</strong><p>Can the laptop communicate with the robot?</p></div>
+<div class="fsw-step"><span>3</span><strong>Robot Code</strong><p>Is code running without crashing?</p></div>
+<div class="fsw-step"><span>4</span><strong>CAN / Device</strong><p>Is the device present with the expected ID/firmware?</p></div>
+<div class="fsw-step"><span>5</span><strong>Inputs</strong><p>Are controllers and sensors reporting what code expects?</p></div>
+<div class="fsw-step"><span>6</span><strong>Logic</strong><p>Only then dig into commands, states, and algorithms.</p></div>
+</div>
+<div class="fsw-callout">
+<p><strong>Most expensive troubleshooting mistake:</strong> rewriting code when the real problem is power, networking, firmware, an unplugged controller, or the wrong CAN ID.</p>
+</div>
+</section><section class="fsw-vertical native-module-section" id="student-learning-priorities">
+<span class="tag">Student Learning Priorities</span>
+<h2>Learn the stack in layers</h2>
+<div class="fsw-priority-list">
+<div><span>1</span><strong>WPILib VS Code</strong><p>Create, build, deploy, read errors.</p></div>
+<div><span>2</span><strong>Driver Station</strong><p>Connect, assign controllers, enable safely, read robot status.</p></div>
+<div><span>3</span><strong>Systemcore</strong><p>Know networking, updates, and basic web diagnostics.</p></div>
+<div><span>4</span><strong>Vendor Tools</strong><p>Identify/update/configure the actual CAN hardware on your robot.</p></div>
+<div><span>5</span><strong>Dashboard + Logs</strong><p>Observe data and diagnose behavior.</p></div>
+<div><span>6</span><strong>Git/GitHub</strong><p>Protect working code and collaborate.</p></div>
+<div><span>7</span><strong>Advanced Tools</strong><p>Simulation, autonomous planners, vision, SysId, replay, specialized diagnostics.</p></div>
+</div>
+</section><section class="fsw-vertical native-module-section" id="keep-these-bookmarked">
+<span class="tag">Keep These Bookmarked</span>
+<h2>Use current documentation, not a three-year-old tutorial</h2>
+<div class="fsw-link-grid">
+<a href="https://docs.wpilib.org/en/latest/" rel="noopener" target="_blank"><strong>WPILib Latest Documentation</strong><span>Primary source for 2027 control-system software.</span></a>
+<a href="https://docs.wpilib.org/en/latest/docs/yearly-overview/yearly-changelog.html" rel="noopener" target="_blank"><strong>New for 2027</strong><span>Breaking changes, removed tools, new Systemcore features.</span></a>
+<a href="https://wpilib.org/blog/the-2027-first-driver-station" rel="noopener" target="_blank"><strong>2027 FIRST Driver Station</strong><span>Major DS architecture and feature overview.</span></a>
+<a href="https://docs.revrobotics.com/rev-hardware-client-2" rel="noopener" target="_blank"><strong>REV Hardware Client 2</strong><span>REV device management and firmware.</span></a>
+<a href="https://docs.ctr-electronics.com/" rel="noopener" target="_blank"><strong>CTRE Phoenix Documentation</strong><span>Phoenix 6, Tuner X, vendordeps, examples.</span></a>
+<a href="https://docs.advantagescope.org/" rel="noopener" target="_blank"><strong>AdvantageScope</strong><span>Robot/DS log analysis and visualization.</span></a>
+<a href="https://frc-elastic.gitbook.io/docs" rel="noopener" target="_blank"><strong>Elastic</strong><span>Driver dashboard setup and widgets.</span></a>
+<a href="https://choreo.autos/" rel="noopener" target="_blank"><strong>Choreo</strong><span>Autonomous trajectory planning.</span></a>
+</div>
+</section><section class="fsw-vertical native-module-section" id="before-the-quiz">
+<span class="tag">Before the Quiz</span>
+<h2>Enter your name for the completion certificate</h2>
+<div class="name-entry-card">
+<label for="participantName">Student Name</label>
+<input autocomplete="name" id="participantName" placeholder="First and last name" type="text"/>
+</div>
+<div class="fsw-callout">
+<p>You must earn at least <strong>18 out of 20</strong> to unlock the certificate.</p>
+</div>
+</section><section class="fsw-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q1">
+<span class="tag">Quiz Question 1</span><div class="progress-note">1 of 20</div>
+<div class="quiz-card"><p>Which application is the primary supported development environment for a Java/C++ WPILib FRC project?</p>
+<label><input name="q1" type="radio" value="a"/> WPILib VS Code</label>
+<label><input name="q1" type="radio" value="b"/> Phoenix Tuner X</label>
+<label><input name="q1" type="radio" value="c"/> Elastic</label>
+</div>
+</section><section class="fsw-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q2">
+<span class="tag">Quiz Question 2</span><div class="progress-note">2 of 20</div>
+<div class="quiz-card"><p>Why should students launch the WPILib-installed copy of VS Code?</p>
+<label><input name="q2" type="radio" value="a"/> It contains the season-matched WPILib extensions and toolchain configuration.</label>
+<label><input name="q2" type="radio" value="b"/> It is the only version that can edit text files.</label>
+<label><input name="q2" type="radio" value="c"/> It automatically writes robot code for the team.</label>
+</div>
+</section><section class="fsw-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q3">
+<span class="tag">Quiz Question 3</span><div class="progress-note">3 of 20</div>
+<div class="quiz-card"><p>What major controller change is planned for the 2027 FRC control system?</p>
+<label><input name="q3" type="radio" value="a"/> Systemcore replaces roboRIO as the competition robot controller.</label>
+<label><input name="q3" type="radio" value="b"/> Teams stop using a robot controller.</label>
+<label><input name="q3" type="radio" value="c"/> The Driver Station becomes the motor controller.</label>
+</div>
+</section><section class="fsw-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q4">
+<span class="tag">Quiz Question 4</span><div class="progress-note">4 of 20</div>
+<div class="quiz-card"><p>What is the normal 2027 Systemcore OS update workflow?</p>
+<label><input name="q4" type="radio" value="a"/> Upload the correct .llupdate file through the Systemcore web dashboard.</label>
+<label><input name="q4" type="radio" value="b"/> Use the roboRIO Imaging Tool.</label>
+<label><input name="q4" type="radio" value="c"/> Update it through Elastic.</label>
+</div>
+</section><section class="fsw-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q5">
+<span class="tag">Quiz Question 5</span><div class="progress-note">5 of 20</div>
+<div class="quiz-card"><p>What is the primary role of the FIRST Driver Station?</p>
+<label><input name="q5" type="radio" value="a"/> Operate robot state, controllers, communications, and match controls.</label>
+<label><input name="q5" type="radio" value="b"/> Create CAD models.</label>
+<label><input name="q5" type="radio" value="c"/> Update SPARK firmware.</label>
+</div>
+</section><section class="fsw-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q6">
+<span class="tag">Quiz Question 6</span><div class="progress-note">6 of 20</div>
+<div class="quiz-card"><p>Which dashboard is especially appropriate for a simple competition driver display?</p>
+<label><input name="q6" type="radio" value="a"/> Elastic</label>
+<label><input name="q6" type="radio" value="b"/> roboRIO Imaging Tool</label>
+<label><input name="q6" type="radio" value="c"/> Git</label>
+</div>
+</section><section class="fsw-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q7">
+<span class="tag">Quiz Question 7</span><div class="progress-note">7 of 20</div>
+<div class="quiz-card"><p>Which application is especially useful for replaying and analyzing WPILOG and Driver Station logs?</p>
+<label><input name="q7" type="radio" value="a"/> AdvantageScope</label>
+<label><input name="q7" type="radio" value="b"/> Phoenix Tuner X</label>
+<label><input name="q7" type="radio" value="c"/> Systemcore updater</label>
+</div>
+</section><section class="fsw-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q8">
+<span class="tag">Quiz Question 8</span><div class="progress-note">8 of 20</div>
+<div class="quiz-card"><p>Which tool is best known as a live programmer-oriented WPILib dashboard and NetworkTables inspector?</p>
+<label><input name="q8" type="radio" value="a"/> Glass</label>
+<label><input name="q8" type="radio" value="b"/> Driver Station</label>
+<label><input name="q8" type="radio" value="c"/> GitHub</label>
+</div>
+</section><section class="fsw-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q9">
+<span class="tag">Quiz Question 9</span><div class="progress-note">9 of 20</div>
+<div class="quiz-card"><p>Which application should a team use to manage modern REV ION device firmware and configuration?</p>
+<label><input name="q9" type="radio" value="a"/> REV Hardware Client 2</label>
+<label><input name="q9" type="radio" value="b"/> Choreo</label>
+<label><input name="q9" type="radio" value="c"/> AdvantageScope</label>
+</div>
+</section><section class="fsw-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q10">
+<span class="tag">Quiz Question 10</span><div class="progress-note">10 of 20</div>
+<div class="quiz-card"><p>Which application is used to configure and update modern CTRE devices?</p>
+<label><input name="q10" type="radio" value="a"/> Phoenix Tuner X</label>
+<label><input name="q10" type="radio" value="b"/> Elastic</label>
+<label><input name="q10" type="radio" value="c"/> WPIcal</label>
+</div>
+</section><section class="fsw-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q11">
+<span class="tag">Quiz Question 11</span><div class="progress-note">11 of 20</div>
+<div class="quiz-card"><p>What is a vendor dependency?</p>
+<label><input name="q11" type="radio" value="a"/> A project library that lets robot code use vendor hardware/software APIs.</label>
+<label><input name="q11" type="radio" value="b"/> A required CAD drawing.</label>
+<label><input name="q11" type="radio" value="c"/> A Driver Station joystick profile only.</label>
+</div>
+</section><section class="fsw-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q12">
+<span class="tag">Quiz Question 12</span><div class="progress-note">12 of 20</div>
+<div class="quiz-card"><p>What should a team normally do before updating vendor libraries or firmware during competition?</p>
+<label><input name="q12" type="radio" value="a"/> Make sure there is time to rebuild and fully retest the robot.</label>
+<label><input name="q12" type="radio" value="b"/> Update immediately while queued.</label>
+<label><input name="q12" type="radio" value="c"/> Delete the Git repository.</label>
+</div>
+</section><section class="fsw-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q13">
+<span class="tag">Quiz Question 13</span><div class="progress-note">13 of 20</div>
+<div class="quiz-card"><p>Which WPILib command should be used to test supported robot code without the physical robot?</p>
+<label><input name="q13" type="radio" value="a"/> WPILib: Simulate Robot Code</label>
+<label><input name="q13" type="radio" value="b"/> Generic VS Code Run button only</label>
+<label><input name="q13" type="radio" value="c"/> Driver Station E-stop</label>
+</div>
+</section><section class="fsw-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q14">
+<span class="tag">Quiz Question 14</span><div class="progress-note">14 of 20</div>
+<div class="quiz-card"><p>Which tool is designed for time-optimal FRC autonomous trajectory planning?</p>
+<label><input name="q14" type="radio" value="a"/> Choreo</label>
+<label><input name="q14" type="radio" value="b"/> REV Hardware Client</label>
+<label><input name="q14" type="radio" value="c"/> Driver Station</label>
+</div>
+</section><section class="fsw-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q15">
+<span class="tag">Quiz Question 15</span><div class="progress-note">15 of 20</div>
+<div class="quiz-card"><p>What happened to Shuffleboard and SmartDashboard in the WPILib 2027 toolset?</p>
+<label><input name="q15" type="radio" value="a"/> They were removed, so teams should use current dashboard options.</label>
+<label><input name="q15" type="radio" value="b"/> They became the only legal dashboards.</label>
+<label><input name="q15" type="radio" value="c"/> They became Systemcore firmware tools.</label>
+</div>
+</section><section class="fsw-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q16">
+<span class="tag">Quiz Question 16</span><div class="progress-note">16 of 20</div>
+<div class="quiz-card"><p>Why should FRC programmers use Git?</p>
+<label><input name="q16" type="radio" value="a"/> To preserve history, compare changes, collaborate, and restore working code.</label>
+<label><input name="q16" type="radio" value="b"/> To configure the robot radio.</label>
+<label><input name="q16" type="radio" value="c"/> To flash motor-controller firmware.</label>
+</div>
+</section><section class="fsw-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q17">
+<span class="tag">Quiz Question 17</span><div class="progress-note">17 of 20</div>
+<div class="quiz-card"><p>If Driver Station communications are bad, what is usually a better first step than rewriting subsystem code?</p>
+<label><input name="q17" type="radio" value="a"/> Check power, physical/network connection, team number, and robot reachability.</label>
+<label><input name="q17" type="radio" value="b"/> Retune every PID loop.</label>
+<label><input name="q17" type="radio" value="c"/> Rebuild the drivetrain.</label>
+</div>
+</section><section class="fsw-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q18">
+<span class="tag">Quiz Question 18</span><div class="progress-note">18 of 20</div>
+<div class="quiz-card"><p>Where are Java/C++ vendor dependencies normally associated?</p>
+<label><input name="q18" type="radio" value="a"/> With each robot project.</label>
+<label><input name="q18" type="radio" value="b"/> Only with the Driver Station laptop wallpaper.</label>
+<label><input name="q18" type="radio" value="c"/> Only with the FMS.</label>
+</div>
+</section><section class="fsw-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q19">
+<span class="tag">Quiz Question 19</span><div class="progress-note">19 of 20</div>
+<div class="quiz-card"><p>Why should autonomous path files be stored in version control?</p>
+<label><input name="q19" type="radio" value="a"/> They are part of robot behavior and should be reviewed, tracked, and recoverable like code.</label>
+<label><input name="q19" type="radio" value="b"/> Git automatically drives the robot.</label>
+<label><input name="q19" type="radio" value="c"/> It makes the paths physically shorter.</label>
+</div>
+</section><section class="fsw-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q20">
+<span class="tag">Quiz Question 20</span><div class="progress-note">20 of 20</div>
+<div class="quiz-card"><p>What is the best general rule for FRC software troubleshooting?</p>
+<label><input name="q20" type="radio" value="a"/> Check the system in layers—power, network, code, devices, inputs, then logic—using logs and evidence.</label>
+<label><input name="q20" type="radio" value="b"/> Change several things at once until it works.</label>
+<label><input name="q20" type="radio" value="c"/> Always assume the newest code change is unrelated.</label>
+</div>
+</section><section class="fsw-quiz quiz-slide native-module-section native-quiz-results-section" id="quiz-results">
+<span class="tag">Quiz Results</span>
+<h2>Check your understanding</h2>
+<div class="quiz-actions">
+<button class="quiz-button" id="gradeQuiz" type="button">Grade Quiz</button>
+<button class="quiz-button secondary" id="resetQuiz" type="button">Reset</button>
+</div>
+<div class="result" id="quizResult">Not submitted.</div>
+<p class="quiz-hint" id="quizHint">After passing, advance to the final completion certificate.</p>
+</section><section class="center certificate-slide locked native-module-section native-certificate-section" id="complete">
+<span class="tag">Completion Certificate</span>
+<div class="certificate-card">
+<div class="certificate-kicker">5041 CYBEARS TRAINING</div>
+<h2>Certificate of Completion</h2>
+<p>This certifies that</p>
+<div class="certificate-name" id="certificateName">Student Name</div>
+<p>has successfully completed</p>
+<h3>FRC Software &amp; Programming Tools</h3>
+<p class="certificate-footer">Training complete after earning a passing quiz score.</p>
+</div>
+<button class="quiz-button" disabled="" id="downloadCertificate" type="button">
+          Download Certificate PDF
+        </button>
+<p class="completion-note" id="completionNote">Complete after passing the required quiz.</p>
+</section></div>
+<!-- Build the documentation shell first. -->
+<script src="../../site-assets/js/site-manifest.js"></script>
+<script src="../../site-assets/js/docs-shell.js"></script>
+<!-- Certificate libraries and module behavior. -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="frc-software-tools.js"></script>
+</body>
+</html>

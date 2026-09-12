@@ -1,0 +1,157 @@
+<!-- 5041 Training Hub page: FRC-trainings/modules/vision-targeting.html -->
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>5041 FRC Vision Systems &amp; Targeting Training</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&amp;family=Droid+Sans:wght@400;700&amp;family=Droid+Serif:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="../../shared/css/styles.css" rel="stylesheet"/>
+<link href="vision-targeting-additions.css" rel="stylesheet"/>
+<link href="../../site-assets/css/docs-site.css" rel="stylesheet"/>
+
+<link href="../../site-assets/css/native-module.css" rel="stylesheet"/></head>
+<body data-module-slug="vision-targeting" data-native-module="true" data-program="FRC">
+<script src="../../site-assets/js/reveal-compat.js"></script>
+<div id="docs-native-module-content"><section class="topic-slide native-module-section" id="module-goals"><span class="tag">Module Goals</span><h2>By the end, students should be able to:</h2><div class="bar"></div><ul><li>Explain the roles of camera hardware, coprocessor software, PhotonVision/Limelight-style pipelines, robot code, and field geometry.</li><li>Distinguish 2D target yaw/pitch aiming from full 3D AprilTag pose estimation.</li><li>Calibrate cameras correctly and define a measured robot-to-camera transform.</li><li>Account for latency and timestamps when fusing vision with odometry/pose estimators.</li><li>Evaluate tag count, distance, ambiguity, motion blur, exposure, and camera placement before trusting a measurement.</li><li>Build targeting logic that handles no-target states, robot motion, interpolation, and logging instead of blindly steering at a pixel.</li></ul></section><section class="topic-vertical native-module-section" id="before-you-start"><span class="tag">Before You Start</span><h2>Who is completing this module?</h2><div class="topic-callout">
+<label class="topic-name-label" for="participantName">Student name</label>
+<input autocomplete="name" class="topic-name-input" id="participantName" placeholder="Enter your name for the certificate" type="text"/>
+<p>Your name is used only to populate the completion certificate in this browser.</p>
+</div></section><section class="topic-vertical native-module-section" id="vision-stack"><span class="tag">Vision Stack</span><h2>A camera image becomes useful only after several transformations</h2><div class="topic-flow"><div class="topic-flow-node">Camera<br/><small>pixels</small></div><div class="topic-flow-arrow">→</div><div class="topic-flow-node">Pipeline<br/><small>detection</small></div><div class="topic-flow-arrow">→</div><div class="topic-flow-node">Target/Pose<br/><small>geometry</small></div><div class="topic-flow-arrow">→</div><div class="topic-flow-node">Robot Code<br/><small>filter/fuse/aim</small></div><div class="topic-flow-arrow">→</div><div class="topic-flow-node">Mechanism<br/><small>drive/turret/shooter</small></div></div><!-- CUSTOM IMAGE SLOT #1: vision-stack.png -->
+<div class="topic-image-slot">Custom image slot: diagram of camera → coprocessor → NetworkTables/PhotonLib → pose estimator/targeting<br/><code>shared/assets/vision-targeting/vision-stack.png</code></div></section><section class="topic-vertical native-module-section" id="what-vision-can-do"><span class="tag">What Vision Can Do</span><h2>Choose the simplest measurement that solves the problem</h2><div class="topic-grid-3"><div class="topic-card"><h3>2D aiming</h3><p>Yaw/pitch/area can be enough to center on a visible target or estimate simple range.</p></div><div class="topic-card"><h3>3D tag tracking</h3><p>Camera-to-tag transforms enable field-relative robot pose estimates when calibration and geometry are correct.</p></div><div class="topic-card"><h3>Object detection</h3><p>Can find game pieces or custom objects, but often has different accuracy/latency requirements than AprilTags.</p></div></div></section><section class="topic-vertical native-module-section" id="interactive-1-pipeline-chooser"><span class="tag">Interactive 1 — Pipeline Chooser</span><h2>Use the least complicated pipeline that meets the goal</h2><div class="topic-prompt">You only need the robot to rotate until a retroreflective/colored target is centered in the image. Full field pose is unnecessary.</div><div class="topic-choice-grid" data-answer="2d" data-choice-group="" data-feedback="visPipeFeedback"><button class="topic-choice" data-choice="2d" data-explain="A simple 2D target yaw error is enough for this task and avoids unnecessary pose complexity.">2D target yaw pipeline</button><button class="topic-choice" data-choice="pose" data-explain="Full 3D pose can work but is more complexity than the stated need.">Full field pose estimator only</button><button class="topic-choice" data-choice="none" data-explain="Without a target measurement the robot cannot automatically center on the target.">No vision</button></div><div class="topic-feedback" id="visPipeFeedback">Choose a pipeline.</div></section><section class="topic-vertical native-module-section" id="calibration"><span class="tag">Calibration</span><h2>3D vision starts with camera intrinsics</h2><div class="topic-warning">PhotonVision requires calibration at the desired resolution for accurate AprilTag 3D tracking. Calibration belongs to the physical camera/resolution—not just the camera model name.</div><div class="topic-source-note"><strong>PhotonVision:</strong> PhotonVision recommends ChArUco-style calibration images across varied positions/angles and warns inaccurate calibration causes poor 3D performance. <a href="https://docs.photonvision.org/en/latest/docs/calibration/calibration.html" rel="noopener" target="_blank">Open documentation</a></div></section><section class="topic-vertical native-module-section" id="exposure-motion-blur"><span class="tag">Exposure &amp; Motion Blur</span><h2>A crisp lower-exposure image can be more valuable than a bright blurry image</h2><div class="topic-grid-2"><div class="topic-card"><h3>Exposure</h3><p>Long exposure brightens the image but increases motion blur on a moving robot.</p></div><div class="topic-card"><h3>Gain / lighting</h3><p>Use lighting/gain to recover visibility after reducing exposure, while watching noise and flicker.</p></div></div><div class="topic-source-note"><strong>PhotonVision:</strong> PhotonVision’s current quick-configure guidance specifically recommends lowering exposure to reduce AprilTag motion blur. <a href="https://docs.photonvision.org/en/latest/docs/quick-start/quick-configure.html" rel="noopener" target="_blank">Open documentation</a></div><!-- CUSTOM IMAGE SLOT #2: motion-blur-comparison.jpg -->
+<div class="topic-image-slot">Custom image slot: same AprilTag photographed with good and bad exposure/motion blur<br/><code>shared/assets/vision-targeting/motion-blur-comparison.jpg</code></div></section><section class="topic-vertical native-module-section" id="extrinsics"><span class="tag">Extrinsics</span><h2>Robot-to-camera transform must match the real mounting</h2><div class="topic-callout">Measure camera position and rotation relative to the robot coordinate frame. A 2 cm or several-degree mounting error becomes a systematic pose/targeting error—especially at distance.</div></section><section class="topic-vertical native-module-section" id="interactive-2-pixel-fov-explorer"><span class="tag">Interactive 2 — Pixel / FOV Explorer</span><h2>Estimate how angular resolution changes with field of view and image width</h2><div class="topic-form-grid"><label>Horizontal FOV (deg)<input id="visFov" step="1" type="number" value="70"/></label><label>Image width (pixels)<input id="visPixels" step="1" type="number" value="1280"/></label><label>Observed target offset (pixels)<input id="visOffset" step="1" type="number" value="90"/></label></div><button class="topic-action" id="visFovCalc">Estimate angle</button><div class="topic-output" id="visFovOut">Results will appear here.</div><p class="topic-small">This is a simple pinhole/FOV approximation. Real pipelines use calibrated camera intrinsics rather than assuming perfectly linear degrees-per-pixel.</p></section><section class="topic-vertical native-module-section" id="apriltags-ambiguity"><span class="tag">AprilTags &amp; Ambiguity</span><h2>One image can sometimes fit more than one plausible 3D tag pose</h2><div class="topic-callout">PhotonVision exposes pose ambiguity and recommends multi-tag approaches where possible. Its 3D tracking guidance suggests rejecting single-tag poses with ambiguity ratio above 0.2 as one mitigation strategy.</div><div class="topic-source-note"><strong>PhotonVision:</strong> PhotonVision explains pose ambiguity and recommends MultiTag plus ambiguity filtering as mitigation. <a href="https://docs.photonvision.org/en/latest/docs/apriltag-pipelines/3D-tracking.html" rel="noopener" target="_blank">Open documentation</a></div></section><section class="topic-vertical native-module-section" id="interactive-3-measurement-quality-judge"><span class="tag">Interactive 3 — Measurement Quality Judge</span><h2>Would you trust this pose measurement strongly?</h2><div class="topic-form-grid"><label>Visible tags<input id="visTags" max="8" min="1" type="number" value="2"/></label><label>Nearest/representative range (m)<input id="visRange" step="0.1" type="number" value="2.2"/></label><label>Single-tag ambiguity (0–1)<input id="visAmb" step="0.01" type="number" value="0.08"/></label><label>Robot speed (m/s)<input id="visSpeed" step="0.1" type="number" value="1.0"/></label></div><button class="topic-action" id="visQuality">Evaluate measurement</button><div class="topic-output" id="visQualityOut">Results will appear here.</div></section><section class="topic-vertical native-module-section" id="latency-timestamps"><span class="tag">Latency &amp; Timestamps</span><h2>The image describes where the robot was—not necessarily where it is now</h2><div class="topic-callout">For pose fusion, use the measurement timestamp associated with image capture/processing. Applying an old pose as though it were “now” creates errors while the robot moves.</div></section><section class="topic-vertical native-module-section" id="interactive-4-latency-motion-estimate"><span class="tag">Interactive 4 — Latency Motion Estimate</span><h2>See how far the robot can move while a vision result is delayed</h2><div class="topic-form-grid"><label>Robot speed (m/s)<input id="visLatSpeed" step="0.1" type="number" value="3"/></label><label>Total measurement age (ms)<input id="visLatency" step="1" type="number" value="45"/></label><label>Angular speed (deg/s)<input id="visOmega" step="5" type="number" value="120"/></label></div><button class="topic-action" id="visLatencyCalc">Calculate motion during delay</button><div class="topic-output" id="visLatencyOut">Results will appear here.</div></section><section class="topic-vertical native-module-section" id="pose-fusion"><span class="tag">Pose Fusion</span><h2>Vision and odometry have different strengths</h2><div class="topic-grid-2"><div class="topic-card"><h3>Wheel/gyro odometry</h3><p>High-rate and smooth, but accumulates drift from slip and model error.</p></div><div class="topic-card"><h3>Vision</h3><p>Can anchor to field geometry, but is slower, intermittent, and can produce outliers.</p></div></div><div class="topic-callout">A pose estimator should fuse trusted timestamped vision measurements with odometry rather than replacing the robot pose with every camera result.</div></section><section class="topic-vertical native-module-section" id="targeting"><span class="tag">Targeting</span><h2>Separate “where is the target?” from “what should the robot/mechanism do?”</h2><div class="topic-flow"><div class="topic-flow-node">Target measurement</div><div class="topic-flow-arrow">→</div><div class="topic-flow-node">Geometry / field pose</div><div class="topic-flow-arrow">→</div><div class="topic-flow-node">Desired heading / range</div><div class="topic-flow-arrow">→</div><div class="topic-flow-node">Control loop</div><div class="topic-flow-arrow">→</div><div class="topic-flow-node">Ready-to-fire check</div></div></section><section class="topic-vertical native-module-section" id="interactive-5-shot-map-interpolator"><span class="tag">Interactive 5 — Shot-Map Interpolator</span><h2>Interpolate a tuning value between measured distances</h2><div class="topic-form-grid"><label>Near distance (m)<input id="visD1" type="number" value="2"/></label><label>Near shooter RPM<input id="visR1" type="number" value="3200"/></label><label>Far distance (m)<input id="visD2" type="number" value="4"/></label><label>Far shooter RPM<input id="visR2" type="number" value="4300"/></label><label>Current distance (m)<input id="visD" step="0.1" type="number" value="3.1"/></label></div><button class="topic-action" id="visInterp">Interpolate</button><div class="topic-output" id="visInterpOut">Results will appear here.</div><p class="topic-small">Real shot maps should contain many tested points, often use spline/table interpolation, and account for robot motion if shooting on the move.</p></section><section class="topic-vertical native-module-section" id="interactive-6-vision-readiness-checklist"><span class="tag">Interactive 6 — Vision Readiness Checklist</span><h2>Do not trust a camera because the overlay looks convincing</h2><div class="topic-checklist" id="visChecklist"><label class="topic-checkitem"><input type="checkbox"/>Camera calibrated at the exact resolution in use.</label><label class="topic-checkitem"><input type="checkbox"/>Robot-to-camera transform measured and documented.</label><label class="topic-checkitem"><input type="checkbox"/>Exposure minimizes motion blur in event-like lighting.</label><label class="topic-checkitem"><input type="checkbox"/>No-target and stale-result cases are handled safely.</label><label class="topic-checkitem"><input type="checkbox"/>Vision timestamps are used correctly for pose fusion.</label><label class="topic-checkitem"><input type="checkbox"/>Outlier/ambiguity/distance filtering is tested.</label><label class="topic-checkitem"><input type="checkbox"/>Target pose, estimated pose, latency, and acceptance/rejection are logged.</label><label class="topic-checkitem"><input type="checkbox"/>The robot still degrades gracefully when vision is unavailable.</label></div><div class="topic-meter"><span id="visChecklistBar"></span></div><div class="topic-feedback" id="visChecklistOut">0 of 8 checked.</div></section><section class="topic-vertical native-module-section" id="practical-advice"><span class="tag">Practical Advice</span><h2>Vision fails when teams skip calibration, geometry, timestamps, or evidence</h2><ul><li>Rigidly mount the camera. A camera that moves relative to the robot invalidates your extrinsic transform.</li><li>Test under motion, not just with the robot sitting on blocks.</li><li>Log every rejected measurement and the reason during development.</li><li>Use multiple tags when available and reduce trust at long range/high ambiguity rather than treating every result equally.</li><li>Keep targeting logic independent from vendor UI. The robot code should express target/pose goals, not depend on a person clicking the right dashboard tab.</li><li>Back up PhotonVision/Limelight configurations before events and label which physical camera goes with which calibration.</li></ul><!-- CUSTOM IMAGE SLOT #3: camera-mount-transform.png -->
+<div class="topic-image-slot">Custom image slot: CAD/photo showing measured camera position and axes on the robot<br/><code>shared/assets/vision-targeting/camera-mount-transform.png</code></div><!-- CUSTOM IMAGE SLOT #4: apriltag-log-analysis.png -->
+<div class="topic-image-slot">Custom image slot: AdvantageScope/field log comparing odometry and vision pose estimates<br/><code>shared/assets/vision-targeting/apriltag-log-analysis.png</code></div></section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q1">
+<span class="tag">Quiz Question 1</span><div class="progress-note">1 of 20</div>
+<div class="quiz-card"><p>A simple target-centering task may only require:</p><label><input name="q1" type="radio" value="a"> 2D yaw error</input></label>
+<label><input name="q1" type="radio" value="b"> Full 3D field pose always</input></label>
+<label><input name="q1" type="radio" value="c"> No camera measurement</input></label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q2">
+<span class="tag">Quiz Question 2</span><div class="progress-note">2 of 20</div>
+<div class="quiz-card"><p>Accurate AprilTag 3D tracking requires:</p><label><input name="q2" type="radio" value="a"> Camera calibration at the used resolution</input></label>
+<label><input name="q2" type="radio" value="b"> Only a team number</input></label>
+<label><input name="q2" type="radio" value="c"> A flywheel encoder</input></label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q3">
+<span class="tag">Quiz Question 3</span><div class="progress-note">3 of 20</div>
+<div class="quiz-card"><p>Camera calibration data is specific to:</p><label><input name="q3" type="radio" value="a"> The physical camera and resolution</input></label>
+<label><input name="q3" type="radio" value="b"> Every camera model forever</input></label>
+<label><input name="q3" type="radio" value="c"> The robot battery</input></label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q4">
+<span class="tag">Quiz Question 4</span><div class="progress-note">4 of 20</div>
+<div class="quiz-card"><p>Long exposure on a moving robot can increase:</p><label><input name="q4" type="radio" value="a"> Motion blur</input></label>
+<label><input name="q4" type="radio" value="b"> CAN bandwidth only</input></label>
+<label><input name="q4" type="radio" value="c"> Wheel traction</input></label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q5">
+<span class="tag">Quiz Question 5</span><div class="progress-note">5 of 20</div>
+<div class="quiz-card"><p>The robot-to-camera transform describes:</p><label><input name="q5" type="radio" value="a"> Camera mounting position/orientation relative to robot coordinates</input></label>
+<label><input name="q5" type="radio" value="b"> The Driver Station USB order</input></label>
+<label><input name="q5" type="radio" value="c"> Motor current limits</input></label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q6">
+<span class="tag">Quiz Question 6</span><div class="progress-note">6 of 20</div>
+<div class="quiz-card"><p>AprilTag pose ambiguity means:</p><label><input name="q6" type="radio" value="a"> More than one plausible pose can fit the image geometry</input></label>
+<label><input name="q6" type="radio" value="b"> The tag ID is always wrong</input></label>
+<label><input name="q6" type="radio" value="c"> The camera has no pixels</input></label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q7">
+<span class="tag">Quiz Question 7</span><div class="progress-note">7 of 20</div>
+<div class="quiz-card"><p>PhotonVision recommends MultiTag because it can:</p><label><input name="q7" type="radio" value="a"> Improve pose accuracy/unambiguity</input></label>
+<label><input name="q7" type="radio" value="b"> Increase shooter RPM</input></label>
+<label><input name="q7" type="radio" value="c"> Set command requirements</input></label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q8">
+<span class="tag">Quiz Question 8</span><div class="progress-note">8 of 20</div>
+<div class="quiz-card"><p>A high-latency measurement describes the robot:</p><label><input name="q8" type="radio" value="a"> At an earlier time</input></label>
+<label><input name="q8" type="radio" value="b"> Only at the present time</input></label>
+<label><input name="q8" type="radio" value="c"/> At a random future time</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q9">
+<span class="tag">Quiz Question 9</span><div class="progress-note">9 of 20</div>
+<div class="quiz-card"><p>For pose fusion, vision should generally be added with:</p><label><input name="q9" type="radio" value="a"/> Its measurement timestamp</label>
+<label><input name="q9" type="radio" value="b"/> The current time regardless of capture</label>
+<label><input name="q9" type="radio" value="c"/> No timestamp</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q10">
+<span class="tag">Quiz Question 10</span><div class="progress-note">10 of 20</div>
+<div class="quiz-card"><p>Wheel odometry is useful because it is:</p><label><input name="q10" type="radio" value="a"/> High-rate and smooth but can drift</label>
+<label><input name="q10" type="radio" value="b"/> Perfect and drift-free</label>
+<label><input name="q10" type="radio" value="c"/> Only available while disabled</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q11">
+<span class="tag">Quiz Question 11</span><div class="progress-note">11 of 20</div>
+<div class="quiz-card"><p>Vision pose is useful because it can:</p><label><input name="q11" type="radio" value="a"/> Anchor pose to known field geometry</label>
+<label><input name="q11" type="radio" value="b"/> Eliminate all sensor noise</label>
+<label><input name="q11" type="radio" value="c"/> Replace all control loops</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q12">
+<span class="tag">Quiz Question 12</span><div class="progress-note">12 of 20</div>
+<div class="quiz-card"><p>A good estimator should:</p><label><input name="q12" type="radio" value="a"/> Fuse trusted vision with odometry rather than overwrite every result</label>
+<label><input name="q12" type="radio" value="b"/> Use every camera result equally</label>
+<label><input name="q12" type="radio" value="c"/> Ignore time</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q13">
+<span class="tag">Quiz Question 13</span><div class="progress-note">13 of 20</div>
+<div class="quiz-card"><p>At longer tag range, teams should generally:</p><label><input name="q13" type="radio" value="a"/> Expect measurement quality to degrade and adjust trust/filtering</label>
+<label><input name="q13" type="radio" value="b"/> Automatically increase trust</label>
+<label><input name="q13" type="radio" value="c"/> Disable logging</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q14">
+<span class="tag">Quiz Question 14</span><div class="progress-note">14 of 20</div>
+<div class="quiz-card"><p>Why rigidly mount the camera?</p><label><input name="q14" type="radio" value="a"/> Changing camera pose invalidates the measured transform</label>
+<label><input name="q14" type="radio" value="b"/> It increases wheel RPM</label>
+<label><input name="q14" type="radio" value="c"/> It changes command requirements</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q15">
+<span class="tag">Quiz Question 15</span><div class="progress-note">15 of 20</div>
+<div class="quiz-card"><p>If no target is visible, targeting code should:</p><label><input name="q15" type="radio" value="a"/> Handle the state explicitly and fail safely</label>
+<label><input name="q15" type="radio" value="b"/> Reuse stale target forever</label>
+<label><input name="q15" type="radio" value="c"/> Return a random angle</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q16">
+<span class="tag">Quiz Question 16</span><div class="progress-note">16 of 20</div>
+<div class="quiz-card"><p>Why test vision while the robot is moving?</p><label><input name="q16" type="radio" value="a"/> Motion blur, latency, and vibration often appear only then</label>
+<label><input name="q16" type="radio" value="b"/> Stationary tests are always harder</label>
+<label><input name="q16" type="radio" value="c"/> It changes the tag ID</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q17">
+<span class="tag">Quiz Question 17</span><div class="progress-note">17 of 20</div>
+<div class="quiz-card"><p>A shot map should be based on:</p><label><input name="q17" type="radio" value="a"/> Repeated measured tuning points and interpolation</label>
+<label><input name="q17" type="radio" value="b"/> One guessed RPM</label>
+<label><input name="q17" type="radio" value="c"/> Only camera exposure</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q18">
+<span class="tag">Quiz Question 18</span><div class="progress-note">18 of 20</div>
+<div class="quiz-card"><p>PhotonVision exposes pose ambiguity through:</p><label><input name="q18" type="radio" value="a"/> Target data such as getPoseAmbiguity()</label>
+<label><input name="q18" type="radio" value="b"/> Motor current</label>
+<label><input name="q18" type="radio" value="c"/> Driver Station joystick index</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q19">
+<span class="tag">Quiz Question 19</span><div class="progress-note">19 of 20</div>
+<div class="quiz-card"><p>Why log accepted and rejected vision measurements?</p><label><input name="q19" type="radio" value="a"/> Understand estimator/targeting behavior and tune filters</label>
+<label><input name="q19" type="radio" value="b"/> To hide outliers</label>
+<label><input name="q19" type="radio" value="c"/> To replace calibration</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q20">
+<span class="tag">Quiz Question 20</span><div class="progress-note">20 of 20</div>
+<div class="quiz-card"><p>A robust robot should:</p><label><input name="q20" type="radio" value="a"/> Degrade gracefully when vision is unavailable</label>
+<label><input name="q20" type="radio" value="b"/> Become uncontrollable without vision</label>
+<label><input name="q20" type="radio" value="c"/> Assume every tag is always visible</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-results-section" id="quiz-results">
+<span class="tag">Quiz Results</span>
+<h2>Check your understanding</h2>
+<p class="small">You need at least 18 out of 20 to unlock the completion certificate.</p>
+<div class="quiz-actions">
+<button class="quiz-button" id="gradeQuiz" type="button">Grade Quiz</button>
+<button class="quiz-button secondary" id="resetQuiz" type="button">Reset</button>
+</div>
+<div class="result" id="quizResult">Not submitted.</div>
+<p class="small" id="quizHint">After passing, advance to the final completion certificate.</p>
+</section><section class="center certificate-slide locked native-module-section native-certificate-section" id="complete">
+<div class="certificate-card"><div class="certificate-border">
+<p class="certificate-small">5041 CyBear Robotics</p>
+<h2>Certificate of Completion</h2>
+<p class="certificate-text">Presented to</p>
+<div class="certificate-name" id="certificateName">Student Name</div>
+<p class="certificate-text">for successfully completing the</p>
+<h3>FRC Vision Systems &amp; Targeting Training Module</h3>
+<p class="certificate-score" id="completionNote">Complete after passing the required quiz.</p>
+<div class="certificate-line"></div>
+<p class="certificate-footer">Training complete after earning a passing quiz score.</p>
+</div></div>
+<div class="certificate-actions"><button class="quiz-button certificate-download" id="downloadCertificate" type="button">Download Certificate PDF</button></div>
+</section></div>
+<script src="../../site-assets/js/site-manifest.js"></script>
+<script src="../../site-assets/js/docs-shell.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="vision-targeting.js"></script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!-- 5041 Training Hub page: FRC-trainings/modules/linear-motion-elevators.html -->
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>5041 FRC Linear Motion &amp; Elevators Training</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&amp;family=Droid+Sans:wght@400;700&amp;family=Droid+Serif:wght@400;700&amp;display=swap" rel="stylesheet"/>
+<link href="../../shared/css/styles.css" rel="stylesheet"/>
+<link href="linear-motion-elevators-additions.css" rel="stylesheet"/>
+<link href="../../site-assets/css/docs-site.css" rel="stylesheet"/>
+
+<link href="../../site-assets/css/native-module.css" rel="stylesheet"/></head>
+<body data-module-slug="linear-motion-elevators" data-native-module="true" data-program="FRC">
+<script src="../../site-assets/js/reveal-compat.js"></script>
+<div id="docs-native-module-content"><section class="topic-slide native-module-section" id="module-goals"><span class="tag">Module Goals</span><h2>By the end, students should be able to:</h2><div class="bar"></div><ul><li>Compare common FRC linear-motion methods including elevators, belts, chain, cable/drum, rack-and-pinion, and lead screws.</li><li>Design elevator stages around load paths, bearings, overlap, anti-racking structure, rigging, hard stops, and service access.</li><li>Relate motor torque, drum/sprocket radius, gearing, speed, and load to linear force and velocity.</li><li>Use limit switches, absolute/relative sensing, homing, soft limits, motion profiles, PID, and ElevatorFeedforward safely.</li><li>Recognize cascade/continuous rigging concepts and verify actual travel ratios rather than copying geometry blindly.</li><li>Diagnose binding, racking, cable damage, skipped belts/chain, sensor faults, and uncontrolled descent.</li></ul></section><section class="topic-vertical native-module-section" id="before-you-start"><span class="tag">Before You Start</span><h2>Who is completing this module?</h2><div class="topic-callout">
+<label class="topic-name-label" for="participantName">Student name</label>
+<input autocomplete="name" class="topic-name-input" id="participantName" placeholder="Enter your name for the certificate" type="text"/>
+<p>Your name is used only to populate the completion certificate in this browser.</p>
+</div></section><section class="topic-vertical native-module-section" id="linear-motion-choices"><span class="tag">Linear Motion Choices</span><h2>Choose the mechanism around load, travel, packaging, backdrivability, and maintenance</h2><div class="topic-grid-3"><div class="topic-card"><h3>Elevator stages</h3><p>Nested rigid stages provide long vertical travel in a compact footprint. Require bearing alignment, overlap, and rigging.</p></div><div class="topic-card"><h3>Rack / belt / chain</h3><p>Direct positive drive can be simple and repeatable. Tension, support, and debris tolerance matter.</p></div><div class="topic-card"><h3>Lead screw</h3><p>Useful for shorter, high-force, precise travel; often slower and may be self-locking depending on geometry.</p></div></div><!-- CUSTOM IMAGE SLOT #1: linear-motion-types.jpg -->
+<div class="topic-image-slot">Custom image slot: examples of elevator, belt, rack, and screw-driven FRC mechanisms<br/><code>shared/assets/linear-motion-elevators/linear-motion-types.jpg</code></div></section><section class="topic-vertical native-module-section" id="elevator-structure"><span class="tag">Elevator Structure</span><h2>The drive system cannot fix a flexible or misaligned elevator</h2><div class="topic-grid-2"><div class="topic-card"><h3>Guide the load</h3><ul><li>Bearings or rollers constrain the intended degrees of freedom.</li><li>Place guides far enough apart to resist moment loads.</li><li>Keep rails parallel and square.</li></ul></div><div class="topic-card"><h3>Preserve overlap</h3><ul><li>Stages need enough engagement to remain stiff.</li><li>Hard stops must prevent rollers from leaving their tracks.</li><li>Check worst-case load at full extension.</li></ul></div></div></section><section class="topic-vertical native-module-section" id="interactive-1-mechanism-chooser"><span class="tag">Interactive 1 — Mechanism Chooser</span><h2>Pick the most sensible starting architecture</h2><div class="topic-prompt">You need about 1.4 m of vertical travel from a compact starting height, moderate load, and fast cycling. What is the most typical FRC starting architecture?</div><div class="topic-choice-grid" data-answer="elevator" data-choice-group="" data-feedback="linChoiceFeedback"><button class="topic-choice" data-choice="elevator" data-explain="A nested elevator is a common way to package long vertical travel into a legal starting envelope.">Nested elevator</button><button class="topic-choice" data-choice="screw" data-explain="A lead screw can work but is usually less attractive for long, fast FRC travel.">Long lead screw</button><button class="topic-choice" data-choice="servo" data-explain="Typical hobby servos do not provide this travel/load directly.">Single servo horn</button></div><div class="topic-feedback" id="linChoiceFeedback">Choose a mechanism.</div></section><section class="topic-vertical native-module-section" id="force-speed"><span class="tag">Force &amp; Speed</span><h2>Start with the drum/sprocket and work backward through gearing</h2><div class="topic-callout"><code>Linear speed = circumference × shaft RPM ÷ 60</code><br/><code>Ideal line force = shaft torque ÷ drum radius</code></div><p class="topic-small">Real systems lose force to friction and efficiency. Add margin for acceleration, shock, misalignment, and battery sag.</p></section><section class="topic-vertical native-module-section" id="interactive-2-force-speed-calculator"><span class="tag">Interactive 2 — Force / Speed Calculator</span><h2>Estimate ideal linear performance at the drive element</h2><div class="topic-form-grid"><label>Drive diameter (in)<input id="linDia" step="0.05" type="number" value="1.5"/></label><label>Shaft RPM<input id="linRpm" step="10" type="number" value="900"/></label><label>Shaft torque (N·m)<input id="linTorque" step="0.1" type="number" value="5"/></label><label>Efficiency estimate (%)<input id="linEff" max="100" min="10" type="number" value="80"/></label></div><button class="topic-action" id="linCalc">Calculate</button><div class="topic-output" id="linOut">Results will appear here.</div></section><section class="topic-vertical native-module-section" id="rigging"><span class="tag">Rigging</span><h2>Continuous and cascade systems move stages differently</h2><div class="topic-warning"><strong>Do not memorize a rope diagram without understanding it.</strong> Trace every cable/belt segment and calculate how much each moving attachment changes length. Verify the resulting stage and carriage travel in CAD and by hand before cutting rope.</div><div class="topic-grid-2"><div class="topic-card"><h3>Continuous-style rigging</h3><p>A powered line can route through moving pulleys so later stages move as earlier stages extend.</p></div><div class="topic-card"><h3>Cascade-style rigging</h3><p>Stages may be linked so each stage is driven relative to the preceding stage. Packaging and load distribution differ.</p></div></div><!-- CUSTOM IMAGE SLOT #2: elevator-rigging.png -->
+<div class="topic-image-slot">Custom image slot: custom diagram comparing your team’s continuous and cascade rigging layouts<br/><code>shared/assets/linear-motion-elevators/elevator-rigging.png</code></div></section><section class="topic-vertical native-module-section" id="interactive-3-rigging-trace"><span class="tag">Interactive 3 — Rigging Trace</span><h2>Reason about a simple moving-pulley relationship</h2><div class="topic-prompt">A carriage is supported by two rope segments that both shorten when the winch pulls in rope. In an ideal simple moving-pulley arrangement, pulling 20 cm of rope moves the supported carriage approximately how far?</div><div class="topic-choice-grid" data-answer="10" data-choice-group="" data-feedback="linRigFeedback"><button class="topic-choice" data-choice="10" data-explain="Two supporting segments share the length change, so the moving element travels about half the pulled rope length in this simple ideal case.">10 cm</button><button class="topic-choice" data-choice="20" data-explain="That would correspond to a 1:1 line motion, not this two-segment moving-pulley example.">20 cm</button><button class="topic-choice" data-choice="40" data-explain="This geometry does not double travel.">40 cm</button></div><div class="topic-feedback" id="linRigFeedback">Trace the rope segments before answering.</div></section><section class="topic-vertical native-module-section" id="sensors-homing-limits"><span class="tag">Sensors, Homing &amp; Limits</span><h2>An elevator must know where it is—and what to do when that knowledge is wrong</h2><div class="topic-grid-3"><div class="topic-card"><h3>Relative encoder</h3><p>Excellent for motion after a known zero. Loses absolute reference across some resets.</p></div><div class="topic-card"><h3>Absolute sensor</h3><p>Can preserve position reference, but installation range and mechanism coupling must be reliable.</p></div><div class="topic-card"><h3>Limit switch / hard stop</h3><p>Useful for homing and protection. Do not use a destructive collision as your normal zeroing strategy.</p></div></div></section><section class="topic-vertical native-module-section" id="motion-profiles-gravity"><span class="tag">Motion Profiles &amp; Gravity</span><h2>Smooth setpoints reduce shock loads and make control easier</h2><div class="topic-callout">A trapezoidal profile limits velocity and acceleration. <code>ProfiledPIDController</code> can generate profile setpoints while PID tracks them, and <code>ElevatorFeedforward</code> models static friction, gravity, velocity, and acceleration voltage.</div><div class="topic-source-note"><strong>WPILib:</strong> WPILib provides ElevatorFeedforward for elevator mechanisms and ProfiledPIDController for motion-profiled feedback control. <a href="https://docs.wpilib.org/en/latest/docs/software/advanced-controls/controllers/feedforward.html" rel="noopener" target="_blank">Open documentation</a></div></section><section class="topic-vertical native-module-section" id="interactive-4-motion-profile-time-estimate"><span class="tag">Interactive 4 — Motion-Profile Time Estimate</span><h2>Estimate minimum ideal travel time under velocity and acceleration limits</h2><div class="topic-form-grid"><label>Distance (m)<input id="linDistance" step="0.05" type="number" value="1.2"/></label><label>Max velocity (m/s)<input id="linMaxV" step="0.1" type="number" value="1.8"/></label><label>Max acceleration (m/s²)<input id="linMaxA" step="0.1" type="number" value="3"/></label></div><button class="topic-action" id="linProfileCalc">Estimate profile</button><div class="topic-output" id="linProfileOut">Results will appear here.</div></section><section class="topic-vertical native-module-section" id="interactive-5-failure-diagnosis"><span class="tag">Interactive 5 — Failure Diagnosis</span><h2>Start from physical evidence</h2><div class="topic-prompt">The elevator moves freely near the bottom but binds badly near full extension, and the left/right carriage gap becomes visibly different.</div><div class="topic-choice-grid" data-answer="rack" data-choice-group="" data-feedback="linDiagFeedback"><button class="topic-choice" data-choice="rack" data-explain="Changing side-to-side gap under extension is classic racking/misalignment evidence. Inspect rail parallelism, bearing preload, frame stiffness, and synchronization.">Racking / guide alignment</button><button class="topic-choice" data-choice="pid" data-explain="A PID change cannot straighten a mechanically racked carriage.">Increase kP</button><button class="topic-choice" data-choice="vision" data-explain="Vision does not explain mechanical binding.">Recalibrate camera</button></div><div class="topic-feedback" id="linDiagFeedback">Choose a diagnosis.</div></section><section class="topic-vertical native-module-section" id="interactive-6-elevator-readiness-checklist"><span class="tag">Interactive 6 — Elevator Readiness Checklist</span><h2>Check the mechanism before high-speed testing</h2><div class="topic-checklist" id="linChecklist"><label class="topic-checkitem"><input type="checkbox"/>Hard stops retain all stages/rollers.</label><label class="topic-checkitem"><input type="checkbox"/>Rigging termination is redundant or positively retained.</label><label class="topic-checkitem"><input type="checkbox"/>Cable/belt/chain paths cannot rub sharp edges.</label><label class="topic-checkitem"><input type="checkbox"/>A valid home/zero procedure exists.</label><label class="topic-checkitem"><input type="checkbox"/>Software soft limits are tested in both directions.</label><label class="topic-checkitem"><input type="checkbox"/>Manual service can be performed without uncontrolled descent.</label><label class="topic-checkitem"><input type="checkbox"/>Stage overlap and bearing engagement are checked at full extension.</label><label class="topic-checkitem"><input type="checkbox"/>Current, position, velocity, and limit states are logged.</label></div><div class="topic-meter"><span id="linChecklistBar"></span></div><div class="topic-feedback" id="linChecklistOut">0 of 8 checked.</div></section><section class="topic-vertical native-module-section" id="practical-advice"><span class="tag">Practical Advice</span><h2>Elevators usually fail at interfaces</h2><ul><li>Design the structure and bearings first; then route the drive through a geometry that does not side-load the stages.</li><li>Use symmetric loads or mechanically synchronize sides when possible. One drive point on a wide carriage invites racking.</li><li>Protect sensor wires and cable carriers through the full motion range.</li><li>Make tension adjustments accessible without disassembling the entire elevator.</li><li>Plan safe maintenance supports. Never trust motor holding torque while hands are inside a raised mechanism.</li><li>Log current alongside position. Rising current at the same location is often an early sign of binding or damage.</li></ul><!-- CUSTOM IMAGE SLOT #3: elevator-bearing-detail.jpg -->
+<div class="topic-image-slot">Custom image slot: photo/CAD of bearing blocks, overlap, and stage alignment<br/><code>shared/assets/linear-motion-elevators/elevator-bearing-detail.jpg</code></div><!-- CUSTOM IMAGE SLOT #4: elevator-service-stop.jpg -->
+<div class="topic-image-slot">Custom image slot: photo of a safe physical maintenance support/stop<br/><code>shared/assets/linear-motion-elevators/elevator-service-stop.jpg</code></div></section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q1">
+<span class="tag">Quiz Question 1</span><div class="progress-note">1 of 20</div>
+<div class="quiz-card"><p>Why are nested elevators popular in FRC?</p><label><input name="q1" type="radio" value="a"> Long travel can package into a compact starting height</input></label>
+<label><input name="q1" type="radio" value="b"> They require no bearings</input></label>
+<label><input name="q1" type="radio" value="c"> They cannot backdrive</input></label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q2">
+<span class="tag">Quiz Question 2</span><div class="progress-note">2 of 20</div>
+<div class="quiz-card"><p>What primarily prevents an elevator carriage from racking?</p><label><input name="q2" type="radio" value="a"> Good guide/bearing geometry and structural stiffness</input></label>
+<label><input name="q2" type="radio" value="b"> Higher PID gain alone</input></label>
+<label><input name="q2" type="radio" value="c"> Camera calibration</input></label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q3">
+<span class="tag">Quiz Question 3</span><div class="progress-note">3 of 20</div>
+<div class="quiz-card"><p>Why preserve stage overlap?</p><label><input name="q3" type="radio" value="a"> Maintain stiffness and guide engagement</input></label>
+<label><input name="q3" type="radio" value="b"> Increase free motor speed</input></label>
+<label><input name="q3" type="radio" value="c"> Reduce team number</input></label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q4">
+<span class="tag">Quiz Question 4</span><div class="progress-note">4 of 20</div>
+<div class="quiz-card"><p>Ideal line force from a drum is approximately:</p><label><input name="q4" type="radio" value="a"> Torque divided by radius</input></label>
+<label><input name="q4" type="radio" value="b"> RPM multiplied by voltage</input></label>
+<label><input name="q4" type="radio" value="c"> Diameter divided by current</input></label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q5">
+<span class="tag">Quiz Question 5</span><div class="progress-note">5 of 20</div>
+<div class="quiz-card"><p>Increasing drum radius at the same shaft torque generally:</p><label><input name="q5" type="radio" value="a"> Reduces line force and increases linear distance per revolution</input></label>
+<label><input name="q5" type="radio" value="b"> Increases line force</input></label>
+<label><input name="q5" type="radio" value="c"> Has no effect</input></label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q6">
+<span class="tag">Quiz Question 6</span><div class="progress-note">6 of 20</div>
+<div class="quiz-card"><p>Why use a motion profile?</p><label><input name="q6" type="radio" value="a"/> Limit velocity/acceleration and reduce shock</label>
+<label><input name="q6" type="radio" value="b"/> Remove all sensors</label>
+<label><input name="q6" type="radio" value="c"/> Make gravity disappear</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q7">
+<span class="tag">Quiz Question 7</span><div class="progress-note">7 of 20</div>
+<div class="quiz-card"><p>ElevatorFeedforward includes a gravity term commonly called:</p><label><input name="q7" type="radio" value="a"/> kG</label>
+<label><input name="q7" type="radio" value="b"/> kTag</label>
+<label><input name="q7" type="radio" value="c"/> kCAN</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q8">
+<span class="tag">Quiz Question 8</span><div class="progress-note">8 of 20</div>
+<div class="quiz-card"><p>A relative encoder usually needs:</p><label><input name="q8" type="radio" value="a"/> A known zero/homing reference</label>
+<label><input name="q8" type="radio" value="b"/> No wiring</label>
+<label><input name="q8" type="radio" value="c"/> A camera calibration</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q9">
+<span class="tag">Quiz Question 9</span><div class="progress-note">9 of 20</div>
+<div class="quiz-card"><p>Soft limits should be:</p><label><input name="q9" type="radio" value="a"/> Backed by physical hard stops and tested</label>
+<label><input name="q9" type="radio" value="b"/> The only protection against stage escape</label>
+<label><input name="q9" type="radio" value="c"/> Disabled at all times</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q10">
+<span class="tag">Quiz Question 10</span><div class="progress-note">10 of 20</div>
+<div class="quiz-card"><p>If the elevator binds only near full extension and becomes skewed, inspect:</p><label><input name="q10" type="radio" value="a"/> Racking/alignment/stiffness</label>
+<label><input name="q10" type="radio" value="b"/> Joystick deadband only</label>
+<label><input name="q10" type="radio" value="c"/> Driver Station theme</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q11">
+<span class="tag">Quiz Question 11</span><div class="progress-note">11 of 20</div>
+<div class="quiz-card"><p>Why calculate actual rigging geometry?</p><label><input name="q11" type="radio" value="a"/> Different rope paths create different travel relationships</label>
+<label><input name="q11" type="radio" value="b"/> All elevators are automatically 2:1</label>
+<label><input name="q11" type="radio" value="c"/> Rope length never matters</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q12">
+<span class="tag">Quiz Question 12</span><div class="progress-note">12 of 20</div>
+<div class="quiz-card"><p>A moving-pulley system with two supporting segments ideally moves:</p><label><input name="q12" type="radio" value="a"/> Half the rope pulled in the simple example</label>
+<label><input name="q12" type="radio" value="b"/> Twice the rope pulled</label>
+<label><input name="q12" type="radio" value="c"/> Independently of rope</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q13">
+<span class="tag">Quiz Question 13</span><div class="progress-note">13 of 20</div>
+<div class="quiz-card"><p>What is a safe maintenance practice?</p><label><input name="q13" type="radio" value="a"/> Physically support raised stages before working underneath/inside</label>
+<label><input name="q13" type="radio" value="b"/> Rely on motor torque only</label>
+<label><input name="q13" type="radio" value="c"/> Disable logs</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q14">
+<span class="tag">Quiz Question 14</span><div class="progress-note">14 of 20</div>
+<div class="quiz-card"><p>Why log motor current on an elevator?</p><label><input name="q14" type="radio" value="a"/> Binding and load changes often appear as current changes</label>
+<label><input name="q14" type="radio" value="b"/> Current identifies AprilTags</label>
+<label><input name="q14" type="radio" value="c"/> It replaces position sensing</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q15">
+<span class="tag">Quiz Question 15</span><div class="progress-note">15 of 20</div>
+<div class="quiz-card"><p>A lead screw is often most attractive for:</p><label><input name="q15" type="radio" value="a"/> Shorter precise/high-force motion where speed is less critical</label>
+<label><input name="q15" type="radio" value="b"/> Every long fast elevator</label>
+<label><input name="q15" type="radio" value="c"/> Camera pan only</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q16">
+<span class="tag">Quiz Question 16</span><div class="progress-note">16 of 20</div>
+<div class="quiz-card"><p>Hard stops should prevent:</p><label><input name="q16" type="radio" value="a"/> Stages/rollers from leaving their intended guidance</label>
+<label><input name="q16" type="radio" value="b"/> The robot from booting</label>
+<label><input name="q16" type="radio" value="c"/> Telemetry</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q17">
+<span class="tag">Quiz Question 17</span><div class="progress-note">17 of 20</div>
+<div class="quiz-card"><p>A wide carriage driven from one side may:</p><label><input name="q17" type="radio" value="a"/> Rack unless structure/guidance/synchronization handles the moment</label>
+<label><input name="q17" type="radio" value="b"/> Always self-center</label>
+<label><input name="q17" type="radio" value="c"/> Need no bearings</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q18">
+<span class="tag">Quiz Question 18</span><div class="progress-note">18 of 20</div>
+<div class="quiz-card"><p>What should a homing routine do?</p><label><input name="q18" type="radio" value="a"/> Establish a known reference safely</label>
+<label><input name="q18" type="radio" value="b"/> Drive indefinitely into a stop at full power</label>
+<label><input name="q18" type="radio" value="c"/> Change field coordinates</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q19">
+<span class="tag">Quiz Question 19</span><div class="progress-note">19 of 20</div>
+<div class="quiz-card"><p>Increasing max acceleration generally:</p><label><input name="q19" type="radio" value="a"/> Raises shock/load and can reduce cycle time</label>
+<label><input name="q19" type="radio" value="b"/> Always lowers load</label>
+<label><input name="q19" type="radio" value="c"/> Has no effect on controls</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-question-section" id="quiz-q20">
+<span class="tag">Quiz Question 20</span><div class="progress-note">20 of 20</div>
+<div class="quiz-card"><p>Before high-speed testing, teams should verify:</p><label><input name="q20" type="radio" value="a"/> Rigging retention, limits, hard stops, and safe support</label>
+<label><input name="q20" type="radio" value="b"/> Only paint color</label>
+<label><input name="q20" type="radio" value="c"/> Only autonomous path</label></div>
+</section><section class="topic-quiz quiz-slide native-module-section native-quiz-results-section" id="quiz-results">
+<span class="tag">Quiz Results</span>
+<h2>Check your understanding</h2>
+<p class="small">You need at least 18 out of 20 to unlock the completion certificate.</p>
+<div class="quiz-actions">
+<button class="quiz-button" id="gradeQuiz" type="button">Grade Quiz</button>
+<button class="quiz-button secondary" id="resetQuiz" type="button">Reset</button>
+</div>
+<div class="result" id="quizResult">Not submitted.</div>
+<p class="small" id="quizHint">After passing, advance to the final completion certificate.</p>
+</section><section class="center certificate-slide locked native-module-section native-certificate-section" id="complete">
+<div class="certificate-card"><div class="certificate-border">
+<p class="certificate-small">5041 CyBear Robotics</p>
+<h2>Certificate of Completion</h2>
+<p class="certificate-text">Presented to</p>
+<div class="certificate-name" id="certificateName">Student Name</div>
+<p class="certificate-text">for successfully completing the</p>
+<h3>FRC Linear Motion &amp; Elevators Training Module</h3>
+<p class="certificate-score" id="completionNote">Complete after passing the required quiz.</p>
+<div class="certificate-line"></div>
+<p class="certificate-footer">Training complete after earning a passing quiz score.</p>
+</div></div>
+<div class="certificate-actions"><button class="quiz-button certificate-download" id="downloadCertificate" type="button">Download Certificate PDF</button></div>
+</section></div>
+<script src="../../site-assets/js/site-manifest.js"></script>
+<script src="../../site-assets/js/docs-shell.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="linear-motion-elevators.js"></script>
+</body>
+</html>

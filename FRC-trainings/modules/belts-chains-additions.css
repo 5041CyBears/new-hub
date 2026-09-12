@@ -1,0 +1,520 @@
+/* 5041 Belts, Pulleys, Chains, and Sprockets module additions
+   Native-scroll version for the 5041 Training Hub. */
+.belt-hero h1,
+.belt-hero .cytitle {
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.belt-slide h2,
+.belt-vertical h2,
+.belt-quiz h2 {
+  font-size: 1.45em;
+  margin-bottom: 0.45rem;
+}
+
+.belt-grid-1,
+.belt-grid-2,
+.belt-grid-3,
+.belt-grid-4,
+.belt-split,
+.belt-flow,
+.belt-table-wrap,
+.calc-layout {
+  max-width: var(--shared-slide-width, 1120px);
+  margin: 0 auto;
+}
+
+.belt-grid-1,
+.belt-grid-2,
+.belt-grid-3,
+.belt-grid-4 {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.belt-grid-1 {
+  grid-template-columns: 1fr;
+}
+
+.belt-grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.belt-grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.belt-grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.belt-space-top {
+  margin-top: 0.8rem;
+}
+
+.belt-card,
+.belt-scenario-card,
+.belt-spec-card,
+.calc-output {
+  background: var(--light);
+  border-left: 10px solid var(--red);
+  border-radius: 8px;
+  padding: 0.75rem 0.85rem;
+  text-align: left;
+  height: fit-content;
+}
+
+.belt-card.dark,
+.calc-output {
+  background: var(--black);
+  color: var(--white);
+}
+
+.belt-card.dark h3,
+.belt-card.dark p,
+.belt-card.dark li,
+.calc-output h3,
+.calc-output p {
+  color: var(--white);
+}
+
+.belt-card h3,
+.belt-scenario-card h3,
+.belt-spec-card h3,
+.calc-output h3 {
+  margin: 0 0 0.35rem;
+  font-size: 0.72em;
+}
+
+.belt-card p,
+.belt-scenario-card p,
+.belt-spec-card p,
+.calc-output p {
+  margin: 0 0 0.35rem;
+  font-size: 0.45em;
+  line-height: 1.25;
+}
+
+.belt-card li {
+  font-size: 0.5em;
+  line-height: 1.22;
+  margin-bottom: 0.16rem;
+}
+
+.belt-card ul {
+  margin: 0.2rem 0 0;
+  padding-left: 0.85em;
+}
+
+.compact-cards .belt-card p {
+  font-size: 0.42em;
+}
+
+.belt-callout {
+  max-width: 1000px;
+  margin: 0.8rem auto 0;
+  padding: 0.6rem 0.8rem;
+  background: var(--white);
+  border-left: 10px solid var(--red);
+  border-radius: 8px;
+  text-align: left;
+}
+
+.belt-callout p {
+  margin: 0;
+  font-size: 0.56em;
+  line-height: 1.25;
+}
+
+.belt-flow {
+  display: grid;
+  grid-template-columns: 1fr 0.25fr 1.5fr 0.25fr 1fr 0.25fr 1.2fr;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+.belt-node {
+  background: var(--light);
+  border-left: 10px solid var(--red);
+  border-radius: 8px;
+  padding: 0.9rem 0.35rem;
+  font-family: "Droid Sans", Arial, sans-serif;
+  font-size: 0.58em;
+  font-weight: 700;
+  text-align: center;
+}
+
+.belt-node.red-node {
+  background: var(--red);
+  color: var(--white);
+}
+
+.belt-arrow {
+  font-size: 0.75em;
+  font-weight: 700;
+  color: var(--red);
+}
+
+.belt-formula {
+  font-family: "Droid Sans", Arial, sans-serif;
+  font-weight: 700;
+  color: var(--red);
+}
+
+.belt-formula.light {
+  color: var(--white);
+}
+
+.belt-mini-diagram {
+  display: grid;
+  grid-template-columns: 100px 1fr 160px;
+  align-items: center;
+  gap: 0.2rem;
+  max-width: 950px;
+  margin: 0.9rem auto 0;
+}
+
+.belt-mini-diagram p {
+  grid-column: 1 / -1;
+  margin: 0.35rem 0 0;
+  font-size: 0.48em;
+  line-height: 1.2;
+}
+
+.small-wheel,
+.large-wheel {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  background: var(--black);
+  color: var(--white);
+  border: 8px solid var(--red);
+  border-radius: 50%;
+  font-family: "Droid Sans", Arial, sans-serif;
+  font-size: 0.5em;
+  font-weight: 700;
+}
+
+.small-wheel { width: 100px; }
+.large-wheel { width: 160px; }
+.belt-line { height: 18px; background: repeating-linear-gradient(90deg, var(--gray) 0 14px, var(--black) 14px 28px); }
+
+.belt-split {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 0.8rem;
+  align-items: start;
+}
+
+.belt-spec-card {
+  min-height: 330px;
+  display: grid;
+  place-items: center;
+  background: var(--black);
+  color: var(--white);
+  text-align: center;
+}
+
+.belt-spec-card h3,
+.belt-spec-card p {
+  color: var(--white);
+}
+
+.belt-resource-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  max-width: var(--shared-slide-width, 1120px);
+  margin: 0.8rem auto 0;
+}
+
+.belt-resource-links a {
+  display: inline-block;
+  background: var(--red);
+  color: var(--white);
+  font-family: "Droid Sans", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 0.36em;
+  text-decoration: none;
+  padding: 0.35rem 0.55rem;
+  border-radius: 6px;
+}
+
+.belt-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.42em;
+  background: var(--white);
+}
+
+.belt-table th {
+  background: var(--red);
+  color: var(--white);
+  font-family: "Droid Sans", Arial, sans-serif;
+}
+
+.belt-table th,
+.belt-table td {
+  border: 2px solid var(--black);
+  padding: 0.45rem;
+  text-align: left;
+}
+
+.belt-sort-bank,
+.belt-sort-targets,
+.printed-check-grid {
+  max-width: var(--shared-slide-width, 1120px);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.belt-sort-bank {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  padding: 0.45rem;
+  min-height: 90px;
+  margin-bottom: 0.6rem;
+  background: var(--light);
+  border: 3px dashed var(--gray);
+  border-radius: 8px;
+}
+
+.belt-sort-chip {
+  background: var(--white);
+  border: 2px solid var(--red);
+  border-left: 8px solid var(--red);
+  border-radius: 8px;
+  padding: 0.32rem 0.48rem;
+  font-size: 0.36em;
+  font-weight: 700;
+  cursor: grab;
+}
+
+.belt-sort-targets {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.6rem;
+}
+
+.belt-sort-zone {
+  min-height: 190px;
+  max-height: 210px;
+  overflow-y: auto;
+  background: var(--light);
+  border-left: 10px solid var(--red);
+  border-radius: 8px;
+  padding: 0.45rem;
+}
+
+.belt-sort-zone h3 {
+  font-size: 0.52em;
+  text-align: center;
+  margin: 0 0 0.35rem;
+}
+
+.belt-sort-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-height: 125px;
+}
+
+.belt-sort-chip.correct,
+.printed-check-card.correct,
+.scenario-options button.correct {
+  background: #e6f4ea !important;
+  border-color: #2e7d32 !important;
+  border-left-color: #2e7d32 !important;
+  color: var(--black) !important;
+}
+
+.belt-sort-chip.incorrect,
+.printed-check-card.incorrect,
+.scenario-options button.incorrect {
+  background: #fdecea !important;
+  border-color: #b00020 !important;
+  border-left-color: #b00020 !important;
+  color: var(--black) !important;
+}
+
+.printed-check-card.missed {
+  background: #fff8d6 !important;
+  border-color: #b8860b !important;
+  border-left-color: #b8860b !important;
+  color: var(--black) !important;
+}
+
+.belt-sort-feedback,
+.printed-check-feedback,
+.scenario-feedback {
+  margin: 0;
+  font-size: 0.42em;
+  font-weight: 700;
+}
+
+.printed-check-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.printed-check-card,
+.scenario-options button {
+  appearance: none;
+  background: var(--white);
+  color: var(--black);
+  border: 2px solid var(--red);
+  border-left: 10px solid var(--red);
+  border-radius: 8px;
+  padding: 0.55rem 0.65rem;
+  font-family: "Droid Sans", Arial, sans-serif;
+  font-size: 0.42em;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: left;
+  cursor: pointer;
+}
+
+.printed-check-card.selected {
+  background: var(--black);
+  color: var(--white);
+}
+
+.calc-layout {
+  display: grid;
+  grid-template-columns: 0.75fr 1fr;
+  gap: 0.85rem;
+  align-items: stretch;
+}
+
+.calc-layout label {
+  display: block;
+  font-family: "Droid Sans", Arial, sans-serif;
+  font-size: 0.36em;
+  font-weight: 700;
+  margin: 0.25rem 0 0.1rem;
+}
+
+.calc-layout input {
+  display: block;
+  width: 100%;
+  font-size: 0.42em;
+  padding: 0.25rem;
+  border: 2px solid var(--gray);
+  border-left: 8px solid var(--red);
+  margin-bottom: 0.25rem;
+}
+
+.calc-output {
+  display: grid;
+  align-content: center;
+  min-height: 280px;
+}
+
+.calc-output p {
+  font-size: 0.58em;
+}
+
+.calc-output .small-note {
+  font-size: 0.36em;
+  opacity: 0.9;
+}
+
+.scenario-options {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 0.55rem;
+}
+
+.belt-scenario-card {
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+.belt-scenario-card > p:first-child {
+  font-size: 0.55em;
+}
+
+@media (max-width: 900px) {
+  .docs-native-article .belt-grid-3,
+  .docs-native-article .belt-grid-4,
+  .docs-native-article .printed-check-grid,
+  .docs-native-article .belt-sort-targets {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .docs-native-article .belt-grid-2,
+  .docs-native-article .belt-split,
+  .docs-native-article .calc-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.centered{
+  justify-content: center;
+}
+
+/* Native-scroll refinements */
+.belt-ratio-image {
+  display: block;
+  width: min(100%, 1100px);
+  margin: 1rem auto 0.35rem;
+  object-fit: contain;
+}
+
+.belt-ratio-caption {
+  margin: 0.25rem auto 0;
+  text-align: center;
+  font-weight: 700;
+}
+
+.docs-native-article .belt-resource-links a {
+  font-size: 0.9rem;
+}
+
+.docs-native-article .belt-sort-chip,
+.docs-native-article .printed-check-card,
+.docs-native-article .scenario-options button {
+  font-size: 0.92rem !important;
+  line-height: 1.35;
+}
+
+.docs-native-article .belt-sort-feedback,
+.docs-native-article .printed-check-feedback,
+.docs-native-article .scenario-feedback {
+  font-size: 0.95rem !important;
+  line-height: 1.4;
+}
+
+.docs-native-article .belt-table {
+  font-size: 0.94rem;
+}
+
+.docs-native-article .belt-table-wrap {
+  overflow-x: auto;
+}
+
+.docs-native-article .calc-layout input {
+  font-size: 0.95rem !important;
+}
+
+@media (max-width: 680px) {
+  .docs-native-article .belt-grid-3,
+  .docs-native-article .belt-grid-4,
+  .docs-native-article .printed-check-grid,
+  .docs-native-article .belt-sort-targets {
+    grid-template-columns: 1fr;
+  }
+
+  .docs-native-article .belt-flow {
+    grid-template-columns: 1fr;
+  }
+
+  .docs-native-article .belt-arrow {
+    transform: rotate(90deg);
+    text-align: center;
+  }
+}

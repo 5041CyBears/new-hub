@@ -1,0 +1,1481 @@
+<!DOCTYPE html>
+<!-- 5041 Training Hub page: FRC-trainings/modules/belts-chains.html -->
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1" name="viewport"/>
+  <title>
+   5041 Belts, Pulleys, Chains, and Sprockets Training
+  </title>
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Audiowide&amp;family=Droid+Sans:wght@400;700&amp;family=Droid+Serif:wght@400;700&amp;display=swap" rel="stylesheet"/>
+  <link href="../../shared/css/styles.css" rel="stylesheet"/>
+  <link href="belts-chains-additions.css" rel="stylesheet"/>
+  <link href="../../site-assets/css/docs-site.css" rel="stylesheet"/>
+  <link href="../../site-assets/css/native-module.css" rel="stylesheet"/>
+ </head>
+ <body data-module-slug="belts-chains" data-native-module="true" data-program="FRC">
+  <div id="docs-native-module-content">
+   <section class="belt-slide native-module-section" id="module-goals">
+    <span class="tag">
+     Module Goals
+    </span>
+    <h2>
+     By the end, students should be able to:
+    </h2>
+    <div class="bar">
+    </div>
+    <ul>
+     <li>
+      Explain how belts, pulleys, chains, and sprockets transmit motion on an FRC robot.
+     </li>
+     <li>
+      Compare belts and chain for load, maintenance, noise, repairability, and packaging.
+     </li>
+     <li>
+      Use pitch, tooth count, sprocket size, pulley size, and center distance in basic design decisions.
+     </li>
+     <li>
+      Identify common uses for 3 mm belts, 5 mm HTD belts, #25 chain, and #35 chain.
+     </li>
+     <li>
+      Choose COTS or custom components based on mechanism needs and risk.
+     </li>
+     <li>
+      Describe safe and reliable 3D printed pulley practices.
+     </li>
+    </ul>
+   </section>
+   <section class="belt-vertical native-module-section" id="big-idea">
+    <span class="tag">
+     Big Idea
+    </span>
+    <h2>
+     Power transmission moves motor rotation to the mechanism
+    </h2>
+    <div class="belt-flow">
+     <div class="belt-node">
+      Motor
+     </div>
+     <div class="belt-arrow">
+      →
+     </div>
+     <div class="belt-node red-node">
+      Belt / Chain Stage
+     </div>
+     <div class="belt-arrow">
+      →
+     </div>
+     <div class="belt-node">
+      Shaft
+     </div>
+     <div class="belt-arrow">
+      →
+     </div>
+     <div class="belt-node">
+      Mechanism
+     </div>
+    </div>
+    <div class="belt-callout">
+     <p>
+      <strong>
+       Design idea:
+      </strong>
+      A belt or chain stage can transfer motion, change speed and torque, reverse direction, or package a motor somewhere safer.
+     </p>
+    </div>
+   </section>
+   <section class="belt-vertical native-module-section" id="core-vocabulary">
+    <span class="tag">
+     Core Vocabulary
+    </span>
+    <h2>
+     Know the parts before designing the run
+    </h2>
+    <div class="belt-grid-4">
+     <div class="belt-card">
+      <h3>
+       Pulley
+      </h3>
+      <p>
+       A wheel with teeth or grooves that drives a belt.
+      </p>
+     </div>
+     <div class="belt-card">
+      <h3>
+       Belt
+      </h3>
+      <p>
+       A flexible loop that transmits rotation between pulleys.
+      </p>
+     </div>
+     <div class="belt-card">
+      <h3>
+       Sprocket
+      </h3>
+      <p>
+       A toothed wheel that drives roller chain.
+      </p>
+     </div>
+     <div class="belt-card">
+      <h3>
+       Chain
+      </h3>
+      <p>
+       A linked loop that rides on sprockets to move torque.
+      </p>
+     </div>
+    </div>
+    <div class="belt-grid-3 belt-space-top">
+     <div class="belt-card">
+      <h3>
+       Pitch
+      </h3>
+      <p>
+       Spacing between teeth or chain pins. Parts must match pitch.
+      </p>
+     </div>
+     <div class="belt-card">
+      <h3>
+       Center Distance
+      </h3>
+      <p>
+       Distance between shaft centers. Belts especially depend on this being planned.
+      </p>
+     </div>
+     <div class="belt-card">
+      <h3>
+       Wrap
+      </h3>
+      <p>
+       How many teeth engage around the pulley or sprocket. More wrap usually reduces skipping.
+      </p>
+     </div>
+    </div>
+   </section>
+   <section class="belt-vertical native-module-section" id="basic-physics">
+    <span class="tag">
+     Basic Physics
+    </span>
+    <h2>
+     Ratios trade speed and torque
+    </h2>
+    <div class="belt-grid-2">
+     <div class="belt-card">
+      <h3>
+       Ratio
+      </h3>
+      <p class="belt-formula">
+       Ratio = Driven Teeth ÷ Driver Teeth
+      </p>
+      <p>
+       A larger driven pulley or sprocket slows the output and increases available torque.
+      </p>
+     </div>
+     <div class="belt-card dark">
+      <h3>
+       Power Tradeoff
+      </h3>
+      <p>
+       Ignoring losses, power is roughly conserved: more torque usually means less angular velocity.
+      </p>
+      <p class="belt-formula light">
+       Power ≈ Torque × Angular Velocity
+      </p>
+     </div>
+    </div>
+    <img alt="Illustration of 25-tooth and 50-tooth pulley and sprocket pairs showing a 2:1 reduction." class="belt-ratio-image" src="../../shared/assets/belts-chains/ratio-examples.png"/>
+    <p class="belt-ratio-caption">
+     25T driving 50T gives a 2:1 reduction: about 2× torque and 1/2 speed
+    </p>
+   </section>
+   <section class="belt-vertical native-module-section" id="belts-and-pulleys">
+    <span class="tag">
+     Belts and Pulleys
+    </span>
+    <h2>
+     Belts are quiet, light, and low maintenance
+    </h2>
+    <div class="belt-grid-3">
+     <div class="belt-card">
+      <h3>
+       Best For
+      </h3>
+      <p>
+       Shooters, intakes, conveyors, indexers, compact runs, and mechanisms where low backlash matters.
+      </p>
+     </div>
+     <div class="belt-card">
+      <h3>
+       Main Advantages
+      </h3>
+      <p>
+       Quiet, clean, efficient, no lubrication, low stretch, and smooth motion when aligned correctly.
+      </p>
+     </div>
+     <div class="belt-card">
+      <h3>
+       Main Concern
+      </h3>
+      <p>
+       Belts need correct center distance, enough wrap, enough tension, and matching pulley pitch.
+      </p>
+     </div>
+    </div>
+    <div class="belt-callout">
+     <p>
+      Timing belt teeth interlock with pulley teeth, so the system should not slip during normal operation.
+     </p>
+    </div>
+   </section>
+   <section class="belt-vertical native-module-section" id="three-mm-belts">
+    <span class="tag">
+     3 mm Belts
+    </span>
+    <h2>
+     Use 3 mm belts for compact, lower-load motion
+    </h2>
+    <div class="belt-grid-1">
+     <div class="belt-grid-2">
+      <div class="belt-card">
+       <h3>
+        Good Uses
+       </h3>
+       <ul>
+        <li>
+         Small intakes and indexers.
+        </li>
+        <li>
+         Sensor wheels or light rollers.
+        </li>
+        <li>
+         Low-load conveyors and prototypes.
+        </li>
+        <li>
+         Mechanisms where packaging is tight.
+        </li>
+       </ul>
+      </div>
+      <div class="belt-card">
+       <h3>
+        Avoid Use In
+       </h3>
+       <ul>
+        <li>
+         Drivetrains
+        </li>
+        <li>
+         Climbers
+        </li>
+        <li>
+         Heavy arms
+        </li>
+        <li>
+         Anything that cannot tolerate tooth skipping.
+        </li>
+       </ul>
+      </div>
+     </div>
+     <div class="belt-callout">
+      <h3>
+       3 mm Design Checks
+      </h3>
+      <p>
+       Match 3 mm belts with compatible pulleys, use flanges where the belt may walk, and keep shafts parallel.
+      </p>
+     </div>
+    </div>
+   </section>
+   <section class="belt-vertical native-module-section" id="five-mm-htd-belts">
+    <span class="tag">
+     5 mm HTD Belts
+    </span>
+    <h2>
+     Use 5 mm belts for stronger FRC mechanisms
+    </h2>
+    <div class="belt-grid-2">
+     <div class="belt-card">
+      <h3>
+       9 mm Width
+      </h3>
+      <p>
+       Useful for many medium-duty intakes, rollers, conveyors, and some arms when loads are controlled.
+      </p>
+     </div>
+     <div class="belt-card">
+      <h3>
+       15 mm Width
+      </h3>
+      <p>
+       Better for heavier loads, drivetrains, larger arms, elevators, and mechanisms where skipping would be costly.
+      </p>
+     </div>
+     <div class="belt-card">
+      <h3>
+       Design Around Belt Length
+      </h3>
+      <p>
+       Belts are fixed length, so choose pulleys and center distance together in CAD.
+      </p>
+     </div>
+     <div class="belt-card dark">
+      <h3>
+       Do Not Mix
+      </h3>
+      <p>
+       3 mm belts do not work on 5 mm pulleys. HTD belts need compatible HTD pulleys.
+      </p>
+     </div>
+    </div>
+   </section>
+   <section class="belt-vertical native-module-section" id="printed-pulleys">
+    <span class="tag">
+     3D Printed Pulleys
+    </span>
+    <h2>
+     Printed pulleys are powerful prototyping tools
+    </h2>
+    <div class="belt-grid-3">
+     <div class="belt-card">
+      <h3>
+       Good Uses
+      </h3>
+      <p>
+       Custom tooth count, custom width, integrated roller shape, light duty intake, conveyor, or prototype.
+      </p>
+     </div>
+     <div class="belt-card">
+      <h3>
+       Safer Build Pattern
+      </h3>
+      <p>
+       Print the pulley body and bolt it to a COTS hub so the shaft connection is metal and reliable.
+      </p>
+     </div>
+     <div class="belt-card">
+      <h3>
+       Competition Caution
+      </h3>
+      <p>
+       Test under real load and bring spares. Avoid printed pulleys in high-shock or hard-to-repair systems.
+      </p>
+     </div>
+    </div>
+    <div class="belt-callout">
+     <p>
+      Use the correct tooth profile, strong material, adequate tooth thickness, flanges when needed, and inserts or through-bolts instead of weak plastic threads.
+     </p>
+    </div>
+   </section>
+   <section class="belt-vertical printed-pulley-check-slide native-module-section" id="interactive-printed-pulley-check">
+    <span class="tag">
+     Interactive Check
+    </span>
+    <h2>
+     Click the design checks you should do before using a printed pulley
+    </h2>
+    <div class="printed-check-grid">
+     <button class="printed-check-card" data-good="true" onclick="togglePrintedCheck(this)" type="button">
+      Match belt pitch and tooth profile.
+     </button>
+     <button class="printed-check-card" data-good="false" onclick="togglePrintedCheck(this)" type="button">
+      Use any tooth shape as long as it looks close.
+     </button>
+     <button class="printed-check-card" data-good="true" onclick="togglePrintedCheck(this)" type="button">
+      Bolt to a COTS hub when possible.
+     </button>
+     <button class="printed-check-card" data-good="true" onclick="togglePrintedCheck(this)" type="button">
+      Test under realistic load before competition.
+     </button>
+     <button class="printed-check-card" data-good="false" onclick="togglePrintedCheck(this)" type="button">
+      Trust one prototype print with no spare.
+     </button>
+     <button class="printed-check-card" data-good="true" onclick="togglePrintedCheck(this)" type="button">
+      Add flanges or guides if the belt can walk sideways.
+     </button>
+    </div>
+    <div class="activity-controls">
+     <button class="quiz-button check-printed-check" onclick="checkPrintedChecks(this)" type="button">
+      Check Answers
+     </button>
+     <button class="quiz-button secondary reset-printed-check" onclick="resetPrintedChecks(this)" type="button">
+      Reset
+     </button>
+     <p class="printed-check-feedback">
+      Select the good design checks.
+     </p>
+    </div>
+   </section>
+   <section class="belt-vertical native-module-section" id="chains-and-sprockets">
+    <span class="tag">
+     Chains and Sprockets
+    </span>
+    <h2>
+     Chain is repairable, robust, and forgiving
+    </h2>
+    <div class="belt-grid-3">
+     <div class="belt-card">
+      <h3>
+       Best For
+      </h3>
+      <p>
+       Drivetrains, elevators, arms, climbers, intakes, and mechanisms that need easy repair or adjustment.
+      </p>
+     </div>
+     <div class="belt-card">
+      <h3>
+       Main Advantages
+      </h3>
+      <p>
+       Easy to shorten, strong, widely available, familiar, and tolerant of design changes.
+      </p>
+     </div>
+     <div class="belt-card">
+      <h3>
+       Main Concern
+      </h3>
+      <p>
+       Chain can stretch, derail, make noise, add backlash, and need tensioning or alignment checks.
+      </p>
+     </div>
+    </div>
+   </section>
+   <section class="belt-vertical native-module-section" id="chain-25">
+    <span class="tag">
+     #25 Chain
+    </span>
+    <h2>
+     #25 chain is common for lighter and medium-duty FRC mechanisms
+    </h2>
+    <div class="belt-grid-2">
+     <div class="belt-card">
+      <h3>
+       Good Uses
+      </h3>
+      <ul>
+       <li>
+        Intakes and conveyors.
+       </li>
+       <li>
+        Indexers and rollers.
+       </li>
+       <li>
+        Elevators and medium arms.
+       </li>
+       <li>
+        Some drivetrains when designed well.
+       </li>
+      </ul>
+     </div>
+     <div class="belt-card">
+      <h3>
+       Advantages
+      </h3>
+      <p>
+       Smaller, lighter, easier to package, and common in modern FRC build systems.
+      </p>
+     </div>
+     <div class="belt-card dark">
+      <h3>
+       Watch Out
+      </h3>
+      <p>
+       It is less forgiving than #35 if alignment is poor, shock loads are high, or small sprockets are overloaded.
+      </p>
+     </div>
+     <div class="belt-card">
+      <h3>
+       Design Checks
+      </h3>
+      <p>
+       Use matching #25 sprockets, align sprockets in the same plane, and keep tension neither too loose nor too tight.
+      </p>
+     </div>
+    </div>
+   </section>
+   <section class="belt-vertical native-module-section" id="chain-35">
+    <span class="tag">
+     #35 Chain
+    </span>
+    <h2>
+     #35 chain is heavier but stronger and more forgiving
+    </h2>
+    <div class="belt-grid-2">
+     <div class="belt-card">
+      <h3>
+       Good Uses
+      </h3>
+      <ul>
+       <li>
+        Heavy drivetrains.
+       </li>
+       <li>
+        Climbers.
+       </li>
+       <li>
+        Heavy arms.
+       </li>
+       <li>
+        High shock-load mechanisms.
+       </li>
+      </ul>
+     </div>
+     <div class="belt-card">
+      <h3>
+       Advantages
+      </h3>
+      <p>
+       Stronger, easier to inspect, and more tolerant of abuse or beginner design errors.
+      </p>
+     </div>
+     <div class="belt-card dark">
+      <h3>
+       Tradeoff
+      </h3>
+      <p>
+       It costs more space and weight. Larger sprockets and chain runs can be harder to package.
+      </p>
+     </div>
+     <div class="belt-card">
+      <h3>
+       Design Checks
+      </h3>
+      <p>
+       Use matching #35 sprockets, strong shaft support, and a tensioning or adjustment plan.
+      </p>
+     </div>
+    </div>
+   </section>
+   <section class="belt-vertical cots-slide native-module-section" id="cots-parts">
+    <span class="tag">
+     COTS Parts
+    </span>
+    <h2>
+     Start with common FRC-ready options
+    </h2>
+    <div class="belt-grid-3">
+     <div class="belt-card">
+      <h3>
+       REV Robotics
+      </h3>
+      <p>
+       GT2 3 mm belt parts, #25 chain and sprockets, chain tools, and motion system documentation.
+      </p>
+     </div>
+     <div class="belt-card">
+      <h3>
+       WestCoast Products
+      </h3>
+      <p>
+       HTD 5 mm belts and pulleys, GT2 options, #25 and #35 chain and sprockets.
+      </p>
+     </div>
+     <div class="belt-card">
+      <h3>
+       AndyMark / Thrifty Bot
+      </h3>
+      <p>
+       Sprockets, chain, HTD pulleys, hubs, bearings, shafts, and repair parts used widely by FRC teams.
+      </p>
+     </div>
+    </div>
+    <div class="belt-resource-links">
+     <a href="https://docs.revrobotics.com/duo-build/motion/timing-belts-and-pulleys" rel="noopener" target="_blank">
+      REV timing belts
+     </a>
+     <a href="https://docs.revrobotics.com/ion-build/motion/sprockets-and-chain" rel="noopener" target="_blank">
+      REV chain
+     </a>
+     <a href="https://docs.wcproducts.com/welcome/frc-build-system/belts-chain-and-gears/overview" rel="noopener" target="_blank">
+      WCP motion guide
+     </a>
+     <a href="https://www.andymark.com/categories/sprockets-chain" rel="noopener" target="_blank">
+      AndyMark chain
+     </a>
+    </div>
+   </section>
+   <section class="belt-vertical compare-slide native-module-section" id="design-choice">
+    <span class="tag">
+     Design Choice
+    </span>
+    <h2>
+     Belts vs. chain is a tradeoff
+    </h2>
+    <div class="belt-table-wrap">
+     <table class="belt-table">
+      <thead>
+       <tr>
+        <th>
+         Need
+        </th>
+        <th>
+         Usually Consider
+        </th>
+        <th>
+         Reason
+        </th>
+       </tr>
+      </thead>
+      <tbody>
+       <tr>
+        <td>
+         Quiet, clean, low maintenance
+        </td>
+        <td>
+         Belts
+        </td>
+        <td>
+         No lubrication and smooth motion
+        </td>
+       </tr>
+       <tr>
+        <td>
+         Fast event repair
+        </td>
+        <td>
+         Chain
+        </td>
+        <td>
+         Can shorten, repair, and adjust
+        </td>
+       </tr>
+       <tr>
+        <td>
+         Small low-load roller
+        </td>
+        <td>
+         3 mm belt or #25 chain
+        </td>
+        <td>
+         Compact and light
+        </td>
+       </tr>
+       <tr>
+        <td>
+         High load or shock load
+        </td>
+        <td>
+         5 mm HTD, #25, or #35
+        </td>
+        <td>
+         Choose based on torque, space, and repairability
+        </td>
+       </tr>
+      </tbody>
+     </table>
+    </div>
+   </section>
+   <section class="belt-vertical belt-sort-slide native-module-section" id="interactive-sort">
+    <span class="tag">
+     Interactive Sort
+    </span>
+    <h2>
+     Sort each mechanism into a likely first choice
+    </h2>
+    <div class="belt-sort-bank">
+     <div class="belt-sort-chip" data-answer="three" draggable="true">
+      Sensor roller
+     </div>
+     <div class="belt-sort-chip" data-answer="three" draggable="true">
+      Small prototype conveyor
+     </div>
+     <div class="belt-sort-chip" data-answer="five" draggable="true">
+      Shooter wheel drive
+     </div>
+     <div class="belt-sort-chip" data-answer="five" draggable="true">
+      Polished low-maintenance intake
+     </div>
+     <div class="belt-sort-chip" data-answer="twentyfive" draggable="true">
+      Elevator chain run
+     </div>
+     <div class="belt-sort-chip" data-answer="twentyfive" draggable="true">
+      Medium arm or roller system
+     </div>
+     <div class="belt-sort-chip" data-answer="thirtyfive" draggable="true">
+      Heavy climber
+     </div>
+     <div class="belt-sort-chip" data-answer="thirtyfive" draggable="true">
+      High shock-load drivetrain
+     </div>
+    </div>
+    <div class="belt-sort-targets">
+     <div class="belt-sort-zone" data-zone="three">
+      <h3>
+       3 mm Belt
+      </h3>
+      <div class="belt-sort-list">
+      </div>
+     </div>
+     <div class="belt-sort-zone" data-zone="five">
+      <h3>
+       5 mm HTD Belt
+      </h3>
+      <div class="belt-sort-list">
+      </div>
+     </div>
+     <div class="belt-sort-zone" data-zone="twentyfive">
+      <h3>
+       #25 Chain
+      </h3>
+      <div class="belt-sort-list">
+      </div>
+     </div>
+     <div class="belt-sort-zone" data-zone="thirtyfive">
+      <h3>
+       #35 Chain
+      </h3>
+      <div class="belt-sort-list">
+      </div>
+     </div>
+    </div>
+    <div class="activity-controls">
+     <button class="quiz-button check-belt-sort" type="button">
+      Check Answers
+     </button>
+     <button class="quiz-button secondary reset-belt-sort" type="button">
+      Reset
+     </button>
+     <p class="belt-sort-feedback">
+     </p>
+    </div>
+   </section>
+   <section class="belt-vertical calculator-slide native-module-section" id="interactive-calculator">
+    <span class="tag">
+     Interactive Calculator
+    </span>
+    <h2>
+     Predict output speed and torque change
+    </h2>
+    <div class="calc-layout">
+     <div class="belt-card">
+      <label for="driverTeeth">
+       Driver teeth
+      </label>
+      <input id="driverTeeth" min="1" type="number" value="12"/>
+      <label for="drivenTeeth">
+       Driven teeth
+      </label>
+      <input id="drivenTeeth" min="1" type="number" value="36"/>
+      <label for="inputSpeed">
+       Input speed (RPM)
+      </label>
+      <input id="inputSpeed" min="1" type="number" value="5000"/>
+      <button class="quiz-button" onclick="calculateBeltRatio()" type="button">
+       Calculate
+      </button>
+     </div>
+     <div class="calc-output">
+      <h3>
+       Output Prediction
+      </h3>
+      <p id="calcRatio">
+       Ratio: 3.00:1 reduction
+      </p>
+      <p id="calcSpeed">
+       Output speed: about 1667 RPM
+      </p>
+      <p id="calcTorque">
+       Torque multiplier: about 3.00× before losses
+      </p>
+      <p class="small-note">
+       This simple model ignores friction, belt/chain efficiency, motor curves, and current limits.
+      </p>
+     </div>
+    </div>
+   </section>
+   <section class="belt-vertical scenario-slide native-module-section" id="check-for-learning">
+    <span class="tag">
+     Check for Learning
+    </span>
+    <h2>
+     Choose the strongest design response
+    </h2>
+    <div class="belt-scenario-card">
+     <p>
+      Your intake belt skips teeth when the roller grabs a game piece. What should the team try first?
+     </p>
+     <div class="scenario-options">
+      <button data-correct="false" onclick="checkBeltScenarioAnswer(this)" type="button">
+       Ignore it because belts are supposed to skip under load.
+      </button>
+      <button data-correct="true" onclick="checkBeltScenarioAnswer(this)" type="button">
+       Check tension, pulley alignment, belt wrap, pulley size, and whether the belt width/pitch is strong enough.
+      </button>
+      <button data-correct="false" onclick="checkBeltScenarioAnswer(this)" type="button">
+       Add more motor power without changing the mechanical design.
+      </button>
+      <button data-correct="false" onclick="checkBeltScenarioAnswer(this)" type="button">
+       Switch to a random belt from the pit without matching pitch.
+      </button>
+     </div>
+     <p class="scenario-feedback">
+      Choose one answer.
+     </p>
+    </div>
+   </section>
+   <section class="belt-vertical native-module-section" id="robot-design-checklist">
+    <span class="tag">
+     Robot Design Checklist
+    </span>
+    <h2>
+     Before finalizing a belt or chain run
+    </h2>
+    <div class="belt-grid-3 compact-cards">
+     <div class="belt-card">
+      <h3>
+       Match Components
+      </h3>
+      <p>
+       Pitch, width, tooth profile, chain size, bore, shaft, and hub interface must match.
+      </p>
+     </div>
+     <div class="belt-card">
+      <h3>
+       Plan Tension
+      </h3>
+      <p>
+       Include slots, idlers, cams, adjustable mounts, or exact belt center distance.
+      </p>
+     </div>
+     <div class="belt-card">
+      <h3>
+       Control Alignment
+      </h3>
+      <p>
+       Keep shafts parallel and pulleys/sprockets in the same plane.
+      </p>
+     </div>
+     <div class="belt-card">
+      <h3>
+       Support Shafts
+      </h3>
+      <p>
+       Use bearings on both sides of high-load pulleys or sprockets when possible.
+      </p>
+     </div>
+     <div class="belt-card">
+      <h3>
+       Protect the Run
+      </h3>
+      <p>
+       Keep belts and chains away from frame edges, carpet, bumpers, wires, and hands.
+      </p>
+     </div>
+     <div class="belt-card">
+      <h3>
+       Bring Spares
+      </h3>
+      <p>
+       Pack belts, chain, master links, half links, hubs, sprockets, pulleys, and tools.
+      </p>
+     </div>
+    </div>
+   </section>
+   <section class="center belt-slide native-module-section" id="quiz-intro">
+    <span class="tag">
+     Required Quiz
+    </span>
+    <h2>
+     Pass to complete the module
+    </h2>
+    <p>
+     Each question appears below in its own section.
+    </p>
+    <p class="small">
+     Answer all 20 questions, then grade the quiz. Score at least 18 out of 20 to unlock the completion certificate.
+    </p>
+    <div class="stripe">
+    </div>
+   </section>
+   <section class="center name-entry-slide belt-slide native-module-section" id="quiz-name">
+    <span class="tag">
+     Before the Quiz
+    </span>
+    <h2>
+     Enter your name
+    </h2>
+    <label class="name-entry-label" for="participantName">
+     Student name for certificate
+    </label>
+    <input autocomplete="name" class="name-entry-input" id="participantName" placeholder="Type your name here" type="text"/>
+    <p class="small">
+     This name will appear on your completion certificate.
+    </p>
+   </section>
+   <section class="quiz-slide belt-quiz native-module-section native-quiz-question-section" id="quiz-q1">
+    <span class="tag">
+     Quiz Question 1
+    </span>
+    <div class="progress-note">
+     1 of 20
+    </div>
+    <div class="quiz-card">
+     <p>
+      What is the main job of belts, pulleys, chains, and sprockets?
+     </p>
+     <label>
+      <input name="q1" type="radio" value="a"/>
+      To decorate the robot.
+     </label>
+     <label>
+      <input name="q1" type="radio" value="b"/>
+      To transmit rotational motion and torque between shafts.
+     </label>
+     <label>
+      <input name="q1" type="radio" value="c"/>
+      To replace all bearings.
+     </label>
+    </div>
+   </section>
+   <section class="quiz-slide belt-quiz native-module-section native-quiz-question-section" id="quiz-q2">
+    <span class="tag">
+     Quiz Question 2
+    </span>
+    <div class="progress-note">
+     2 of 20
+    </div>
+    <div class="quiz-card">
+     <p>
+      Which formula gives a simple pulley or sprocket ratio?
+     </p>
+     <label>
+      <input name="q2" type="radio" value="a"/>
+      Driven teeth ÷ driver teeth
+     </label>
+     <label>
+      <input name="q2" type="radio" value="b"/>
+      Battery voltage ÷ robot weight
+     </label>
+     <label>
+      <input name="q2" type="radio" value="c"/>
+      Wheel diameter × bumper height
+     </label>
+    </div>
+   </section>
+   <section class="quiz-slide belt-quiz native-module-section native-quiz-question-section" id="quiz-q3">
+    <span class="tag">
+     Quiz Question 3
+    </span>
+    <div class="progress-note">
+     3 of 20
+    </div>
+    <div class="quiz-card">
+     <p>
+      If a 12T pulley drives a 36T pulley, the output is usually:
+     </p>
+     <label>
+      <input name="q3" type="radio" value="a"/>
+      Faster with less torque.
+     </label>
+     <label>
+      <input name="q3" type="radio" value="b"/>
+      Slower with more torque.
+     </label>
+     <label>
+      <input name="q3" type="radio" value="c"/>
+      Unchanged in speed and torque.
+     </label>
+    </div>
+   </section>
+   <section class="quiz-slide belt-quiz native-module-section native-quiz-question-section" id="quiz-q4">
+    <span class="tag">
+     Quiz Question 4
+    </span>
+    <div class="progress-note">
+     4 of 20
+    </div>
+    <div class="quiz-card">
+     <p>
+      What must match between a belt and pulley?
+     </p>
+     <label>
+      <input name="q4" type="radio" value="a"/>
+      Team number only.
+     </label>
+     <label>
+      <input name="q4" type="radio" value="b"/>
+      Color only.
+     </label>
+     <label>
+      <input name="q4" type="radio" value="c"/>
+      Pitch and tooth profile.
+     </label>
+    </div>
+   </section>
+   <section class="quiz-slide belt-quiz native-module-section native-quiz-question-section" id="quiz-q5">
+    <span class="tag">
+     Quiz Question 5
+    </span>
+    <div class="progress-note">
+     5 of 20
+    </div>
+    <div class="quiz-card">
+     <p>
+      Which is a good use for a 3 mm belt?
+     </p>
+     <label>
+      <input name="q5" type="radio" value="a"/>
+      Heavy climber.
+     </label>
+     <label>
+      <input name="q5" type="radio" value="b"/>
+      Small low-load roller or indexer.
+     </label>
+     <label>
+      <input name="q5" type="radio" value="c"/>
+      High-impact drivetrain.
+     </label>
+    </div>
+   </section>
+   <section class="quiz-slide belt-quiz native-module-section native-quiz-question-section" id="quiz-q6">
+    <span class="tag">
+     Quiz Question 6
+    </span>
+    <div class="progress-note">
+     6 of 20
+    </div>
+    <div class="quiz-card">
+     <p>
+      Why are 5 mm HTD belts common in FRC mechanisms?
+     </p>
+     <label>
+      <input name="q6" type="radio" value="a"/>
+      They are stronger than small 3 mm belts for many FRC loads.
+     </label>
+     <label>
+      <input name="q6" type="radio" value="b"/>
+      They do not need pulleys.
+     </label>
+     <label>
+      <input name="q6" type="radio" value="c"/>
+      They work with any chain sprocket.
+     </label>
+    </div>
+   </section>
+   <section class="quiz-slide belt-quiz native-module-section native-quiz-question-section" id="quiz-q7">
+    <span class="tag">
+     Quiz Question 7
+    </span>
+    <div class="progress-note">
+     7 of 20
+    </div>
+    <div class="quiz-card">
+     <p>
+      What is a main advantage of belts over chain?
+     </p>
+     <label>
+      <input name="q7" type="radio" value="a"/>
+      Belts are usually quiet, clean, and low-maintenance.
+     </label>
+     <label>
+      <input name="q7" type="radio" value="b"/>
+      Belts always handle infinite torque.
+     </label>
+     <label>
+      <input name="q7" type="radio" value="c"/>
+      Belts can be shortened with a chain breaker.
+     </label>
+    </div>
+   </section>
+   <section class="quiz-slide belt-quiz native-module-section native-quiz-question-section" id="quiz-q8">
+    <span class="tag">
+     Quiz Question 8
+    </span>
+    <div class="progress-note">
+     8 of 20
+    </div>
+    <div class="quiz-card">
+     <p>
+      What is a main advantage of chain?
+     </p>
+     <label>
+      <input name="q8" type="radio" value="a"/>
+      It is easy to shorten, repair, and adjust at events.
+     </label>
+     <label>
+      <input name="q8" type="radio" value="b"/>
+      It never stretches or wears.
+     </label>
+     <label>
+      <input name="q8" type="radio" value="c"/>
+      It does not need sprockets.
+     </label>
+    </div>
+   </section>
+   <section class="quiz-slide belt-quiz native-module-section native-quiz-question-section" id="quiz-q9">
+    <span class="tag">
+     Quiz Question 9
+    </span>
+    <div class="progress-note">
+     9 of 20
+    </div>
+    <div class="quiz-card">
+     <p>
+      #25 chain is usually:
+     </p>
+     <label>
+      <input name="q9" type="radio" value="a"/>
+      Smaller and lighter than #35 chain.
+     </label>
+     <label>
+      <input name="q9" type="radio" value="b"/>
+      Larger and heavier than #35 chain.
+     </label>
+     <label>
+      <input name="q9" type="radio" value="c"/>
+      The same pitch as 5 mm HTD belt.
+     </label>
+    </div>
+   </section>
+   <section class="quiz-slide belt-quiz native-module-section native-quiz-question-section" id="quiz-q10">
+    <span class="tag">
+     Quiz Question 10
+    </span>
+    <div class="progress-note">
+     10 of 20
+    </div>
+    <div class="quiz-card">
+     <p>
+      #35 chain is often chosen when:
+     </p>
+     <label>
+      <input name="q10" type="radio" value="a"/>
+      The mechanism is high load or shock loaded.
+     </label>
+     <label>
+      <input name="q10" type="radio" value="b"/>
+      The team wants the lightest possible solution.
+     </label>
+     <label>
+      <input name="q10" type="radio" value="c"/>
+      There is no room for larger sprockets.
+     </label>
+    </div>
+   </section>
+   <section class="quiz-slide belt-quiz native-module-section native-quiz-question-section" id="quiz-q11">
+    <span class="tag">
+     Quiz Question 11
+    </span>
+    <div class="progress-note">
+     11 of 20
+    </div>
+    <div class="quiz-card">
+     <p>
+      What does poor pulley or sprocket alignment cause?
+     </p>
+     <label>
+      <input name="q11" type="radio" value="a"/>
+      It can walk belts, derail chain, wear parts, or skip teeth.
+     </label>
+     <label>
+      <input name="q11" type="radio" value="b"/>
+      It makes every mechanism stronger.
+     </label>
+     <label>
+      <input name="q11" type="radio" value="c"/>
+      It automatically increases motor efficiency.
+     </label>
+    </div>
+   </section>
+   <section class="quiz-slide belt-quiz native-module-section native-quiz-question-section" id="quiz-q12">
+    <span class="tag">
+     Quiz Question 12
+    </span>
+    <div class="progress-note">
+     12 of 20
+    </div>
+    <div class="quiz-card">
+     <p>
+      What can happen if a belt is too loose?
+     </p>
+     <label>
+      <input name="q12" type="radio" value="a"/>
+      It may jump teeth under load.
+     </label>
+     <label>
+      <input name="q12" type="radio" value="b"/>
+      It becomes a gear.
+     </label>
+     <label>
+      <input name="q12" type="radio" value="c"/>
+      It removes all friction.
+     </label>
+    </div>
+   </section>
+   <section class="quiz-slide belt-quiz native-module-section native-quiz-question-section" id="quiz-q13">
+    <span class="tag">
+     Quiz Question 13
+    </span>
+    <div class="progress-note">
+     13 of 20
+    </div>
+    <div class="quiz-card">
+     <p>
+      What can happen if a belt or chain is too tight?
+     </p>
+     <label>
+      <input name="q13" type="radio" value="a"/>
+      It can waste power and damage bearings or parts.
+     </label>
+     <label>
+      <input name="q13" type="radio" value="b"/>
+      It makes the robot legal no matter what.
+     </label>
+     <label>
+      <input name="q13" type="radio" value="c"/>
+      It makes center distance irrelevant.
+     </label>
+    </div>
+   </section>
+   <section class="quiz-slide belt-quiz native-module-section native-quiz-question-section" id="quiz-q14">
+    <span class="tag">
+     Quiz Question 14
+    </span>
+    <div class="progress-note">
+     14 of 20
+    </div>
+    <div class="quiz-card">
+     <p>
+      What is a good design pattern for a 3D printed pulley?
+     </p>
+     <label>
+      <input name="q14" type="radio" value="a"/>
+      Print thin teeth and use no testing.
+     </label>
+     <label>
+      <input name="q14" type="radio" value="b"/>
+      Print the pulley body and bolt it to a reliable COTS hub.
+     </label>
+     <label>
+      <input name="q14" type="radio" value="c"/>
+      Use a random bore that almost fits.
+     </label>
+    </div>
+   </section>
+   <section class="quiz-slide belt-quiz native-module-section native-quiz-question-section" id="quiz-q15">
+    <span class="tag">
+     Quiz Question 15
+    </span>
+    <div class="progress-note">
+     15 of 20
+    </div>
+    <div class="quiz-card">
+     <p>
+      Why should teams bring spare belts and chain?
+     </p>
+     <label>
+      <input name="q15" type="radio" value="a"/>
+      Event repairs are easier when the exact replacement parts are available.
+     </label>
+     <label>
+      <input name="q15" type="radio" value="b"/>
+      Spare parts are only for decoration.
+     </label>
+     <label>
+      <input name="q15" type="radio" value="c"/>
+      Inspectors require one of every possible part.
+     </label>
+    </div>
+   </section>
+   <section class="quiz-slide belt-quiz native-module-section native-quiz-question-section" id="quiz-q16">
+    <span class="tag">
+     Quiz Question 16
+    </span>
+    <div class="progress-note">
+     16 of 20
+    </div>
+    <div class="quiz-card">
+     <p>
+      What does “wrap” mean in a belt or chain system?
+     </p>
+     <label>
+      <input name="q16" type="radio" value="a"/>
+      How many teeth engage around the pulley or sprocket.
+     </label>
+     <label>
+      <input name="q16" type="radio" value="b"/>
+      How much tape is on the robot.
+     </label>
+     <label>
+      <input name="q16" type="radio" value="c"/>
+      The amount of code in a command.
+     </label>
+    </div>
+   </section>
+   <section class="quiz-slide belt-quiz native-module-section native-quiz-question-section" id="quiz-q17">
+    <span class="tag">
+     Quiz Question 17
+    </span>
+    <div class="progress-note">
+     17 of 20
+    </div>
+    <div class="quiz-card">
+     <p>
+      When should a team be cautious about printed pulleys?
+     </p>
+     <label>
+      <input name="q17" type="radio" value="a"/>
+      In high-load, high-shock, or hard-to-repair competition systems.
+     </label>
+     <label>
+      <input name="q17" type="radio" value="b"/>
+      Only when the pulley is red.
+     </label>
+     <label>
+      <input name="q17" type="radio" value="c"/>
+      Never; printed pulleys always outperform metal.
+     </label>
+    </div>
+   </section>
+   <section class="quiz-slide belt-quiz native-module-section native-quiz-question-section" id="quiz-q18">
+    <span class="tag">
+     Quiz Question 18
+    </span>
+    <div class="progress-note">
+     18 of 20
+    </div>
+    <div class="quiz-card">
+     <p>
+      Which parts must match for chain to run correctly?
+     </p>
+     <label>
+      <input name="q18" type="radio" value="a"/>
+      Chain size and sprocket pitch.
+     </label>
+     <label>
+      <input name="q18" type="radio" value="b"/>
+      Team shirt color and pulley color.
+     </label>
+     <label>
+      <input name="q18" type="radio" value="c"/>
+      Battery brand and wheel tread.
+     </label>
+    </div>
+   </section>
+   <section class="quiz-slide belt-quiz native-module-section native-quiz-question-section" id="quiz-q19">
+    <span class="tag">
+     Quiz Question 19
+    </span>
+    <div class="progress-note">
+     19 of 20
+    </div>
+    <div class="quiz-card">
+     <p>
+      Which is usually the best first response to belt skipping?
+     </p>
+     <label>
+      <input name="q19" type="radio" value="a"/>
+      Check tension, alignment, wrap, pulley size, width, and load.
+     </label>
+     <label>
+      <input name="q19" type="radio" value="b"/>
+      Ignore it and add more speed.
+     </label>
+     <label>
+      <input name="q19" type="radio" value="c"/>
+      Replace the pulleys with mismatched sprockets.
+     </label>
+    </div>
+   </section>
+   <section class="quiz-slide belt-quiz native-module-section native-quiz-question-section" id="quiz-q20">
+    <span class="tag">
+     Quiz Question 20
+    </span>
+    <div class="progress-note">
+     20 of 20
+    </div>
+    <div class="quiz-card">
+     <p>
+      What is the best overall approach to choosing belts or chain?
+     </p>
+     <label>
+      <input name="q20" type="radio" value="a"/>
+      Pick the system that matches load, speed, repair needs, packaging, alignment, and available parts.
+     </label>
+     <label>
+      <input name="q20" type="radio" value="b"/>
+      Always use the same system everywhere.
+     </label>
+     <label>
+      <input name="q20" type="radio" value="c"/>
+      Choose parts based only on color.
+     </label>
+    </div>
+   </section>
+   <section class="center belt-slide native-module-section native-quiz-results-section" id="quiz-results">
+    <span class="tag">
+     Quiz Results
+    </span>
+    <h2>
+     Grade the quiz
+    </h2>
+    <p class="small">
+     You need at least 18 out of 20 to unlock the completion certificate.
+    </p>
+    <div class="quiz-actions">
+     <button class="quiz-button" id="gradeQuiz" type="button">
+      Grade Quiz
+     </button>
+     <button class="quiz-button secondary" id="resetQuiz" type="button">
+      Reset
+     </button>
+    </div>
+    <p class="result" id="quizResult">
+     Not submitted.
+    </p>
+    <p class="small" id="quizHint">
+     After passing, scroll to the final completion certificate.
+    </p>
+   </section>
+   <section class="center certificate-slide locked native-module-section native-certificate-section" id="complete">
+    <div class="certificate-card">
+     <div class="certificate-border">
+      <p class="certificate-small">
+       5041 CyBear Robotics
+      </p>
+      <h2>
+       Certificate of Completion
+      </h2>
+      <p class="certificate-text">
+       Presented to
+      </p>
+      <div class="certificate-name" id="certificateName">
+       Student Name
+      </div>
+      <p class="certificate-text">
+       for successfully completing the
+      </p>
+      <h3>
+       Belts, Pulleys, Chains, and Sprockets Training Module
+      </h3>
+      <p class="certificate-score" id="completionNote">
+       Complete after passing the required quiz.
+      </p>
+      <div class="certificate-line">
+      </div>
+      <p class="certificate-footer">
+       Everyone has a place here.
+      </p>
+      <div class="certificate-actions">
+       <button class="quiz-button certificate-download" id="downloadCertificate" type="button">
+        Download Certificate PDF
+       </button>
+      </div>
+     </div>
+    </div>
+   </section>
+  </div>
+  <script src="../../site-assets/js/site-manifest.js">
+  </script>
+  <script src="../../site-assets/js/docs-shell.js">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
+  </script>
+  <script src="belts-chains.js">
+  </script>
+ </body>
+</html>
+

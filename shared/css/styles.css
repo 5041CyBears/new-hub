@@ -1007,72 +1007,72 @@
   margin-top: 0.25rem;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article {
   font-family: "Droid Serif", Georgia, serif;
   color: var(--black);
 }
 
-/* STUDENT NOTE: Typography/spacing rule for `.reveal h1, .reveal h2, .reveal h3`. These values affect readability and vertical space on slides. */
-.reveal h1,
-.reveal h2,
-.reveal h3 {
+/* STUDENT NOTE: Typography/spacing rule for `.docs-native-article h1, .docs-native-article h2, .docs-native-article h3`. These values affect readability and vertical space on slides. */
+.docs-native-article h1,
+.docs-native-article h2,
+.docs-native-article h3 {
   font-family: "Droid Sans", Arial, sans-serif;
   font-weight: 700;
   color: var(--black);
   text-transform: none;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .cytitle`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .cytitle {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .cytitle`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .cytitle {
   font-family: "Audiowide", "Droid Sans", sans-serif;
   letter-spacing: 0.02em;
 }
 
-/* STUDENT NOTE: Typography/spacing rule for `.reveal h1`. These values affect readability and vertical space on slides. */
-.reveal h1 {
+/* STUDENT NOTE: Typography/spacing rule for `.docs-native-article h1`. These values affect readability and vertical space on slides. */
+.docs-native-article h1 {
   font-size: 2.1em;
 }
 
-/* STUDENT NOTE: Typography/spacing rule for `.reveal h2`. These values affect readability and vertical space on slides. */
-.reveal h2 {
+/* STUDENT NOTE: Typography/spacing rule for `.docs-native-article h2`. These values affect readability and vertical space on slides. */
+.docs-native-article h2 {
   font-size: 1.45em;
 }
 
-/* STUDENT NOTE: Typography/spacing rule for `.reveal h3`. These values affect readability and vertical space on slides. */
-.reveal h3 {
+/* STUDENT NOTE: Typography/spacing rule for `.docs-native-article h3`. These values affect readability and vertical space on slides. */
+.docs-native-article h3 {
   font-size: 0.95em;
 }
 
-/* STUDENT NOTE: Typography/spacing rule for `.reveal p, .reveal li`. These values affect readability and vertical space on slides. */
-.reveal p,
-.reveal li {
+/* STUDENT NOTE: Typography/spacing rule for `.docs-native-article p, .docs-native-article li`. These values affect readability and vertical space on slides. */
+.docs-native-article p,
+.docs-native-article li {
   font-size: 0.58em;
   line-height: 1.28;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal ul`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal ul {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article ul`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article ul {
   margin-left: 1.1em;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal section`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal section {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article section`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article section {
   text-align: left;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .center`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .center {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .center`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .center {
   text-align: center;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .small`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .small {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .small`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .small {
   font-size: 0.48em;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .tag`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .tag {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .tag`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .tag {
   display: inline-block;
   background: var(--red);
   color: white;
@@ -1082,8 +1082,8 @@
   margin-bottom: 0.4em;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .stripe`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .stripe {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .stripe`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .stripe {
   height: 10px;
   background: linear-gradient(
     90deg,
@@ -1094,58 +1094,58 @@
   margin: 0.35em 0 0.5em;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .bar`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .bar {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .bar`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .bar {
   height: 6px;
   background: var(--red);
   width: 45%;
   margin: 0.3em 0 0.6em;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .bar.gray`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .bar.gray {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .bar.gray`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .bar.gray {
   background: var(--gray);
   width: 65%;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .two`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .two {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .two`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .two {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.1em;
   align-items: start;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .three`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .three {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .three`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .three {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.7em;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .panel`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .panel {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .panel`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .panel {
   background: var(--light);
   padding: 0.75em;
   border-left: 12px solid var(--red);
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .panel.dark`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .panel.dark {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .panel.dark`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .panel.dark {
   background: var(--black);
   color: white;
   border-left-color: var(--red);
 }
 
-/* STUDENT NOTE: Typography/spacing rule for `.reveal .panel.dark h3, .reveal .panel.dark p, .reveal .panel.dark li`. These values affect readability and vertical space on slides. */
-.reveal .panel.dark h3,
-.reveal .panel.dark p,
-.reveal .panel.dark li {
+/* STUDENT NOTE: Typography/spacing rule for `.docs-native-article .panel.dark h3, .docs-native-article .panel.dark p, .docs-native-article .panel.dark li`. These values affect readability and vertical space on slides. */
+.docs-native-article .panel.dark h3,
+.docs-native-article .panel.dark p,
+.docs-native-article .panel.dark li {
   color: white;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .redCorner::after`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .redCorner::after {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .redCorner::after`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .redCorner::after {
   content: "";
   position: absolute;
   right: 0;
@@ -1156,56 +1156,56 @@
   z-index: -1;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .bigq`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .bigq {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .bigq`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .bigq {
   font-family: "Droid Sans";
   font-size: 1.05em;
   font-weight: 700;
   line-height: 1.1;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .checklist li`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .checklist li {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .checklist li`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .checklist li {
   list-style: "☐  ";
   margin: 0.14em 0;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .do`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .do {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .do`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .do {
   border-left-color: var(--red);
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .do ul`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .do ul {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .do ul`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .do ul {
   margin-left: 0;
   padding-left: 0.9em;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .do li`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .do li {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .do li`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .do li {
   text-align: left;
   padding-left: 0;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .warn`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .warn {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .warn`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .warn {
   border-left-color: var(--gray);
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .warn ul`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .warn ul {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .warn ul`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .warn ul {
   margin-left: 0;
   padding-left: 0.9em;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .warn li`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .warn li {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .warn li`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .warn li {
   text-align: left;
   padding-left: 0;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .foot`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .foot {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .foot`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .foot {
   position: absolute;
   bottom: 18px;
   left: 35px;
@@ -1217,23 +1217,23 @@
   justify-content: space-between;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .quiz-card`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .quiz-card {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .quiz-card`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .quiz-card {
   background: var(--light);
   border-left: 12px solid var(--red);
   padding: 0.65em 0.9em;
   margin: 0.35em 0;
 }
 
-/* STUDENT NOTE: Typography/spacing rule for `.reveal .quiz-card p`. These values affect readability and vertical space on slides. */
-.reveal .quiz-card p {
+/* STUDENT NOTE: Typography/spacing rule for `.docs-native-article .quiz-card p`. These values affect readability and vertical space on slides. */
+.docs-native-article .quiz-card p {
   margin: 0.1em 0 0.3em;
   font-weight: 700;
   font-family: "Droid Sans", Arial, sans-serif;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .quiz-card label`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .quiz-card label {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .quiz-card label`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .quiz-card label {
   display: block;
   font-size: 0.5em;
   line-height: 1.25;
@@ -1241,8 +1241,8 @@
   font-family: "Droid Serif", Georgia, serif;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .quiz-actions`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .quiz-actions {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .quiz-actions`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .quiz-actions {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1252,8 +1252,8 @@
   text-align: center;
 }
 
-/* STUDENT NOTE: Button styling for `.reveal button.quiz-button`. Keep hover/selected/correct states visually consistent with the base button. */
-.reveal button.quiz-button {
+/* STUDENT NOTE: Button styling for `.docs-native-article button.quiz-button`. Keep hover/selected/correct states visually consistent with the base button. */
+.docs-native-article button.quiz-button {
   font-family: "Droid Sans", Arial, sans-serif;
   font-size: 0.45em;
   font-weight: 700;
@@ -1264,37 +1264,37 @@
   cursor: pointer;
 }
 
-/* STUDENT NOTE: Button styling for `.reveal button.quiz-button.secondary`. Keep hover/selected/correct states visually consistent with the base button. */
-.reveal button.quiz-button.secondary {
+/* STUDENT NOTE: Button styling for `.docs-native-article button.quiz-button.secondary`. Keep hover/selected/correct states visually consistent with the base button. */
+.docs-native-article button.quiz-button.secondary {
   background: var(--gray);
 }
 
-/* STUDENT NOTE: Button styling for `.reveal button.quiz-button:disabled`. Keep hover/selected/correct states visually consistent with the base button. */
-.reveal button.quiz-button:disabled {
+/* STUDENT NOTE: Button styling for `.docs-native-article button.quiz-button:disabled`. Keep hover/selected/correct states visually consistent with the base button. */
+.docs-native-article button.quiz-button:disabled {
   background: #aaa;
   cursor: not-allowed;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .result`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .result {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .result`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .result {
   font-family: "Droid Sans", Arial, sans-serif;
   font-size: 0.48em;
   font-weight: 700;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .success`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .success {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .success`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .success {
   color: var(--red);
 }
 
-/* STUDENT NOTE: Interaction state for `.reveal .locked`. JavaScript may add/remove this class to provide visual feedback or control access. */
-.reveal .locked {
+/* STUDENT NOTE: Interaction state for `.docs-native-article .locked`. JavaScript may add/remove this class to provide visual feedback or control access. */
+.docs-native-article .locked {
   opacity: 0.35;
   pointer-events: none;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .process-strip`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .process-strip {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .process-strip`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .process-strip {
   display: flex;
   align-items: stretch;
   gap: 0.18em;
@@ -1302,8 +1302,8 @@
   font-family: "Droid Sans", Arial, sans-serif;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .process-step`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .process-step {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .process-step`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .process-step {
   background: var(--red);
   color: white;
   padding: 0.42em 0.45em;
@@ -1317,18 +1317,18 @@
   justify-content: center;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .process-step.dark`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .process-step.dark {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .process-step.dark`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .process-step.dark {
   background: var(--black);
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .process-step.gray`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .process-step.gray {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .process-step.gray`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .process-step.gray {
   background: var(--gray);
 }
 
-/* STUDENT NOTE: Image styling for `.reveal .poster-img`. max-width/max-height/object-fit are commonly used to keep images inside the slide. */
-.reveal .poster-img {
+/* STUDENT NOTE: Image styling for `.docs-native-article .poster-img`. max-width/max-height/object-fit are commonly used to keep images inside the slide. */
+.docs-native-article .poster-img {
   max-width: 100%;
   max-height: 520px;
   display: block;
@@ -1336,27 +1336,27 @@
   border: 1px solid #ddd;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .quiz-slide .quiz-card`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .quiz-slide .quiz-card {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .quiz-slide .quiz-card`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .quiz-slide .quiz-card {
   max-width: 850px;
   margin: 0.7em auto;
   padding: 1em 1.1em;
 }
 
-/* STUDENT NOTE: Typography/spacing rule for `.reveal .quiz-slide .quiz-card p`. These values affect readability and vertical space on slides. */
-.reveal .quiz-slide .quiz-card p {
+/* STUDENT NOTE: Typography/spacing rule for `.docs-native-article .quiz-slide .quiz-card p`. These values affect readability and vertical space on slides. */
+.docs-native-article .quiz-slide .quiz-card p {
   font-size: 0.72em;
   line-height: 1.2;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .quiz-slide .quiz-card label`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .quiz-slide .quiz-card label {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .quiz-slide .quiz-card label`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .quiz-slide .quiz-card label {
   font-size: 0.62em;
   margin: 0.35em 0;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .progress-note`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .progress-note {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .progress-note`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .progress-note {
   font-family: "Droid Sans", Arial, sans-serif;
   color: var(--gray);
   font-size: 0.42em;
@@ -1365,14 +1365,14 @@
 
 /* STUDENT NOTE: Responsive breakpoint. Rules inside this block apply only when the screen matches this condition. */
 @media print {
-  /* STUDENT NOTE: Styles elements matched by `.reveal .foot`. Search the HTML for these class/id names before changing a shared rule. */
-  .reveal .foot {
+  /* STUDENT NOTE: Styles elements matched by `.docs-native-article .foot`. Search the HTML for these class/id names before changing a shared rule. */
+  .docs-native-article .foot {
     display: none;
   }
-/* STUDENT NOTE: Layout rule for `} .reveal .slides section.video-grid-slide`. Grid properties here control columns, gaps, and alignment. */
+/* STUDENT NOTE: Layout rule for `} .docs-native-article .native-module-section.video-grid-slide`. Grid properties here control columns, gaps, and alignment. */
 }
 
-.reveal .slides section.video-grid-slide {
+.docs-native-article .native-module-section.video-grid-slide {
   /* STUDENT NOTE: Layout rule for `height: 100%; } .video-grid`. Grid properties here control columns, gaps, and alignment. */
   height: 100%;
 }
@@ -1418,20 +1418,20 @@
 }
 
 .video-wrapper iframe {
-  /* STUDENT NOTE: Styles elements matched by `width: 100%; height: 100%; display: block; border: 4px solid var(--black); } .reveal .certificate-slide`. Search the HTML for these class/id names before changing a shared rule. */
+  /* STUDENT NOTE: Styles elements matched by `width: 100%; height: 100%; display: block; border: 4px solid var(--black); } .docs-native-article .certificate-slide`. Search the HTML for these class/id names before changing a shared rule. */
   width: 100%;
   height: 100%;
   display: block;
   border: 4px solid var(--black);
 }
 
-.reveal .certificate-slide {
-  /* STUDENT NOTE: Styles elements matched by `height: 100%; } .reveal .certificate-card`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .certificate-slide {
+  /* STUDENT NOTE: Styles elements matched by `height: 100%; } .docs-native-article .certificate-card`. Search the HTML for these class/id names before changing a shared rule. */
   height: 100%;
 }
 
-.reveal .certificate-card {
-  /* STUDENT NOTE: Typography/spacing rule for `width: min(1000px, 92%); margin: 0 auto; background: #ffffff; border: 6px solid var(--black); border-left: 22px solid var(--red); padding: 1rem; box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.18); } .reveal .certificate-border`. These values affect readability and vertical space on slides. */
+.docs-native-article .certificate-card {
+  /* STUDENT NOTE: Typography/spacing rule for `width: min(1000px, 92%); margin: 0 auto; background: #ffffff; border: 6px solid var(--black); border-left: 22px solid var(--red); padding: 1rem; box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.18); } .docs-native-article .certificate-border`. These values affect readability and vertical space on slides. */
   width: min(1000px, 92%);
   margin: 0 auto;
   background: #ffffff;
@@ -1441,8 +1441,8 @@
   box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.18);
 }
 
-.reveal .certificate-border {
-  /* STUDENT NOTE: Typography/spacing rule for `border: 4px solid var(--red); padding: 1.5rem; text-align: center; min-height: 470px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 0.45rem; } .reveal .certificate-small`. These values affect readability and vertical space on slides. */
+.docs-native-article .certificate-border {
+  /* STUDENT NOTE: Typography/spacing rule for `border: 4px solid var(--red); padding: 1.5rem; text-align: center; min-height: 470px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 0.45rem; } .docs-native-article .certificate-small`. These values affect readability and vertical space on slides. */
   border: 4px solid var(--red);
   padding: 1.5rem;
   text-align: center;
@@ -1455,8 +1455,8 @@
   gap: 0.45rem;
 }
 
-.reveal .certificate-small {
-  /* STUDENT NOTE: Typography/spacing rule for `margin: 0; color: var(--red); font-family: "", Arial, sans-serif; font-size: 0.5em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; } .reveal .certificate-slide h2`. These values affect readability and vertical space on slides. */
+.docs-native-article .certificate-small {
+  /* STUDENT NOTE: Typography/spacing rule for `margin: 0; color: var(--red); font-family: "", Arial, sans-serif; font-size: 0.5em; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; } .docs-native-article .certificate-slide h2`. These values affect readability and vertical space on slides. */
   margin: 0;
   color: var(--red);
   font-family: "Droid Sans", Arial, sans-serif;
@@ -1466,24 +1466,24 @@
   letter-spacing: 0.12em;
 }
 
-.reveal .certificate-slide h2 {
-  /* STUDENT NOTE: Styles elements matched by `margin: 0; font-family: "", "", Arial, sans-serif; font-size: 1.55em; color: var(--black); } .reveal .certificate-text`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .certificate-slide h2 {
+  /* STUDENT NOTE: Styles elements matched by `margin: 0; font-family: "", "", Arial, sans-serif; font-size: 1.55em; color: var(--black); } .docs-native-article .certificate-text`. Search the HTML for these class/id names before changing a shared rule. */
   margin: 0;
   font-family: "Audiowide", "Droid Sans", Arial, sans-serif;
   font-size: 1.55em;
   color: var(--black);
 }
 
-.reveal .certificate-text {
-  /* STUDENT NOTE: Typography/spacing rule for `max-width: 760px; margin: 0; font-size: 0.52em; line-height: 1.25; } .reveal .certificate-slide h3`. These values affect readability and vertical space on slides. */
+.docs-native-article .certificate-text {
+  /* STUDENT NOTE: Typography/spacing rule for `max-width: 760px; margin: 0; font-size: 0.52em; line-height: 1.25; } .docs-native-article .certificate-slide h3`. These values affect readability and vertical space on slides. */
   max-width: 760px;
   margin: 0;
   font-size: 0.52em;
   line-height: 1.25;
 }
 
-.reveal .certificate-slide h3 {
-  /* STUDENT NOTE: Styles elements matched by `margin: 0.2rem 0; color: var(--red); font-family: "", Arial, sans-serif; font-size: 0.95em; font-weight: 700; } .reveal .certificate-score`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .certificate-slide h3 {
+  /* STUDENT NOTE: Styles elements matched by `margin: 0.2rem 0; color: var(--red); font-family: "", Arial, sans-serif; font-size: 0.95em; font-weight: 700; } .docs-native-article .certificate-score`. Search the HTML for these class/id names before changing a shared rule. */
   margin: 0.2rem 0;
   color: var(--red);
   font-family: "Droid Sans", Arial, sans-serif;
@@ -1491,46 +1491,46 @@
   font-weight: 700;
 }
 
-.reveal .certificate-score {
-  /* STUDENT NOTE: Styles elements matched by `margin: 0; font-size: 0.52em; font-weight: 700; } .reveal .certificate-line`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .certificate-score {
+  /* STUDENT NOTE: Styles elements matched by `margin: 0; font-size: 0.52em; font-weight: 700; } .docs-native-article .certificate-line`. Search the HTML for these class/id names before changing a shared rule. */
   margin: 0;
   font-size: 0.52em;
   font-weight: 700;
 }
 
-.reveal .certificate-line {
-  /* STUDENT NOTE: Styles elements matched by `width: 55%; height: 4px; margin: 0.6rem auto 0.2rem; background: linear-gradient(90deg, var(--black), var(--red), var(--black)); } .reveal .certificate-footer`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .certificate-line {
+  /* STUDENT NOTE: Styles elements matched by `width: 55%; height: 4px; margin: 0.6rem auto 0.2rem; background: linear-gradient(90deg, var(--black), var(--red), var(--black)); } .docs-native-article .certificate-footer`. Search the HTML for these class/id names before changing a shared rule. */
   width: 55%;
   height: 4px;
   margin: 0.6rem auto 0.2rem;
   background: linear-gradient(90deg, var(--black), var(--red), var(--black));
 }
 
-.reveal .certificate-footer {
-  /* STUDENT NOTE: Interaction state for `margin: 0; color: var(--gray); font-size: 0.42em; font-family: "", Georgia, serif; } .reveal .certificate-slide.locked .certificate-card`. JavaScript may add/remove this class to provide visual feedback or control access. */
+.docs-native-article .certificate-footer {
+  /* STUDENT NOTE: Interaction state for `margin: 0; color: var(--gray); font-size: 0.42em; font-family: "", Georgia, serif; } .docs-native-article .certificate-slide.locked .certificate-card`. JavaScript may add/remove this class to provide visual feedback or control access. */
   margin: 0;
   color: var(--gray);
   font-size: 0.42em;
   font-family: "Droid Serif", Georgia, serif;
 }
 
-.reveal .certificate-slide.locked .certificate-card {
-  /* STUDENT NOTE: Styles elements matched by `opacity: 0.25; filter: grayscale(1); } .reveal .name-entry-label`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .certificate-slide.locked .certificate-card {
+  /* STUDENT NOTE: Styles elements matched by `opacity: 0.25; filter: grayscale(1); } .docs-native-article .name-entry-label`. Search the HTML for these class/id names before changing a shared rule. */
   opacity: 0.25;
   filter: grayscale(1);
 }
 
 /* Shared certificate/name-entry styles */
-.reveal .name-entry-label {
-  /* STUDENT NOTE: Styles elements matched by `display: block; margin-bottom: 0.3rem; font-size: 0.6em; font-weight: 700; } .reveal .name-entry-input`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .name-entry-label {
+  /* STUDENT NOTE: Styles elements matched by `display: block; margin-bottom: 0.3rem; font-size: 0.6em; font-weight: 700; } .docs-native-article .name-entry-input`. Search the HTML for these class/id names before changing a shared rule. */
   display: block;
   margin-bottom: 0.3rem;
   font-size: 0.6em;
   font-weight: 700;
 }
 
-.reveal .name-entry-input {
-  /* STUDENT NOTE: Typography/spacing rule for `width: min(650px, 90%); padding: 0.6rem 0.8rem; font-size: 0.7em; font-family: "", Arial, sans-serif; border: 4px solid var(--black); border-left: 12px solid var(--red); background: #ffffff; } .reveal .certificate-name`. These values affect readability and vertical space on slides. */
+.docs-native-article .name-entry-input {
+  /* STUDENT NOTE: Typography/spacing rule for `width: min(650px, 90%); padding: 0.6rem 0.8rem; font-size: 0.7em; font-family: "", Arial, sans-serif; border: 4px solid var(--black); border-left: 12px solid var(--red); background: #ffffff; } .docs-native-article .certificate-name`. These values affect readability and vertical space on slides. */
   width: min(650px, 90%);
   padding: 0.6rem 0.8rem;
   font-size: 0.7em;
@@ -1540,7 +1540,7 @@
   background: #ffffff;
 }
 
-.reveal .certificate-name {
+.docs-native-article .certificate-name {
   /* STUDENT NOTE: Shared CSS variables. Change these carefully because many pages may reuse these values. */
   min-width: 60%;
   margin: 0.3rem auto;
@@ -1556,12 +1556,12 @@
    Uses the widest recurring content width from the judging/motors/safety modules.
    Keep this block at the bottom of the file so it overrides earlier module rules. */
 :root {
-  /* STUDENT NOTE: Layout rule for `--shared-slide-width: 1120px; } .reveal .slides section > :is( [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], .quiz-card, .sort-bank, .sort-targets, .troubleshooting-sort, .order-list, .documentation-table, .component-grid, .sensor-grid, .doc-grid, figure, table, ul, ol )`. Grid properties here control columns, gaps, and alignment. */
+  /* STUDENT NOTE: Layout rule for `--shared-slide-width: 1120px; } .docs-native-article .native-module-section > :is( [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], [class*=""], .quiz-card, .sort-bank, .sort-targets, .troubleshooting-sort, .order-list, .documentation-table, .component-grid, .sensor-grid, .doc-grid, figure, table, ul, ol )`. Grid properties here control columns, gaps, and alignment. */
   --shared-slide-width: 1120px;
 }
 
 /* Main direct slide content containers */
-.reveal .slides section > :is(
+.docs-native-article .native-module-section > :is(
   [class*="intro"],
   [class*="grid"],
   [class*="layout"],
@@ -1590,12 +1590,12 @@
   ul,
   ol
 ) {
-  /* STUDENT NOTE: Layout rule for `max-width: var(--shared-slide-width); } .reveal :is( .elec-grid-2, .elec-grid-3, .elec-grid-4, .component-grid, .sensor-grid, .doc-grid, .power-flow, .can-chain, .sort-bank, .sort-targets, .troubleshooting-sort, .documentation-table-wrap, .judge-grid-2, .judge-grid-3, .judge-grid-4, .judge-photo-split, .dialogue-grid, .response-grid, .judge-sort-bank, .judge-sort-targets, .award-chip-grid, .award-output, .motor-grid-2, .motor-grid-3, .motor-grid-4, .motor-click-grid, .motor-flow, .speed-torque-layout, .safety-grid-2, .safety-grid-3, .safety-grid-4, .safety-source-grid, .safety-tool-grid, .safety-split, .review-grid, .safety-resource-grid, .impact-repair-grid, .three-choice-grid, .maintenance-grid, .weight-card-grid, .weight-do-dont, .wd-layout )`. Grid properties here control columns, gaps, and alignment. */
+  /* STUDENT NOTE: Layout rule for `max-width: var(--shared-slide-width); } .docs-native-article :is( .elec-grid-2, .elec-grid-3, .elec-grid-4, .component-grid, .sensor-grid, .doc-grid, .power-flow, .can-chain, .sort-bank, .sort-targets, .troubleshooting-sort, .documentation-table-wrap, .judge-grid-2, .judge-grid-3, .judge-grid-4, .judge-photo-split, .dialogue-grid, .response-grid, .judge-sort-bank, .judge-sort-targets, .award-chip-grid, .award-output, .motor-grid-2, .motor-grid-3, .motor-grid-4, .motor-click-grid, .motor-flow, .speed-torque-layout, .safety-grid-2, .safety-grid-3, .safety-grid-4, .safety-source-grid, .safety-tool-grid, .safety-split, .review-grid, .safety-resource-grid, .impact-repair-grid, .three-choice-grid, .maintenance-grid, .weight-card-grid, .weight-do-dont, .wd-layout )`. Grid properties here control columns, gaps, and alignment. */
   max-width: var(--shared-slide-width);
 }
 
 /* Common module-specific containers that may not be direct children */
-.reveal :is(
+.docs-native-article :is(
   .elec-grid-2,
   .elec-grid-3,
   .elec-grid-4,
@@ -1639,37 +1639,37 @@
   .weight-do-dont,
   .wd-layout
 ) {
-  /* STUDENT NOTE: Styles elements matched by `max-width: var(--shared-slide-width); } .reveal .slide-number`. Search the HTML for these class/id names before changing a shared rule. */
+  /* STUDENT NOTE: Styles elements matched by `max-width: var(--shared-slide-width); } .docs-native-article .slide-number`. Search the HTML for these class/id names before changing a shared rule. */
   max-width: var(--shared-slide-width);
 }
-.reveal .slide-number {
-  /* STUDENT NOTE: Styles elements matched by `right: 20px; left: auto; bottom: auto; top: 20px; } .reveal .certificate-actions`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .slide-number {
+  /* STUDENT NOTE: Styles elements matched by `right: 20px; left: auto; bottom: auto; top: 20px; } .docs-native-article .certificate-actions`. Search the HTML for these class/id names before changing a shared rule. */
   right: 20px;
   left: auto;
   bottom: auto;
   top: 20px;
 }
 
-.reveal .certificate-actions {
-  /* STUDENT NOTE: Styles elements matched by `margin-top: 0.6rem; text-align: center; } .reveal .certificate-download`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .certificate-actions {
+  /* STUDENT NOTE: Styles elements matched by `margin-top: 0.6rem; text-align: center; } .docs-native-article .certificate-download`. Search the HTML for these class/id names before changing a shared rule. */
   margin-top: 0.6rem;
   text-align: center;
 }
 
-.reveal .certificate-download {
-  /* STUDENT NOTE: Typography/spacing rule for `font-size: 0.42em; padding: 0.4rem 0.9rem; } .reveal .certificate-download:disabled`. These values affect readability and vertical space on slides. */
+.docs-native-article .certificate-download {
+  /* STUDENT NOTE: Typography/spacing rule for `font-size: 0.42em; padding: 0.4rem 0.9rem; } .docs-native-article .certificate-download:disabled`. These values affect readability and vertical space on slides. */
   font-size: 0.42em;
   padding: 0.4rem 0.9rem;
 }
 
-.reveal .certificate-download:disabled {
-  /* STUDENT NOTE: Styles elements matched by `opacity: 0.45; cursor: not-allowed; } .reveal .slides section .name-entry-label`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .certificate-download:disabled {
+  /* STUDENT NOTE: Styles elements matched by `opacity: 0.45; cursor: not-allowed; } .docs-native-article .native-module-section .name-entry-label`. Search the HTML for these class/id names before changing a shared rule. */
   opacity: 0.45;
   cursor: not-allowed;
 }
 
-.reveal .slides section .name-entry-label {
-  /* STUDENT NOTE: Styles elements matched by `display: block; width: 100%; max-width: 720px; margin: 0 auto 0.4rem; text-align: left; font-family: "", Arial, sans-serif; font-size: 0.6em; font-weight: 700; } .reveal .slides section .name-entry-input`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .native-module-section .name-entry-label {
+  /* STUDENT NOTE: Styles elements matched by `display: block; width: 100%; max-width: 720px; margin: 0 auto 0.4rem; text-align: left; font-family: "", Arial, sans-serif; font-size: 0.6em; font-weight: 700; } .docs-native-article .native-module-section .name-entry-input`. Search the HTML for these class/id names before changing a shared rule. */
   display: block;
   width: 100%;
   max-width: 720px;
@@ -1680,8 +1680,8 @@
   font-weight: 700;
 }
 
-.reveal .slides section .name-entry-input {
-  /* STUDENT NOTE: Typography/spacing rule for `display: block; width: min(720px, 90%); max-width: 720px; margin: 0 auto; box-sizing: border-box; padding: 0.6rem 0.8rem; font-size: 0.7em; font-family: "", Arial, sans-serif; color: var(--black); background: var(--white); border: 4px solid var(--black); border-left: 12px solid var(--red); border-radius: 0; } .reveal .slides section#quiz-results .quiz-actions`. These values affect readability and vertical space on slides. */
+.docs-native-article .native-module-section .name-entry-input {
+  /* STUDENT NOTE: Typography/spacing rule for `display: block; width: min(720px, 90%); max-width: 720px; margin: 0 auto; box-sizing: border-box; padding: 0.6rem 0.8rem; font-size: 0.7em; font-family: "", Arial, sans-serif; color: var(--black); background: var(--white); border: 4px solid var(--black); border-left: 12px solid var(--red); border-radius: 0; } .docs-native-article .native-module-section#quiz-results .quiz-actions`. These values affect readability and vertical space on slides. */
   display: block;
   width: min(720px, 90%);
   max-width: 720px;
@@ -1699,8 +1699,8 @@
   border-radius: 0;
 }
 
-.reveal .slides section#quiz-results .quiz-actions {
-  /* STUDENT NOTE: Button styling for `display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 0.75rem; width: 100%; max-width: 720px; margin: 0.8rem auto; text-align: center; } .reveal .slides section#quiz-results .quiz-actions .quiz-button`. Keep hover/selected/correct states visually consistent with the base button. */
+.docs-native-article .native-module-section#quiz-results .quiz-actions {
+  /* STUDENT NOTE: Button styling for `display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 0.75rem; width: 100%; max-width: 720px; margin: 0.8rem auto; text-align: center; } .docs-native-article .native-module-section#quiz-results .quiz-actions .quiz-button`. Keep hover/selected/correct states visually consistent with the base button. */
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -1713,7 +1713,7 @@
   text-align: center;
 }
 
-.reveal .slides section#quiz-results .quiz-actions .quiz-button {
+.docs-native-article .native-module-section#quiz-results .quiz-actions .quiz-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;

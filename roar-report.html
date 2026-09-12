@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#980000">
+    <title>ROAR Reporting | 5041 CyBear Robotics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Droid+Sans:wght@400;700&family=Droid+Serif:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="site-assets/css/roar-report.css">
+  </head>
+
+  <body class="roar-standalone">
+    <header class="roar-site-header">
+      <div class="roar-header-inner">
+        <img class="roar-team-logo" src="shared/assets/5041teamlogo.png" alt="5041 CyBear Robotics logo">
+        <div class="roar-header-copy">
+          <span class="roar-team-name">5041 CyBear Robotics</span>
+          <h1>ROAR Reporting</h1>
+          <p>Report. Observe. Assess. Respond.</p>
+        </div>
+      </div>
+      <div class="roar-header-stripe" aria-hidden="true"></div>
+    </header>
+
+    <main class="roar-site-main" id="main-content">
+      <section class="docs-page-section roar-hero" id="overview">
+        <span class="resource-eyebrow">5041 CYBEAR ROBOTICS • STUDENT SUPPORT</span>
+        <h1 class="docs-page-title">R.O.A.R Reporting Form</h1>
+        <p class="roar-acronym" aria-label="Report. Observe. Assess. Respond.">
+          <strong>R</strong>eport. <strong>O</strong>bserve. <strong>A</strong>ssess. <strong>R</strong>espond.
+        </p>
+        <p class="docs-lead">
+          Use this form to document a concern and connect it to the adult-supported 5041 ROAR process. If you are unsure whether something qualifies, it is okay to report it.
+        </p>
+
+        <div class="roar-danger-callout" role="alert">
+          <strong>Immediate safety concern?</strong>
+          Do not wait for this form. Contact a mentor, faculty advisor, teacher, school administrator, nearby trusted adult, emergency services, or another appropriate adult immediately.
+        </div>
+
+        <div class="roar-info-grid">
+          <article>
+            <span class="roar-step">REPORT</span>
+            <h2>Tell someone what happened</h2>
+            <p>Describe the concern as clearly as you can. You do not need to decide whether a rule was violated before reporting.</p>
+          </article>
+          <article>
+            <span class="roar-step">PRIVACY</span>
+            <h2>Private, not secret</h2>
+            <p>Information should be shared only with people who need it for safety, support, required reporting, school procedures, or a fair review. Complete confidentiality cannot be promised.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="docs-page-section resource-section" id="report-form">
+        <div class="resource-section-heading">
+          <div>
+            <span class="resource-section-kicker">Submit a concern</span>
+            <h2>ROAR Report</h2>
+          </div>
+        </div>
+
+        <noscript>
+          <div class="roar-danger-callout">JavaScript is required for this online form. You can still report directly to a ROAR Mentor Representative, faculty advisor, or another trusted school adult.</div>
+        </noscript>
+
+        <form id="roarReportForm" class="roar-form" method="post" novalidate>
+          <input type="hidden" name="action" value="submitRoarReport">
+          <input type="hidden" name="reportTitle" id="reportTitle">
+          <input type="hidden" name="date" id="reportDate">
+          <input type="hidden" name="time" id="reportTime">
+          <input type="text" name="website" id="roarHoneypot" class="roar-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+          <fieldset class="roar-fieldset">
+            <legend>About this report</legend>
+            <div class="roar-field-grid two-col">
+              <label class="roar-field">
+                <span>Your name <em>optional</em></span>
+                <input type="text" name="reporter" id="reporter" autocomplete="name" maxlength="120" placeholder="Name of student, mentor, or reporter">
+                <small>You may leave this blank. If you want an adult to follow up directly, including your name can make that easier.</small>
+              </label>
+
+              <div class="roar-field roar-readonly-card">
+                <span>Report date and time</span>
+                <strong id="reportDateTimeDisplay">Set when the page loads</strong>
+                <small>The reporting timestamp is also recorded by the Google Sheet backend.</small>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="roar-fieldset">
+            <legend>What kind of concern are you reporting?</legend>
+            <p class="roar-field-help">Select every category that may apply. You do not need to know the exact policy category.</p>
+
+            <div class="roar-check-grid">
+              <label><input type="checkbox" name="bullying" value="true"> <span><strong>Bullying</strong><small>Repeated or targeted behavior that intimidates, harms, isolates, or creates an unsafe environment.</small></span></label>
+              <label><input type="checkbox" name="harassment" value="true" id="harassmentCheck"> <span><strong>Harassment</strong><small>Unwanted verbal, physical, digital, written, or visual conduct.</small></span></label>
+              <label><input type="checkbox" name="sexualHarassment" value="true"> <span><strong>Sexual harassment / misconduct</strong><small>Unwanted sexual comments, conduct, images, contact, advances, or requests.</small></span></label>
+              <label><input type="checkbox" name="misconduct" value="true"> <span><strong>Misconduct</strong><small>Behavior that conflicts with team expectations for respect, responsibility, or safety.</small></span></label>
+              <label><input type="checkbox" name="retaliation" value="true"> <span><strong>Retaliation</strong><small>Negative treatment connected to reporting, supporting someone, or participating in a review.</small></span></label>
+              <label><input type="checkbox" name="discrimination" value="true"> <span><strong>Discrimination or exclusion</strong><small>Conduct targeting or excluding someone based on identity, protected status, or perceived difference.</small></span></label>
+              <label><input type="checkbox" name="safetyConcern" value="true"> <span><strong>Safety concern</strong><small>Unsafe practices, threats, physical aggression, dangerous behavior, or another safety risk.</small></span></label>
+              <label><input type="checkbox" name="other" value="true" id="otherCheck"> <span><strong>Other / unsure</strong><small>Choose this if the concern does not fit neatly above or you are not sure.</small></span></label>
+            </div>
+
+            <div id="harassmentTypes" class="roar-suboptions" hidden>
+              <strong>If harassment applies, select any type you know:</strong>
+              <label><input type="checkbox" name="harassmentVerbal" value="true"> Verbal</label>
+              <label><input type="checkbox" name="harassmentPhysical" value="true"> Physical</label>
+              <label><input type="checkbox" name="harassmentDigital" value="true"> Digital</label>
+            </div>
+
+            <label class="roar-field" id="otherTypeWrap" hidden>
+              <span>Other report type</span>
+              <input type="text" name="otherReportType" id="otherReportType" maxlength="180" placeholder="Briefly describe the type of concern">
+            </label>
+          </fieldset>
+
+          <fieldset class="roar-fieldset">
+            <legend>What happened?</legend>
+            <div class="roar-field-grid two-col">
+              <label class="roar-field">
+                <span>Individual(s) involved</span>
+                <input type="text" name="individualsInvolved" maxlength="500" placeholder="People involved or affected">
+              </label>
+              <label class="roar-field">
+                <span>Incident date(s)</span>
+                <input type="text" name="incidentDates" maxlength="300" placeholder="Date, dates, or approximate timeframe">
+              </label>
+            </div>
+
+            <label class="roar-field">
+              <span>Description of incident(s) <strong aria-hidden="true">*</strong></span>
+              <textarea name="description" id="description" rows="10" maxlength="12000" required placeholder="Describe what happened in as much detail as you can. Include where it happened, who was involved, witnesses, messages/photos/video or other evidence that may exist, and whether anyone needs support right now."></textarea>
+              <small><span id="descriptionCount">0</span> / 12,000 characters</small>
+            </label>
+          </fieldset>
+
+          <fieldset class="roar-fieldset roar-safety-fieldset">
+            <legend>Immediate safety</legend>
+            <p class="roar-field-help">This does not replace contacting an adult immediately when someone may be in danger.</p>
+            <div class="roar-radio-row" role="radiogroup" aria-label="Immediate safety concern">
+              <label><input type="radio" name="immediateSafety" value="No" checked> No immediate safety concern</label>
+              <label><input type="radio" name="immediateSafety" value="Yes"> Yes — there is or was an immediate safety concern</label>
+            </div>
+            <label class="roar-field">
+              <span>Adult or school official contacted <em>if applicable</em></span>
+              <input type="text" name="adultContacted" maxlength="300" placeholder="Who was contacted, or who is helping now?">
+            </label>
+          </fieldset>
+
+          <fieldset class="roar-fieldset roar-confirmation-fieldset">
+            <legend>Before submitting</legend>
+            <label class="roar-confirm-check">
+              <input type="checkbox" id="privacyAcknowledge" required>
+              <span>I understand that 5041 will keep this information private to the greatest extent reasonably possible, but an adult may need to share it with school officials, parents/guardians, Title IX personnel, law enforcement, emergency services, or others when required for safety, law, district policy, or a fair review.</span>
+            </label>
+          </fieldset>
+
+          <div id="roarConfigWarning" class="roar-config-warning" hidden>
+            <strong>Submission backend not configured yet.</strong>
+            The page is ready, but the Apps Script Web App URL must be placed in <code>site-assets/js/roar-config.js</code> before online submissions can be sent to the Google Sheet.
+          </div>
+
+          <div class="roar-form-actions">
+            <button type="submit" class="roar-submit" id="submitRoar">Submit ROAR Report</button>
+            <button type="reset" class="roar-reset" id="resetRoar">Clear Form</button>
+          </div>
+          <p class="roar-status" id="roarStatus" role="status" aria-live="polite"></p>
+        </form>
+
+      </section>
+
+      <section class="docs-page-section resource-section" id="what-happens-next">
+        <div class="resource-section-heading">
+          <div>
+            <span class="resource-section-kicker">After reporting</span>
+            <h2>What Happens Next?</h2>
+          </div>
+        </div>
+        <div class="roar-process-grid">
+          <article><span>1</span><h3>Report</h3><p>The concern is received through an accessible channel and immediate safety needs are identified.</p></article>
+          <article><span>2</span><h3>Observe</h3><p>An appropriate adult listens without judgment and documents what is being reported rather than deciding the outcome immediately.</p></article>
+          <article><span>3</span><h3>Assess</h3><p>Qualified adults review severity, frequency, context, impact, safety, available evidence, and whether school procedures must control.</p></article>
+          <article><span>4</span><h3>Respond</h3><p>The appropriate support, protective action, parent/guardian involvement, school referral, or other response is used.</p></article>
+        </div>
+        <div class="resource-callout resource-callout-compact">
+          <strong>Student leader boundary:</strong> Student ROAR Leaders may listen and connect a student with an adult. They do not investigate, interview witnesses independently, decide guilt or discipline, or promise confidentiality.
+        </div>
+      </section>
+
+      <section class="docs-page-section resource-section" id="other-ways-to-report">
+        <div class="resource-section-heading">
+          <div>
+            <span class="resource-section-kicker">You have options</span>
+            <h2>Other Ways to Report</h2>
+          </div>
+        </div>
+        <div class="roar-option-grid">
+          <article><h3>Talk to a ROAR Mentor Representative</h3><p>You can report directly to an adult ROAR representative rather than using the website.</p></article>
+          <article><h3>Talk to the faculty advisor or a school adult</h3><p>Especially use a school reporting channel when the concern involves harassment, discrimination, sexual misconduct, threats, or safety.</p></article>
+          <article><h3>Talk to a Student ROAR Leader</h3><p>A student leader can listen and help connect you to an adult, but the student leader will not investigate the concern.</p></article>
+        </div>
+        <div class="roar-link-row">
+          <a class="resource-link" href="https://drive.google.com/file/d/1YVuil38c6Dj5Gs8GLbJni0KwHoFlZgmc/view?usp=drivesdk" target="_blank" rel="noopener noreferrer">Read the ROAR policy handbook <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+
+      <section class="docs-page-section resource-section" id="mentor-admin">
+        <div class="resource-section-heading">
+          <div>
+            <span class="resource-section-kicker">Restricted record system</span>
+            <h2>Mentor / Administrator Access</h2>
+          </div>
+        </div>
+        <p>
+          Submitted reports are intended to be stored in the private <strong>ROAR Reports</strong> Google Sheet. Access to the sheet itself should remain restricted to authorized adults; students do not need sheet access to submit through the reporting page.
+        </p>
+        <a id="roarSheetLink" class="resource-link resource-link-secondary" href="#" target="_blank" rel="noopener noreferrer">Open restricted ROAR Reports Sheet <span aria-hidden="true">↗</span></a>
+      </section>
+
+    </main>
+
+    <footer class="roar-site-footer">
+      <div>
+        <strong>5041 CyBear Robotics</strong>
+        <span>Everyone has a place here.</span>
+      </div>
+      <p>ROAR is a team-level reporting and support process. Immediate danger or serious safety concerns should be brought directly to an appropriate adult or emergency service.</p>
+    </footer>
+
+    <script src="site-assets/js/roar-config.js"></script>
+    <script src="site-assets/js/roar-report.js"></script>
+  </body>
+</html>

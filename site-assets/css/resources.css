@@ -199,3 +199,75 @@ body[data-page="resource"] > #docs-resource-content {
     flex-direction: column;
   }
 }
+
+
+/* =========================================================
+   5041 Program Materials additions
+   ========================================================= */
+
+.resource-item-featured {
+  border-left-color: var(--cy-red);
+  background: #fff;
+}
+
+.resource-badge-access {
+  background: #111;
+  color: #fff;
+}
+
+.resource-access-note,
+.resource-use-note {
+  margin: -2px 0 14px;
+  padding: 10px 11px;
+  border-left: 4px solid var(--cy-red);
+  background: #f1f1f1;
+  color: #333;
+  font: 400 0.78rem/1.45 "Droid Sans", Arial, sans-serif;
+}
+
+.resource-use-note {
+  border-left-color: #777;
+  background: #f6f6f6;
+}
+
+.resource-audience-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 12px;
+}
+
+.resource-audience-card {
+  padding: 16px;
+  background: #fafafa;
+  border: 1px solid #dedede;
+  border-top: 5px solid #111;
+  border-radius: 5px;
+}
+
+.resource-audience-card:hover {
+  border-top-color: var(--cy-red);
+  background: #fff;
+}
+
+.resource-audience-card h3 {
+  margin: 5px 0 8px;
+  font-size: 1rem;
+}
+
+.resource-audience-card p {
+  margin: 0;
+  color: #444;
+  font: 400 0.84rem/1.5 "Droid Sans", Arial, sans-serif;
+}
+
+.resource-audience-label {
+  display: inline-block;
+  color: #760000;
+  font: 700 0.68rem "Droid Sans", Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.resource-callout-compact {
+  margin-bottom: 0;
+}

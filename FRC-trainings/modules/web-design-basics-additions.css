@@ -373,20 +373,20 @@
 
 /* STUDENT NOTE: Responsive breakpoint. Rules inside this block apply only when the screen matches this condition. */
 @media (max-width: 900px) {
-  /* STUDENT NOTE: Layout rule for `.reveal .web-grid-2, .reveal .web-grid-3, .reveal .web-grid-4, .reveal .web-split, .reveal .web-split.reverse, .reveal .web-playground, .reveal .layout-playground-columns`. Grid properties here control columns, gaps, and alignment. */
-  .reveal .web-grid-2,
-  .reveal .web-grid-3,
-  .reveal .web-grid-4,
-  .reveal .web-split,
-  .reveal .web-split.reverse,
-  .reveal .web-playground,
-  .reveal .layout-playground-columns {
+  /* STUDENT NOTE: Layout rule for `.docs-native-article .web-grid-2, .docs-native-article .web-grid-3, .docs-native-article .web-grid-4, .docs-native-article .web-split, .docs-native-article .web-split.reverse, .docs-native-article .web-playground, .docs-native-article .layout-playground-columns`. Grid properties here control columns, gaps, and alignment. */
+  .docs-native-article .web-grid-2,
+  .docs-native-article .web-grid-3,
+  .docs-native-article .web-grid-4,
+  .docs-native-article .web-split,
+  .docs-native-article .web-split.reverse,
+  .docs-native-article .web-playground,
+  .docs-native-article .layout-playground-columns {
     grid-template-columns: 1fr;
   }
-/* STUDENT NOTE: Image styling for `} .reveal img.web-img`. max-width/max-height/object-fit are commonly used to keep images inside the slide. */
+/* STUDENT NOTE: Image styling for `} .docs-native-article img.web-img`. max-width/max-height/object-fit are commonly used to keep images inside the slide. */
 }
 
-.reveal img.web-img {
+.docs-native-article img.web-img {
   display: block;
   width: auto;
   height: 450px;

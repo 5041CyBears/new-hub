@@ -382,8 +382,8 @@
 }
 
 /* Certificate button fixes */
-/* STUDENT NOTE: Styles elements matched by `.reveal .slides section#quiz-results .quiz-actions`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .slides section#quiz-results .quiz-actions {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .native-module-section#quiz-results .quiz-actions`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .native-module-section#quiz-results .quiz-actions {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -393,8 +393,8 @@
   margin: 0.8rem auto;
 }
 
-/* STUDENT NOTE: Button styling for `.reveal .slides section#quiz-results .quiz-actions .quiz-button`. Keep hover/selected/correct states visually consistent with the base button. */
-.reveal .slides section#quiz-results .quiz-actions .quiz-button {
+/* STUDENT NOTE: Button styling for `.docs-native-article .native-module-section#quiz-results .quiz-actions .quiz-button`. Keep hover/selected/correct states visually consistent with the base button. */
+.docs-native-article .native-module-section#quiz-results .quiz-actions .quiz-button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -417,24 +417,24 @@
   .quote-image-card img {
     height: 270px;
   }
-/* STUDENT NOTE: Styles elements matched by `} .reveal .inclusion-sort-slide`. Search the HTML for these class/id names before changing a shared rule. */
+/* STUDENT NOTE: Styles elements matched by `} .docs-native-article .inclusion-sort-slide`. Search the HTML for these class/id names before changing a shared rule. */
 }
 
 /* Compact layout for inclusion sort slide */
-.reveal .inclusion-sort-slide {
-  /* STUDENT NOTE: Typography/spacing rule for `height: 100%; padding-top: 80px; } .reveal .inclusion-sort-slide h2`. These values affect readability and vertical space on slides. */
+.docs-native-article .inclusion-sort-slide {
+  /* STUDENT NOTE: Typography/spacing rule for `height: 100%; padding-top: 80px; } .docs-native-article .inclusion-sort-slide h2`. These values affect readability and vertical space on slides. */
   height: 100%;
   padding-top: 80px;
 }
 
-.reveal .inclusion-sort-slide h2 {
-  /* STUDENT NOTE: Styles elements matched by `margin-bottom: 0.3rem; } .reveal .inclusion-sort-slide .sort-bank`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .inclusion-sort-slide h2 {
+  /* STUDENT NOTE: Styles elements matched by `margin-bottom: 0.3rem; } .docs-native-article .inclusion-sort-slide .sort-bank`. Search the HTML for these class/id names before changing a shared rule. */
   margin-bottom: 0.3rem;
 }
 
 /* Top draggable bank */
-.reveal .inclusion-sort-slide .sort-bank {
-  /* STUDENT NOTE: Typography/spacing rule for `display: flex; flex-wrap: wrap; gap: 0.28rem; max-width: var(--shared-slide-width, 1120px); max-height: 135px; min-height: 80px; overflow-y: auto; margin: 0 auto 0.45rem; padding: 0.35rem; background: var(--light); border: 3px dashed var(--gray); border-radius: 8px; } .reveal .inclusion-sort-slide .sort-chip`. These values affect readability and vertical space on slides. */
+.docs-native-article .inclusion-sort-slide .sort-bank {
+  /* STUDENT NOTE: Typography/spacing rule for `display: flex; flex-wrap: wrap; gap: 0.28rem; max-width: var(--shared-slide-width, 1120px); max-height: 135px; min-height: 80px; overflow-y: auto; margin: 0 auto 0.45rem; padding: 0.35rem; background: var(--light); border: 3px dashed var(--gray); border-radius: 8px; } .docs-native-article .inclusion-sort-slide .sort-chip`. These values affect readability and vertical space on slides. */
   display: flex;
   flex-wrap: wrap;
   gap: 0.28rem;
@@ -450,8 +450,8 @@
 }
 
 /* Smaller chips so 12 items fit */
-.reveal .inclusion-sort-slide .sort-chip {
-  /* STUDENT NOTE: Typography/spacing rule for `font-size: 0.34em; line-height: 1.08; padding: 0.22rem 0.38rem; background: var(--white); border: 2px solid var(--red); border-radius: 7px; font-weight: 700; cursor: grab; } .reveal .inclusion-sort-slide .sort-targets`. These values affect readability and vertical space on slides. */
+.docs-native-article .inclusion-sort-slide .sort-chip {
+  /* STUDENT NOTE: Typography/spacing rule for `font-size: 0.34em; line-height: 1.08; padding: 0.22rem 0.38rem; background: var(--white); border: 2px solid var(--red); border-radius: 7px; font-weight: 700; cursor: grab; } .docs-native-article .inclusion-sort-slide .sort-targets`. These values affect readability and vertical space on slides. */
   font-size: 0.34em;
   line-height: 1.08;
   padding: 0.22rem 0.38rem;
@@ -463,8 +463,8 @@
 }
 
 /* Two target columns */
-.reveal .inclusion-sort-slide .sort-targets {
-  /* STUDENT NOTE: Layout rule for `display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem; max-width: var(--shared-slide-width, 1120px); margin: 0 auto; } .reveal .inclusion-sort-slide .sort-zone`. Grid properties here control columns, gaps, and alignment. */
+.docs-native-article .inclusion-sort-slide .sort-targets {
+  /* STUDENT NOTE: Layout rule for `display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem; max-width: var(--shared-slide-width, 1120px); margin: 0 auto; } .docs-native-article .inclusion-sort-slide .sort-zone`. Grid properties here control columns, gaps, and alignment. */
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.65rem;
@@ -472,8 +472,8 @@
   margin: 0 auto;
 }
 
-.reveal .inclusion-sort-slide .sort-zone {
-  /* STUDENT NOTE: Typography/spacing rule for `min-height: 235px; max-height: 255px; overflow-y: auto; background: var(--light); border-left: 10px solid var(--red); border-radius: 8px; padding: 0.45rem; } .reveal .inclusion-sort-slide .sort-zone h3`. These values affect readability and vertical space on slides. */
+.docs-native-article .inclusion-sort-slide .sort-zone {
+  /* STUDENT NOTE: Typography/spacing rule for `min-height: 235px; max-height: 255px; overflow-y: auto; background: var(--light); border-left: 10px solid var(--red); border-radius: 8px; padding: 0.45rem; } .docs-native-article .inclusion-sort-slide .sort-zone h3`. These values affect readability and vertical space on slides. */
   min-height: 235px;
   max-height: 255px;
   overflow-y: auto;
@@ -483,15 +483,15 @@
   padding: 0.45rem;
 }
 
-.reveal .inclusion-sort-slide .sort-zone h3 {
-  /* STUDENT NOTE: Styles elements matched by `font-size: 0.58em; text-align: center; margin: 0 0 0.25rem; } .reveal .inclusion-sort-slide .sort-list`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .inclusion-sort-slide .sort-zone h3 {
+  /* STUDENT NOTE: Styles elements matched by `font-size: 0.58em; text-align: center; margin: 0 0 0.25rem; } .docs-native-article .inclusion-sort-slide .sort-list`. Search the HTML for these class/id names before changing a shared rule. */
   font-size: 0.58em;
   text-align: center;
   margin: 0 0 0.25rem;
 }
 
-.reveal .inclusion-sort-slide .sort-list {
-  /* STUDENT NOTE: Styles elements matched by `display: flex; flex-direction: column; gap: 0.2rem; min-height: 155px; } .reveal .inclusion-sort-slide .activity-controls`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .inclusion-sort-slide .sort-list {
+  /* STUDENT NOTE: Styles elements matched by `display: flex; flex-direction: column; gap: 0.2rem; min-height: 155px; } .docs-native-article .inclusion-sort-slide .activity-controls`. Search the HTML for these class/id names before changing a shared rule. */
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
@@ -499,8 +499,8 @@
 }
 
 /* Bottom buttons */
-.reveal .inclusion-sort-slide .activity-controls {
-  /* STUDENT NOTE: Styles elements matched by `display: flex; justify-content: center; align-items: center; gap: 0.6rem; max-width: var(--shared-slide-width, 1120px); margin: 0.45rem auto 0; } .reveal .inclusion-sort-slide .activity-feedback`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .inclusion-sort-slide .activity-controls {
+  /* STUDENT NOTE: Styles elements matched by `display: flex; justify-content: center; align-items: center; gap: 0.6rem; max-width: var(--shared-slide-width, 1120px); margin: 0.45rem auto 0; } .docs-native-article .inclusion-sort-slide .activity-feedback`. Search the HTML for these class/id names before changing a shared rule. */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -509,8 +509,8 @@
   margin: 0.45rem auto 0;
 }
 
-.reveal .inclusion-sort-slide .activity-feedback {
-  /* STUDENT NOTE: Styles elements matched by `min-width: 240px; margin: 0; font-size: 0.38em; font-weight: 700; } .reveal .gp-slide .inclusion-intro`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .inclusion-sort-slide .activity-feedback {
+  /* STUDENT NOTE: Styles elements matched by `min-width: 240px; margin: 0; font-size: 0.38em; font-weight: 700; } .docs-native-article .gp-slide .inclusion-intro`. Search the HTML for these class/id names before changing a shared rule. */
   min-width: 240px;
   margin: 0;
   font-size: 0.38em;
@@ -518,16 +518,16 @@
 }
 
 /* Gracious Professionalism slides */
-.reveal .gp-slide .inclusion-intro {
-  /* STUDENT NOTE: Layout rule for `max-width: var(--shared-slide-width, 1120px); margin: 0 auto 0.8rem; font-size: 0.62em; line-height: 1.25; } .reveal .gp-scenario-grid`. Grid properties here control columns, gaps, and alignment. */
+.docs-native-article .gp-slide .inclusion-intro {
+  /* STUDENT NOTE: Layout rule for `max-width: var(--shared-slide-width, 1120px); margin: 0 auto 0.8rem; font-size: 0.62em; line-height: 1.25; } .docs-native-article .gp-scenario-grid`. Grid properties here control columns, gaps, and alignment. */
   max-width: var(--shared-slide-width, 1120px);
   margin: 0 auto 0.8rem;
   font-size: 0.62em;
   line-height: 1.25;
 }
 
-.reveal .gp-scenario-grid {
-  /* STUDENT NOTE: Layout rule for `display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; max-width: var(--shared-slide-width, 1120px); margin: 0 auto; } .reveal .gp-scenario-card, .reveal .gp-check-card`. Grid properties here control columns, gaps, and alignment. */
+.docs-native-article .gp-scenario-grid {
+  /* STUDENT NOTE: Layout rule for `display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; max-width: var(--shared-slide-width, 1120px); margin: 0 auto; } .docs-native-article .gp-scenario-card, .docs-native-article .gp-check-card`. Grid properties here control columns, gaps, and alignment. */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.8rem;
@@ -535,9 +535,9 @@
   margin: 0 auto;
 }
 
-.reveal .gp-scenario-card,
-.reveal .gp-check-card {
-  /* STUDENT NOTE: Typography/spacing rule for `background: var(--light); border-left: 10px solid var(--red); border-radius: 8px; padding: 0.75rem 0.85rem; text-align: left; } .reveal .gp-scenario-card h3`. These values affect readability and vertical space on slides. */
+.docs-native-article .gp-scenario-card,
+.docs-native-article .gp-check-card {
+  /* STUDENT NOTE: Typography/spacing rule for `background: var(--light); border-left: 10px solid var(--red); border-radius: 8px; padding: 0.75rem 0.85rem; text-align: left; } .docs-native-article .gp-scenario-card h3`. These values affect readability and vertical space on slides. */
   background: var(--light);
   border-left: 10px solid var(--red);
   border-radius: 8px;
@@ -545,47 +545,47 @@
   text-align: left;
 }
 
-.reveal .gp-scenario-card h3 {
-  /* STUDENT NOTE: Typography/spacing rule for `margin: 0 0 0.35rem; font-size: 0.68em; } .reveal .gp-scenario-card p, .reveal .gp-check-card p`. These values affect readability and vertical space on slides. */
+.docs-native-article .gp-scenario-card h3 {
+  /* STUDENT NOTE: Typography/spacing rule for `margin: 0 0 0.35rem; font-size: 0.68em; } .docs-native-article .gp-scenario-card p, .docs-native-article .gp-check-card p`. These values affect readability and vertical space on slides. */
   margin: 0 0 0.35rem;
   font-size: 0.68em;
 }
 
-.reveal .gp-scenario-card p,
-.reveal .gp-check-card p {
-  /* STUDENT NOTE: Styles elements matched by `margin: 0 0 0.45rem; font-size: 0.45em; line-height: 1.25; } .reveal .bad-response`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .gp-scenario-card p,
+.docs-native-article .gp-check-card p {
+  /* STUDENT NOTE: Styles elements matched by `margin: 0 0 0.45rem; font-size: 0.45em; line-height: 1.25; } .docs-native-article .bad-response`. Search the HTML for these class/id names before changing a shared rule. */
   margin: 0 0 0.45rem;
   font-size: 0.45em;
   line-height: 1.25;
 }
 
-.reveal .bad-response {
-  /* STUDENT NOTE: Typography/spacing rule for `border-left: 6px solid #b00020; padding-left: 0.45rem; } .reveal .good-response`. These values affect readability and vertical space on slides. */
+.docs-native-article .bad-response {
+  /* STUDENT NOTE: Typography/spacing rule for `border-left: 6px solid #b00020; padding-left: 0.45rem; } .docs-native-article .good-response`. These values affect readability and vertical space on slides. */
   border-left: 6px solid #b00020;
   padding-left: 0.45rem;
 }
 
-.reveal .good-response {
-  /* STUDENT NOTE: Typography/spacing rule for `border-left: 6px solid #2e7d32; padding-left: 0.45rem; } .reveal .gp-check-card`. These values affect readability and vertical space on slides. */
+.docs-native-article .good-response {
+  /* STUDENT NOTE: Typography/spacing rule for `border-left: 6px solid #2e7d32; padding-left: 0.45rem; } .docs-native-article .gp-check-card`. These values affect readability and vertical space on slides. */
   border-left: 6px solid #2e7d32;
   padding-left: 0.45rem;
 }
 
-.reveal .gp-check-card {
-  /* STUDENT NOTE: Styles elements matched by `max-width: 950px; margin: 0 auto; } .reveal .gp-check-options`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .gp-check-card {
+  /* STUDENT NOTE: Styles elements matched by `max-width: 950px; margin: 0 auto; } .docs-native-article .gp-check-options`. Search the HTML for these class/id names before changing a shared rule. */
   max-width: 950px;
   margin: 0 auto;
 }
 
-.reveal .gp-check-options {
-  /* STUDENT NOTE: Layout rule for `display: grid; gap: 0.45rem; margin-top: 0.6rem; } .reveal .gp-check-option`. Grid properties here control columns, gaps, and alignment. */
+.docs-native-article .gp-check-options {
+  /* STUDENT NOTE: Layout rule for `display: grid; gap: 0.45rem; margin-top: 0.6rem; } .docs-native-article .gp-check-option`. Grid properties here control columns, gaps, and alignment. */
   display: grid;
   gap: 0.45rem;
   margin-top: 0.6rem;
 }
 
-.reveal .gp-check-option {
-  /* STUDENT NOTE: Typography/spacing rule for `background: var(--white); border: 2px solid var(--red); border-left: 10px solid var(--red); border-radius: 8px; padding: 0.45rem 0.6rem; color: var(--black); font-family: "", Arial, sans-serif; font-size: 0.42em; font-weight: 700; text-align: left; cursor: pointer; } .reveal .gp-check-option:hover, .reveal .gp-check-option:focus`. These values affect readability and vertical space on slides. */
+.docs-native-article .gp-check-option {
+  /* STUDENT NOTE: Typography/spacing rule for `background: var(--white); border: 2px solid var(--red); border-left: 10px solid var(--red); border-radius: 8px; padding: 0.45rem 0.6rem; color: var(--black); font-family: "", Arial, sans-serif; font-size: 0.42em; font-weight: 700; text-align: left; cursor: pointer; } .docs-native-article .gp-check-option:hover, .docs-native-article .gp-check-option:focus`. These values affect readability and vertical space on slides. */
   background: var(--white);
   border: 2px solid var(--red);
   border-left: 10px solid var(--red);
@@ -599,28 +599,28 @@
   cursor: pointer;
 }
 
-.reveal .gp-check-option:hover,
-.reveal .gp-check-option:focus {
-  /* STUDENT NOTE: Interaction state for `outline: 4px solid var(--red); outline-offset: 2px; } .reveal .gp-check-option.correct`. JavaScript may add/remove this class to provide visual feedback or control access. */
+.docs-native-article .gp-check-option:hover,
+.docs-native-article .gp-check-option:focus {
+  /* STUDENT NOTE: Interaction state for `outline: 4px solid var(--red); outline-offset: 2px; } .docs-native-article .gp-check-option.correct`. JavaScript may add/remove this class to provide visual feedback or control access. */
   outline: 4px solid var(--red);
   outline-offset: 2px;
 }
 
-.reveal .gp-check-option.correct {
-  /* STUDENT NOTE: Interaction state for `border-color: #2e7d32; border-left-color: #2e7d32; background: #e6f4ea; } .reveal .gp-check-option.incorrect`. JavaScript may add/remove this class to provide visual feedback or control access. */
+.docs-native-article .gp-check-option.correct {
+  /* STUDENT NOTE: Interaction state for `border-color: #2e7d32; border-left-color: #2e7d32; background: #e6f4ea; } .docs-native-article .gp-check-option.incorrect`. JavaScript may add/remove this class to provide visual feedback or control access. */
   border-color: #2e7d32;
   border-left-color: #2e7d32;
   background: #e6f4ea;
 }
 
-.reveal .gp-check-option.incorrect {
-  /* STUDENT NOTE: Styles elements matched by `border-color: #b00020; border-left-color: #b00020; background: #fdecea; } .reveal .gp-check-feedback`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .gp-check-option.incorrect {
+  /* STUDENT NOTE: Styles elements matched by `border-color: #b00020; border-left-color: #b00020; background: #fdecea; } .docs-native-article .gp-check-feedback`. Search the HTML for these class/id names before changing a shared rule. */
   border-color: #b00020;
   border-left-color: #b00020;
   background: #fdecea;
 }
 
-.reveal .gp-check-feedback {
+.docs-native-article .gp-check-feedback {
   /* STUDENT NOTE: Styles elements matched by `margin-top: 0.55rem !important; font-weight: 700; text-align: center; } @media (max-width: 900px)`. Search the HTML for these class/id names before changing a shared rule. */
   margin-top: 0.55rem !important;
   font-weight: 700;
@@ -628,8 +628,8 @@
 }
 
 @media (max-width: 900px) {
-  /* STUDENT NOTE: Layout rule for `.reveal .gp-scenario-grid`. Grid properties here control columns, gaps, and alignment. */
-  .reveal .gp-scenario-grid {
+  /* STUDENT NOTE: Layout rule for `.docs-native-article .gp-scenario-grid`. Grid properties here control columns, gaps, and alignment. */
+  .docs-native-article .gp-scenario-grid {
     grid-template-columns: 1fr;
   }
 /* STUDENT NOTE: Styles elements matched by `} .text-red`. Search the HTML for these class/id names before changing a shared rule. */

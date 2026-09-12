@@ -1,0 +1,12 @@
+5041 FTC Vision & AprilTags — custom asset guide
+
+Place custom photos/diagrams in shared/assets/ftc-vision-apriltags/
+
+Suggested files:
+- ftc-vision-apriltags-overview.jpg
+- ftc-vision-apriltags-workflow.png
+- ftc-vision-apriltags-testing.jpg
+- ftc-vision-apriltags-competition.jpg
+
+Replace a placeholder with:
+<img class="topic-wide-photo" src="../../shared/assets/ftc-vision-apriltags/FILENAME" alt="Describe the image">

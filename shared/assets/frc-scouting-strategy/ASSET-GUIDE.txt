@@ -1,0 +1,12 @@
+5041 FRC Scouting & Alliance Strategy — custom asset guide
+
+Place custom photos/diagrams in shared/assets/frc-scouting-strategy/
+
+Suggested files:
+- frc-scouting-strategy-overview.jpg
+- frc-scouting-strategy-workflow.png
+- frc-scouting-strategy-testing.jpg
+- frc-scouting-strategy-competition.jpg
+
+Replace a placeholder with:
+<img class="topic-wide-photo" src="../../shared/assets/frc-scouting-strategy/FILENAME" alt="Describe the image">

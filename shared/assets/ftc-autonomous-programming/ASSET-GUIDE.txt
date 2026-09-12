@@ -1,0 +1,12 @@
+5041 FTC Autonomous Programming — custom asset guide
+
+Place custom photos/diagrams in shared/assets/ftc-autonomous-programming/
+
+Suggested files:
+- ftc-autonomous-programming-overview.jpg
+- ftc-autonomous-programming-workflow.png
+- ftc-autonomous-programming-testing.jpg
+- ftc-autonomous-programming-competition.jpg
+
+Replace a placeholder with:
+<img class="topic-wide-photo" src="../../shared/assets/ftc-autonomous-programming/FILENAME" alt="Describe the image">

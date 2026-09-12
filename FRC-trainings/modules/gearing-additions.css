@@ -477,8 +477,8 @@
   font-weight: 700;
 }
 
-/* STUDENT NOTE: Styles elements matched by `.reveal .gear-card.dark`. Search the HTML for these class/id names before changing a shared rule. */
-.reveal .gear-card.dark {
+/* STUDENT NOTE: Styles elements matched by `.docs-native-article .gear-card.dark`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .gear-card.dark {
   background: var(--black) !important;
   color: var(--white) !important;
 }
@@ -497,11 +497,11 @@
   .gear-split.reverse {
     grid-template-columns: 1fr;
   }
-/* STUDENT NOTE: Image styling for `} .reveal img.img-gears`. max-width/max-height/object-fit are commonly used to keep images inside the slide. */
+/* STUDENT NOTE: Image styling for `} .docs-native-article img.img-gears`. max-width/max-height/object-fit are commonly used to keep images inside the slide. */
 }
 
-.reveal img.img-gears {
-  /* STUDENT NOTE: Image styling for `width: 75%; height: auto; display: block; margin-left: auto; margin-right: auto; } .reveal img.img-gears-2`. max-width/max-height/object-fit are commonly used to keep images inside the slide. */
+.docs-native-article img.img-gears {
+  /* STUDENT NOTE: Image styling for `width: 75%; height: auto; display: block; margin-left: auto; margin-right: auto; } .docs-native-article img.img-gears-2`. max-width/max-height/object-fit are commonly used to keep images inside the slide. */
   width: 75%;
   height: auto;
   display: block;
@@ -509,8 +509,8 @@
   margin-right: auto;
 }
 
-.reveal img.img-gears-2 {
-  /* STUDENT NOTE: Typography/spacing rule for `width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto; } .reveal .symbol-key p`. These values affect readability and vertical space on slides. */
+.docs-native-article img.img-gears-2 {
+  /* STUDENT NOTE: Typography/spacing rule for `width: 100%; height: auto; display: block; margin-left: auto; margin-right: auto; } .docs-native-article .symbol-key p`. These values affect readability and vertical space on slides. */
   width: 100%;
   height: auto;
   display: block;
@@ -519,26 +519,26 @@
 }
 
 
-.reveal .symbol-key p {
-  /* STUDENT NOTE: Styles elements matched by `font-size: 1em; display: block; margin-left: auto; margin-right: auto; } .reveal .symbol-key .torque-line`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .symbol-key p {
+  /* STUDENT NOTE: Styles elements matched by `font-size: 1em; display: block; margin-left: auto; margin-right: auto; } .docs-native-article .symbol-key .torque-line`. Search the HTML for these class/id names before changing a shared rule. */
   font-size: 1em;
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
-.reveal .symbol-key .torque-line {
+.docs-native-article .symbol-key .torque-line {
   /* STUDENT NOTE: Styles elements matched by `color: #701F28; } .text-red`. Search the HTML for these class/id names before changing a shared rule. */
   color: #701F28;
 }
 
 .text-red {
-  /* STUDENT NOTE: Styles elements matched by `color: var(--red); } .reveal .gear-lab-controls`. Search the HTML for these class/id names before changing a shared rule. */
+  /* STUDENT NOTE: Styles elements matched by `color: var(--red); } .docs-native-article .gear-lab-controls`. Search the HTML for these class/id names before changing a shared rule. */
   color: var(--red);
 }
 
-.reveal .gear-lab-controls {
-  /* STUDENT NOTE: Styles elements matched by `display: flex; justify-content: center; gap: 1rem; margin: 0.4rem auto 0.5rem; font-size: 0.42em; font-family: "", Arial, sans-serif; font-weight: 700; } .reveal .gear-lab-controls input`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .gear-lab-controls {
+  /* STUDENT NOTE: Styles elements matched by `display: flex; justify-content: center; gap: 1rem; margin: 0.4rem auto 0.5rem; font-size: 0.42em; font-family: "", Arial, sans-serif; font-weight: 700; } .docs-native-article .gear-lab-controls input`. Search the HTML for these class/id names before changing a shared rule. */
   display: flex;
   justify-content: center;
   gap: 1rem;
@@ -548,15 +548,15 @@
   font-weight: 700;
 }
 
-.reveal .gear-lab-controls input {
-  /* STUDENT NOTE: Typography/spacing rule for `width: 85px; padding: 0.2rem; font-size: 0.9em; } .reveal .gear-lab-bank`. These values affect readability and vertical space on slides. */
+.docs-native-article .gear-lab-controls input {
+  /* STUDENT NOTE: Typography/spacing rule for `width: 85px; padding: 0.2rem; font-size: 0.9em; } .docs-native-article .gear-lab-bank`. These values affect readability and vertical space on slides. */
   width: 85px;
   padding: 0.2rem;
   font-size: 0.9em;
 }
 
-.reveal .gear-lab-bank {
-  /* STUDENT NOTE: Typography/spacing rule for `display: flex; justify-content: center; align-items: center; gap: 0.8rem; min-height: 95px; max-width: 800px; margin: 0 auto 0.6rem; padding: 0.4rem; background: var(--light); border: 3px dashed var(--gray); border-radius: 8px; } .reveal .gear-token`. These values affect readability and vertical space on slides. */
+.docs-native-article .gear-lab-bank {
+  /* STUDENT NOTE: Typography/spacing rule for `display: flex; justify-content: center; align-items: center; gap: 0.8rem; min-height: 95px; max-width: 800px; margin: 0 auto 0.6rem; padding: 0.4rem; background: var(--light); border: 3px dashed var(--gray); border-radius: 8px; } .docs-native-article .gear-token`. These values affect readability and vertical space on slides. */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -570,8 +570,8 @@
   border-radius: 8px;
 }
 
-.reveal .gear-token {
-  /* STUDENT NOTE: Layout rule for `display: grid; place-items: center; position: relative; background-image: url(""); background-size: contain; background-repeat: no-repeat; background-position: center; color: var(--white); font-family: "", Arial, sans-serif; font-weight: 700; text-shadow: 1px 1px 3px var(--black); cursor: grab; user-select: none; border: none; box-shadow: none; } .reveal .gear-small`. Grid properties here control columns, gaps, and alignment. */
+.docs-native-article .gear-token {
+  /* STUDENT NOTE: Layout rule for `display: grid; place-items: center; position: relative; background-image: url(""); background-size: contain; background-repeat: no-repeat; background-position: center; color: var(--white); font-family: "", Arial, sans-serif; font-weight: 700; text-shadow: 1px 1px 3px var(--black); cursor: grab; user-select: none; border: none; box-shadow: none; } .docs-native-article .gear-small`. Grid properties here control columns, gaps, and alignment. */
   display: grid;
   place-items: center;
   position: relative;
@@ -589,29 +589,29 @@
   box-shadow: none;
 }
 
-.reveal .gear-small {
-  /* STUDENT NOTE: Styles elements matched by `width: 58px; height: 58px; font-size: 0.34em; } .reveal .gear-medium`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .gear-small {
+  /* STUDENT NOTE: Styles elements matched by `width: 58px; height: 58px; font-size: 0.34em; } .docs-native-article .gear-medium`. Search the HTML for these class/id names before changing a shared rule. */
   width: 58px;
   height: 58px;
   font-size: 0.34em;
 }
 
-.reveal .gear-medium {
-  /* STUDENT NOTE: Styles elements matched by `width: 78px; height: 78px; font-size: 0.38em; } .reveal .gear-large`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .gear-medium {
+  /* STUDENT NOTE: Styles elements matched by `width: 78px; height: 78px; font-size: 0.38em; } .docs-native-article .gear-large`. Search the HTML for these class/id names before changing a shared rule. */
   width: 78px;
   height: 78px;
   font-size: 0.38em;
 }
 
-.reveal .gear-large {
-  /* STUDENT NOTE: Styles elements matched by `width: 98px; height: 98px; font-size: 0.42em; } .reveal .gear-axle-board`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .gear-large {
+  /* STUDENT NOTE: Styles elements matched by `width: 98px; height: 98px; font-size: 0.42em; } .docs-native-article .gear-axle-board`. Search the HTML for these class/id names before changing a shared rule. */
   width: 98px;
   height: 98px;
   font-size: 0.42em;
 }
 
-.reveal .gear-axle-board {
-  /* STUDENT NOTE: Layout rule for `display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; max-width: var(--shared-slide-width, 1120px); margin: 0 auto; } .reveal .axle-slot`. Grid properties here control columns, gaps, and alignment. */
+.docs-native-article .gear-axle-board {
+  /* STUDENT NOTE: Layout rule for `display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; max-width: var(--shared-slide-width, 1120px); margin: 0 auto; } .docs-native-article .axle-slot`. Grid properties here control columns, gaps, and alignment. */
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0.8rem;
@@ -619,8 +619,8 @@
   margin: 0 auto;
 }
 
-.reveal .axle-slot {
-  /* STUDENT NOTE: Typography/spacing rule for `background: var(--light); border-left: 10px solid var(--red); border-radius: 8px; padding: 0.55rem; text-align: center; } .reveal .axle-slot h3`. These values affect readability and vertical space on slides. */
+.docs-native-article .axle-slot {
+  /* STUDENT NOTE: Typography/spacing rule for `background: var(--light); border-left: 10px solid var(--red); border-radius: 8px; padding: 0.55rem; text-align: center; } .docs-native-article .axle-slot h3`. These values affect readability and vertical space on slides. */
   background: var(--light);
   border-left: 10px solid var(--red);
   border-radius: 8px;
@@ -628,14 +628,14 @@
   text-align: center;
 }
 
-.reveal .axle-slot h3 {
-  /* STUDENT NOTE: Styles elements matched by `font-size: 0.55em; margin: 0 0 0.25rem; } .reveal .axle-drop-zone`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .axle-slot h3 {
+  /* STUDENT NOTE: Styles elements matched by `font-size: 0.55em; margin: 0 0 0.25rem; } .docs-native-article .axle-drop-zone`. Search the HTML for these class/id names before changing a shared rule. */
   font-size: 0.55em;
   margin: 0 0 0.25rem;
 }
 
-.reveal .axle-drop-zone {
-  /* STUDENT NOTE: Layout rule for `height: 125px; display: grid; place-items: center; background: var(--white); border: 3px dashed var(--gray); border-radius: 8px; } .reveal .axle-slot.drag-over .axle-drop-zone`. Grid properties here control columns, gaps, and alignment. */
+.docs-native-article .axle-drop-zone {
+  /* STUDENT NOTE: Layout rule for `height: 125px; display: grid; place-items: center; background: var(--white); border: 3px dashed var(--gray); border-radius: 8px; } .docs-native-article .axle-slot.drag-over .axle-drop-zone`. Grid properties here control columns, gaps, and alignment. */
   height: 125px;
   display: grid;
   place-items: center;
@@ -644,22 +644,22 @@
   border-radius: 8px;
 }
 
-.reveal .axle-slot.drag-over .axle-drop-zone {
-  /* STUDENT NOTE: Styles elements matched by `outline: 4px solid var(--red); outline-offset: 2px; } .reveal .axle-readout`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .axle-slot.drag-over .axle-drop-zone {
+  /* STUDENT NOTE: Styles elements matched by `outline: 4px solid var(--red); outline-offset: 2px; } .docs-native-article .axle-readout`. Search the HTML for these class/id names before changing a shared rule. */
   outline: 4px solid var(--red);
   outline-offset: 2px;
 }
 
-.reveal .axle-readout {
-  /* STUDENT NOTE: Styles elements matched by `margin: 0.35rem 0 0; font-size: 0.36em; line-height: 1.15; font-weight: 700; } .reveal .gear-output-card`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .axle-readout {
+  /* STUDENT NOTE: Styles elements matched by `margin: 0.35rem 0 0; font-size: 0.36em; line-height: 1.15; font-weight: 700; } .docs-native-article .gear-output-card`. Search the HTML for these class/id names before changing a shared rule. */
   margin: 0.35rem 0 0;
   font-size: 0.36em;
   line-height: 1.15;
   font-weight: 700;
 }
 
-.reveal .gear-output-card {
-  /* STUDENT NOTE: Typography/spacing rule for `max-width: var(--shared-slide-width, 1120px); margin: 0.55rem auto 0; padding: 0.45rem 0.65rem; background: var(--white); border-left: 10px solid var(--red); border-radius: 8px; text-align: center; } .reveal .gear-output-card p`. These values affect readability and vertical space on slides. */
+.docs-native-article .gear-output-card {
+  /* STUDENT NOTE: Typography/spacing rule for `max-width: var(--shared-slide-width, 1120px); margin: 0.55rem auto 0; padding: 0.45rem 0.65rem; background: var(--white); border-left: 10px solid var(--red); border-radius: 8px; text-align: center; } .docs-native-article .gear-output-card p`. These values affect readability and vertical space on slides. */
   max-width: var(--shared-slide-width, 1120px);
   margin: 0.55rem auto 0;
   padding: 0.45rem 0.65rem;
@@ -669,49 +669,49 @@
   text-align: center;
 }
 
-.reveal .gear-output-card p {
-  /* STUDENT NOTE: Styles elements matched by `margin: 0 0 0.35rem; font-size: 0.44em; font-weight: 700; } .reveal .gear-xs`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .gear-output-card p {
+  /* STUDENT NOTE: Styles elements matched by `margin: 0 0 0.35rem; font-size: 0.44em; font-weight: 700; } .docs-native-article .gear-xs`. Search the HTML for these class/id names before changing a shared rule. */
   margin: 0 0 0.35rem;
   font-size: 0.44em;
   font-weight: 700;
 }
 
-.reveal .gear-xs {
-  /* STUDENT NOTE: Styles elements matched by `width: 48px; height: 48px; font-size: 0.3em; } .reveal .gear-medium-small`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .gear-xs {
+  /* STUDENT NOTE: Styles elements matched by `width: 48px; height: 48px; font-size: 0.3em; } .docs-native-article .gear-medium-small`. Search the HTML for these class/id names before changing a shared rule. */
   width: 48px;
   height: 48px;
   font-size: 0.3em;
 }
 
-.reveal .gear-medium-small {
-  /* STUDENT NOTE: Styles elements matched by `width: 68px; height: 68px; font-size: 0.35em; } .reveal .gear-xl`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .gear-medium-small {
+  /* STUDENT NOTE: Styles elements matched by `width: 68px; height: 68px; font-size: 0.35em; } .docs-native-article .gear-xl`. Search the HTML for these class/id names before changing a shared rule. */
   width: 68px;
   height: 68px;
   font-size: 0.35em;
 }
 
-.reveal .gear-xl {
-  /* STUDENT NOTE: Styles elements matched by `width: 108px; height: 108px; font-size: 0.44em; } .reveal .gear-xxs`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .gear-xl {
+  /* STUDENT NOTE: Styles elements matched by `width: 108px; height: 108px; font-size: 0.44em; } .docs-native-article .gear-xxs`. Search the HTML for these class/id names before changing a shared rule. */
   width: 108px;
   height: 108px;
   font-size: 0.44em;
 }
 
-.reveal .gear-xxs {
-  /* STUDENT NOTE: Styles elements matched by `width: 42px; height: 42px; font-size: 0.28em; } .reveal .gear-xxl`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .gear-xxs {
+  /* STUDENT NOTE: Styles elements matched by `width: 42px; height: 42px; font-size: 0.28em; } .docs-native-article .gear-xxl`. Search the HTML for these class/id names before changing a shared rule. */
   width: 42px;
   height: 42px;
   font-size: 0.28em;
 }
 
-.reveal .gear-xxl {
-  /* STUDENT NOTE: Styles elements matched by `width: 118px; height: 118px; font-size: 0.46em; } .reveal .gear-medium-big`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .gear-xxl {
+  /* STUDENT NOTE: Styles elements matched by `width: 118px; height: 118px; font-size: 0.46em; } .docs-native-article .gear-medium-big`. Search the HTML for these class/id names before changing a shared rule. */
   width: 118px;
   height: 118px;
   font-size: 0.46em;
 }
 
-.reveal .gear-medium-big {
+.docs-native-article .gear-medium-big {
   /* STUDENT NOTE: Styles elements matched by `width: 88px; height: 88px; font-size: 0.48em; } .margin-bottom-small`. Search the HTML for these class/id names before changing a shared rule. */
   width: 88px;
   height: 88px;
@@ -730,37 +730,37 @@
 
 
 .text-red {
-  /* STUDENT NOTE: Typography/spacing rule for `color: var(--red); } .reveal .spur-dim-slide h2`. These values affect readability and vertical space on slides. */
+  /* STUDENT NOTE: Typography/spacing rule for `color: var(--red); } .docs-native-article .spur-dim-slide h2`. These values affect readability and vertical space on slides. */
   color: var(--red);
 }
 
-.reveal .spur-dim-slide h2 {
-  /* STUDENT NOTE: Layout rule for `font-size: 1.45em; margin-bottom: 0.45rem; } .reveal .spur-dim-grid-2, .reveal .spur-dim-grid-3`. Grid properties here control columns, gaps, and alignment. */
+.docs-native-article .spur-dim-slide h2 {
+  /* STUDENT NOTE: Layout rule for `font-size: 1.45em; margin-bottom: 0.45rem; } .docs-native-article .spur-dim-grid-2, .docs-native-article .spur-dim-grid-3`. Grid properties here control columns, gaps, and alignment. */
   font-size: 1.45em;
   margin-bottom: 0.45rem;
 }
 
-.reveal .spur-dim-grid-2,
-.reveal .spur-dim-grid-3 {
-  /* STUDENT NOTE: Layout rule for `display: grid; gap: 0.8rem; max-width: var(--shared-slide-width, 1120px); margin: 0 auto; } .reveal .spur-dim-grid-2`. Grid properties here control columns, gaps, and alignment. */
+.docs-native-article .spur-dim-grid-2,
+.docs-native-article .spur-dim-grid-3 {
+  /* STUDENT NOTE: Layout rule for `display: grid; gap: 0.8rem; max-width: var(--shared-slide-width, 1120px); margin: 0 auto; } .docs-native-article .spur-dim-grid-2`. Grid properties here control columns, gaps, and alignment. */
   display: grid;
   gap: 0.8rem;
   max-width: var(--shared-slide-width, 1120px);
   margin: 0 auto;
 }
 
-.reveal .spur-dim-grid-2 {
-  /* STUDENT NOTE: Layout rule for `grid-template-columns: 1fr 1fr; } .reveal .spur-dim-grid-3`. Grid properties here control columns, gaps, and alignment. */
+.docs-native-article .spur-dim-grid-2 {
+  /* STUDENT NOTE: Layout rule for `grid-template-columns: 1fr 1fr; } .docs-native-article .spur-dim-grid-3`. Grid properties here control columns, gaps, and alignment. */
   grid-template-columns: 1fr 1fr;
 }
 
-.reveal .spur-dim-grid-3 {
-  /* STUDENT NOTE: Layout rule for `grid-template-columns: repeat(3, 1fr); } .reveal .spur-dim-card`. Grid properties here control columns, gaps, and alignment. */
+.docs-native-article .spur-dim-grid-3 {
+  /* STUDENT NOTE: Layout rule for `grid-template-columns: repeat(3, 1fr); } .docs-native-article .spur-dim-card`. Grid properties here control columns, gaps, and alignment. */
   grid-template-columns: repeat(3, 1fr);
 }
 
-.reveal .spur-dim-card {
-  /* STUDENT NOTE: Typography/spacing rule for `background: var(--light); border-left: 10px solid var(--red); border-radius: 8px; padding: 0.75rem 0.85rem; text-align: left; } .reveal .spur-dim-large`. These values affect readability and vertical space on slides. */
+.docs-native-article .spur-dim-card {
+  /* STUDENT NOTE: Typography/spacing rule for `background: var(--light); border-left: 10px solid var(--red); border-radius: 8px; padding: 0.75rem 0.85rem; text-align: left; } .docs-native-article .spur-dim-large`. These values affect readability and vertical space on slides. */
   background: var(--light);
   border-left: 10px solid var(--red);
   border-radius: 8px;
@@ -768,42 +768,42 @@
   text-align: left;
 }
 
-.reveal .spur-dim-large {
-  /* STUDENT NOTE: Typography/spacing rule for `max-width: 950px; margin: 0 auto; } .reveal .spur-dim-card h3`. These values affect readability and vertical space on slides. */
+.docs-native-article .spur-dim-large {
+  /* STUDENT NOTE: Typography/spacing rule for `max-width: 950px; margin: 0 auto; } .docs-native-article .spur-dim-card h3`. These values affect readability and vertical space on slides. */
   max-width: 950px;
   margin: 0 auto;
 }
 
-.reveal .spur-dim-card h3 {
-  /* STUDENT NOTE: Typography/spacing rule for `margin: 0 0 0.35rem; font-size: 0.72em; } .reveal .spur-dim-card p`. These values affect readability and vertical space on slides. */
+.docs-native-article .spur-dim-card h3 {
+  /* STUDENT NOTE: Typography/spacing rule for `margin: 0 0 0.35rem; font-size: 0.72em; } .docs-native-article .spur-dim-card p`. These values affect readability and vertical space on slides. */
   margin: 0 0 0.35rem;
   font-size: 0.72em;
 }
 
-.reveal .spur-dim-card p {
-  /* STUDENT NOTE: Styles elements matched by `margin: 0 0 0.45rem; font-size: 0.52em; line-height: 1.28; } .reveal .spur-dim-formula`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .spur-dim-card p {
+  /* STUDENT NOTE: Styles elements matched by `margin: 0 0 0.45rem; font-size: 0.52em; line-height: 1.28; } .docs-native-article .spur-dim-formula`. Search the HTML for these class/id names before changing a shared rule. */
   margin: 0 0 0.45rem;
   font-size: 0.52em;
   line-height: 1.28;
 }
 
-.reveal .spur-dim-formula {
-  /* STUDENT NOTE: Styles elements matched by `font-family: "", Arial, sans-serif; font-weight: 700; color: var(--red); text-align: center; } .reveal .spur-dim-formula2`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .spur-dim-formula {
+  /* STUDENT NOTE: Styles elements matched by `font-family: "", Arial, sans-serif; font-weight: 700; color: var(--red); text-align: center; } .docs-native-article .spur-dim-formula2`. Search the HTML for these class/id names before changing a shared rule. */
   font-family: "Droid Sans", Arial, sans-serif;
   font-weight: 700;
   color: var(--red);
   text-align: center;
 }
-.reveal .spur-dim-formula2 {
-  /* STUDENT NOTE: Styles elements matched by `font-family: "", Arial, sans-serif; font-weight: 700; color: var(--red); text-align: center; font-size: 0.42em; } .reveal .spur-dim-formula3`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .spur-dim-formula2 {
+  /* STUDENT NOTE: Styles elements matched by `font-family: "", Arial, sans-serif; font-weight: 700; color: var(--red); text-align: center; font-size: 0.42em; } .docs-native-article .spur-dim-formula3`. Search the HTML for these class/id names before changing a shared rule. */
   font-family: "Droid Sans", Arial, sans-serif;
   font-weight: 700;
   color: var(--red);
   text-align: center;
   font-size: 0.42em;
 }
-.reveal .spur-dim-formula3 {
-  /* STUDENT NOTE: Styles elements matched by `font-family: "", Arial, sans-serif; font-weight: 700; color: var(--black); text-align: center; font-size: 0.55em; margin-top: 0.75em; } .reveal .text-red`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .spur-dim-formula3 {
+  /* STUDENT NOTE: Styles elements matched by `font-family: "", Arial, sans-serif; font-weight: 700; color: var(--black); text-align: center; font-size: 0.55em; margin-top: 0.75em; } .docs-native-article .text-red`. Search the HTML for these class/id names before changing a shared rule. */
   font-family: "Droid Sans", Arial, sans-serif;
   font-weight: 700;
   color: var(--black);
@@ -812,14 +812,14 @@
   margin-top: 0.75em;
 }
 
-.reveal .text-red {
-  /* STUDENT NOTE: Styles elements matched by `color: var(--red); font-weight: 700; } .reveal .gearbox-sort-bank`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .text-red {
+  /* STUDENT NOTE: Styles elements matched by `color: var(--red); font-weight: 700; } .docs-native-article .gearbox-sort-bank`. Search the HTML for these class/id names before changing a shared rule. */
   color: var(--red);
   font-weight: 700;
 }
 
-.reveal .gearbox-sort-bank {
-  /* STUDENT NOTE: Typography/spacing rule for `display: flex; flex-wrap: wrap; gap: 0.35rem; max-width: var(--shared-slide-width, 1120px); margin: 0 auto 0.65rem; padding: 0.45rem; background: var(--light); border: 3px dashed var(--gray); border-radius: 8px; } .reveal .gearbox-sort-chip`. These values affect readability and vertical space on slides. */
+.docs-native-article .gearbox-sort-bank {
+  /* STUDENT NOTE: Typography/spacing rule for `display: flex; flex-wrap: wrap; gap: 0.35rem; max-width: var(--shared-slide-width, 1120px); margin: 0 auto 0.65rem; padding: 0.45rem; background: var(--light); border: 3px dashed var(--gray); border-radius: 8px; } .docs-native-article .gearbox-sort-chip`. These values affect readability and vertical space on slides. */
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
@@ -831,8 +831,8 @@
   border-radius: 8px;
 }
 
-.reveal .gearbox-sort-chip {
-  /* STUDENT NOTE: Typography/spacing rule for `background: var(--white); border: 2px solid var(--red); border-left: 8px solid var(--red); border-radius: 8px; padding: 0.35rem 0.5rem; font-size: 0.38em; font-weight: 700; cursor: grab; } .reveal .gearbox-sort-targets`. These values affect readability and vertical space on slides. */
+.docs-native-article .gearbox-sort-chip {
+  /* STUDENT NOTE: Typography/spacing rule for `background: var(--white); border: 2px solid var(--red); border-left: 8px solid var(--red); border-radius: 8px; padding: 0.35rem 0.5rem; font-size: 0.38em; font-weight: 700; cursor: grab; } .docs-native-article .gearbox-sort-targets`. These values affect readability and vertical space on slides. */
   background: var(--white);
   border: 2px solid var(--red);
   border-left: 8px solid var(--red);
@@ -843,8 +843,8 @@
   cursor: grab;
 }
 
-.reveal .gearbox-sort-targets {
-  /* STUDENT NOTE: Layout rule for `display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.65rem; max-width: var(--shared-slide-width, 1120px); margin: 0 auto; } .reveal .gearbox-sort-zone`. Grid properties here control columns, gaps, and alignment. */
+.docs-native-article .gearbox-sort-targets {
+  /* STUDENT NOTE: Layout rule for `display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.65rem; max-width: var(--shared-slide-width, 1120px); margin: 0 auto; } .docs-native-article .gearbox-sort-zone`. Grid properties here control columns, gaps, and alignment. */
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0.65rem;
@@ -852,8 +852,8 @@
   margin: 0 auto;
 }
 
-.reveal .gearbox-sort-zone {
-  /* STUDENT NOTE: Typography/spacing rule for `min-height: 190px; background: var(--light); border-left: 10px solid var(--red); border-radius: 8px; padding: 0.45rem; } .reveal .gearbox-sort-zone h3`. These values affect readability and vertical space on slides. */
+.docs-native-article .gearbox-sort-zone {
+  /* STUDENT NOTE: Typography/spacing rule for `min-height: 190px; background: var(--light); border-left: 10px solid var(--red); border-radius: 8px; padding: 0.45rem; } .docs-native-article .gearbox-sort-zone h3`. These values affect readability and vertical space on slides. */
   min-height: 190px;
   background: var(--light);
   border-left: 10px solid var(--red);
@@ -861,37 +861,37 @@
   padding: 0.45rem;
 }
 
-.reveal .gearbox-sort-zone h3 {
-  /* STUDENT NOTE: Styles elements matched by `font-size: 0.52em; text-align: center; margin: 0 0 0.35rem; } .reveal .gearbox-sort-list`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .gearbox-sort-zone h3 {
+  /* STUDENT NOTE: Styles elements matched by `font-size: 0.52em; text-align: center; margin: 0 0 0.35rem; } .docs-native-article .gearbox-sort-list`. Search the HTML for these class/id names before changing a shared rule. */
   font-size: 0.52em;
   text-align: center;
   margin: 0 0 0.35rem;
 }
 
-.reveal .gearbox-sort-list {
-  /* STUDENT NOTE: Styles elements matched by `display: flex; flex-direction: column; gap: 0.25rem; min-height: 135px; } .reveal .gearbox-sort-feedback`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .gearbox-sort-list {
+  /* STUDENT NOTE: Styles elements matched by `display: flex; flex-direction: column; gap: 0.25rem; min-height: 135px; } .docs-native-article .gearbox-sort-feedback`. Search the HTML for these class/id names before changing a shared rule. */
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
   min-height: 135px;
 }
 
-.reveal .gearbox-sort-feedback {
-  /* STUDENT NOTE: Layout rule for `margin: 0; font-size: 0.42em; font-weight: 700; } .reveal .custom-gear-match-bank, .reveal .custom-gear-match-grid`. Grid properties here control columns, gaps, and alignment. */
+.docs-native-article .gearbox-sort-feedback {
+  /* STUDENT NOTE: Layout rule for `margin: 0; font-size: 0.42em; font-weight: 700; } .docs-native-article .custom-gear-match-bank, .docs-native-article .custom-gear-match-grid`. Grid properties here control columns, gaps, and alignment. */
   margin: 0;
   font-size: 0.42em;
   font-weight: 700;
 }
 
-.reveal .custom-gear-match-bank,
-.reveal .custom-gear-match-grid {
-  /* STUDENT NOTE: Styles elements matched by `max-width: var(--shared-slide-width, 1120px); margin: 0 auto; } .reveal .custom-gear-match-bank`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .custom-gear-match-bank,
+.docs-native-article .custom-gear-match-grid {
+  /* STUDENT NOTE: Styles elements matched by `max-width: var(--shared-slide-width, 1120px); margin: 0 auto; } .docs-native-article .custom-gear-match-bank`. Search the HTML for these class/id names before changing a shared rule. */
   max-width: var(--shared-slide-width, 1120px);
   margin: 0 auto;
 }
 
-.reveal .custom-gear-match-bank {
-  /* STUDENT NOTE: Typography/spacing rule for `display: flex; flex-wrap: wrap; gap: 0.35rem; padding: 0.45rem; margin-bottom: 0.55rem; background: var(--light); border: 3px dashed var(--gray); border-radius: 8px; } .reveal .custom-gear-match-chip`. These values affect readability and vertical space on slides. */
+.docs-native-article .custom-gear-match-bank {
+  /* STUDENT NOTE: Typography/spacing rule for `display: flex; flex-wrap: wrap; gap: 0.35rem; padding: 0.45rem; margin-bottom: 0.55rem; background: var(--light); border: 3px dashed var(--gray); border-radius: 8px; } .docs-native-article .custom-gear-match-chip`. These values affect readability and vertical space on slides. */
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
@@ -902,8 +902,8 @@
   border-radius: 8px;
 }
 
-.reveal .custom-gear-match-chip {
-  /* STUDENT NOTE: Layout rule for `background: var(--white); border: 2px solid var(--red); border-left: 8px solid var(--red); border-radius: 8px; padding: 0.3rem 0.45rem; font-size: 0.34em; font-weight: 700; cursor: grab; } .reveal .custom-gear-match-grid`. Grid properties here control columns, gaps, and alignment. */
+.docs-native-article .custom-gear-match-chip {
+  /* STUDENT NOTE: Layout rule for `background: var(--white); border: 2px solid var(--red); border-left: 8px solid var(--red); border-radius: 8px; padding: 0.3rem 0.45rem; font-size: 0.34em; font-weight: 700; cursor: grab; } .docs-native-article .custom-gear-match-grid`. Grid properties here control columns, gaps, and alignment. */
   background: var(--white);
   border: 2px solid var(--red);
   border-left: 8px solid var(--red);
@@ -914,15 +914,15 @@
   cursor: grab;
 }
 
-.reveal .custom-gear-match-grid {
-  /* STUDENT NOTE: Layout rule for `display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.55rem; } .reveal .custom-gear-match-zone`. Grid properties here control columns, gaps, and alignment. */
+.docs-native-article .custom-gear-match-grid {
+  /* STUDENT NOTE: Layout rule for `display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.55rem; } .docs-native-article .custom-gear-match-zone`. Grid properties here control columns, gaps, and alignment. */
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0.55rem;
 }
 
-.reveal .custom-gear-match-zone {
-  /* STUDENT NOTE: Typography/spacing rule for `background: var(--light); border-left: 10px solid var(--red); border-radius: 8px; padding: 0.4rem; min-height: 115px; text-align: center; } .reveal .custom-gear-match-zone h3`. These values affect readability and vertical space on slides. */
+.docs-native-article .custom-gear-match-zone {
+  /* STUDENT NOTE: Typography/spacing rule for `background: var(--light); border-left: 10px solid var(--red); border-radius: 8px; padding: 0.4rem; min-height: 115px; text-align: center; } .docs-native-article .custom-gear-match-zone h3`. These values affect readability and vertical space on slides. */
   background: var(--light);
   border-left: 10px solid var(--red);
   border-radius: 8px;
@@ -931,21 +931,21 @@
   text-align: center;
 }
 
-.reveal .custom-gear-match-zone h3 {
-  /* STUDENT NOTE: Styles elements matched by `font-size: 0.46em; margin: 0 0 0.25rem; } .reveal .custom-gear-match-drop`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .custom-gear-match-zone h3 {
+  /* STUDENT NOTE: Styles elements matched by `font-size: 0.46em; margin: 0 0 0.25rem; } .docs-native-article .custom-gear-match-drop`. Search the HTML for these class/id names before changing a shared rule. */
   font-size: 0.46em;
   margin: 0 0 0.25rem;
 }
 
-.reveal .custom-gear-match-drop {
-  /* STUDENT NOTE: Styles elements matched by `min-height: 58px; display: flex; align-items: center; justify-content: center; } .reveal .custom-gear-match-feedback`. Search the HTML for these class/id names before changing a shared rule. */
+.docs-native-article .custom-gear-match-drop {
+  /* STUDENT NOTE: Styles elements matched by `min-height: 58px; display: flex; align-items: center; justify-content: center; } .docs-native-article .custom-gear-match-feedback`. Search the HTML for these class/id names before changing a shared rule. */
   min-height: 58px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.reveal .custom-gear-match-feedback {
+.docs-native-article .custom-gear-match-feedback {
   margin: 0;
   font-size: 0.42em;
   font-weight: 700;

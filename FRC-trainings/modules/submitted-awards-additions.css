@@ -1,0 +1,869 @@
+/* ============================================================================
+   5041 Submitted Awards Training Module
+   Module-specific styles. Shared 5041 colors and typography come from
+   ../../shared/css/styles.css.
+   ============================================================================ */
+
+/* =========================================================
+   Basic slide typography and reusable layouts
+   ========================================================= */
+
+.awards-slide h2,
+.awards-vertical h2,
+.awards-quiz h2 {
+  font-size: 1.42em;
+  margin-bottom: 0.42rem;
+}
+
+.awards-intro {
+  max-width: 1000px;
+  margin: 0 auto 0.65rem;
+  font-size: 0.52em;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.awards-grid-2,
+.awards-grid-3 {
+  display: grid;
+  gap: 0.7rem;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.awards-grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.awards-grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.compact-awards-grid .awards-card {
+  min-height: 145px;
+}
+
+.awards-card,
+.awards-coach-card,
+.awards-draft-output,
+.qa-generator,
+.time-total-card {
+  background: var(--light);
+  border-left: 10px solid var(--red);
+  border-radius: 8px;
+  padding: 0.65rem 0.75rem;
+  text-align: left;
+}
+
+.awards-card h3,
+.awards-coach-card h3,
+.awards-draft-output h3 {
+  margin: 0 0 0.3rem;
+  font-size: 0.68em;
+}
+
+.awards-card p,
+.awards-coach-card p,
+.awards-draft-output p {
+  margin: 0;
+  font-size: 0.43em;
+  line-height: 1.22;
+}
+
+.awards-card ul {
+  margin: 0.25rem 0 0;
+  padding-left: 0.95em;
+}
+
+.awards-card li {
+  font-size: 0.42em;
+  line-height: 1.2;
+  margin-bottom: 0.14rem;
+}
+
+.awards-callout {
+  max-width: 1060px;
+  margin: 0.7rem auto 0;
+  padding: 0.55rem 0.75rem;
+  background: var(--white);
+  border-left: 10px solid var(--red);
+  border-radius: 8px;
+}
+
+.awards-callout p {
+  margin: 0;
+  font-size: 0.48em;
+  line-height: 1.22;
+}
+
+.source-note {
+  border-left-color: var(--gray);
+}
+
+
+/* =========================================================
+   Shared-looking interactive cards used in this module
+   ========================================================= */
+
+.award-chip-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.42rem;
+  max-width: 1050px;
+  margin: 0 auto 0.65rem;
+  justify-content: center;
+}
+
+.award-chip {
+  background: var(--white);
+  color: var(--black);
+  border: 2px solid var(--red);
+  border-left: 8px solid var(--red);
+  border-radius: 7px;
+  padding: 0.38rem 0.52rem;
+  font-family: "Droid Sans", Arial, sans-serif;
+  font-size: 0.36em;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.award-chip:hover,
+.award-chip:focus,
+.award-chip.active {
+  background: var(--red);
+  color: var(--white);
+  outline: none;
+}
+
+.award-output {
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 0.65rem 0.75rem;
+  background: var(--white);
+  border-left: 10px solid var(--red);
+  border-radius: 8px;
+  text-align: left;
+}
+
+.award-output h3 {
+  margin: 0 0 0.28rem;
+  font-size: 0.68em;
+}
+
+.award-output ul {
+  margin: 0.3rem 0;
+  padding-left: 0.95em;
+}
+
+.award-output li {
+  font-size: 0.4em;
+  line-height: 1.2;
+  margin-bottom: 0.12rem;
+}
+
+.award-output p {
+  margin: 0.35rem 0 0;
+  padding-top: 0.35rem;
+  border-top: 2px solid #dddddd;
+  font-size: 0.42em;
+  line-height: 1.2;
+}
+
+.response-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+  max-width: 1120px;
+  margin: 0 auto 0.55rem;
+}
+
+.response-card {
+  min-height: 200px;
+  padding: 0.65rem 0.75rem;
+  background: var(--light);
+  color: var(--black);
+  border: 0;
+  border-left: 10px solid var(--red);
+  border-radius: 8px;
+  cursor: pointer;
+  font: 400 0.46em/1.24 "Droid Serif", Georgia, serif;
+  text-align: left;
+}
+
+.response-card:hover,
+.response-card:focus {
+  outline: 4px solid var(--red);
+  outline-offset: 2px;
+}
+
+.response-card.correct {
+  border-left-color: #2e7d32;
+  background: #e6f4ea;
+}
+
+.response-card.incorrect {
+  border-left-color: #b00020;
+  background: #fdecea;
+}
+
+/* =========================================================
+   Award explorer
+   ========================================================= */
+
+.submitted-award-chips {
+  margin-bottom: 0.65rem;
+}
+
+.award-explorer-slide .award-output {
+  min-height: 285px;
+}
+
+.award-output .award-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.45rem;
+  margin: 0.4rem 0;
+}
+
+.award-output .award-fact {
+  background: #ffffff;
+  border: 2px solid #dddddd;
+  padding: 0.35rem;
+  border-radius: 6px;
+}
+
+.award-output .award-fact strong {
+  display: block;
+  color: var(--red);
+  font-family: "Droid Sans", Arial, sans-serif;
+  font-size: 0.42em;
+  margin-bottom: 0.12rem;
+}
+
+.award-output .award-fact span {
+  display: block;
+  font-size: 0.36em;
+  line-height: 1.2;
+}
+
+/* =========================================================
+   Impact prompts
+   ========================================================= */
+
+.prompt-card {
+  position: relative;
+  padding-top: 0.9rem;
+}
+
+.prompt-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  margin-bottom: 0.35rem;
+  border-radius: 50%;
+  background: var(--red);
+  color: var(--white);
+  font-family: "Droid Sans", Arial, sans-serif;
+  font-size: 0.55em;
+  font-weight: 700;
+}
+
+/* =========================================================
+   Impact essay planner
+   ========================================================= */
+
+.planner-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.45rem;
+  max-width: 1000px;
+  margin: 0 auto 0.55rem;
+  font-family: "Droid Sans", Arial, sans-serif;
+  font-size: 0.45em;
+  font-weight: 700;
+}
+
+.planner-controls select {
+  min-width: 380px;
+  padding: 0.45rem 0.55rem;
+  border: 3px solid var(--black);
+  background: var(--white);
+  font: inherit;
+}
+
+.awards-coach-card {
+  max-width: 1040px;
+  margin: 0 auto 0.6rem;
+  background: var(--white);
+}
+
+.planner-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.planner-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-family: "Droid Sans", Arial, sans-serif;
+  font-size: 0.36em;
+  font-weight: 700;
+  text-align: left;
+}
+
+.planner-grid textarea {
+  width: 100%;
+  min-height: 145px;
+  resize: vertical;
+  padding: 0.45rem;
+  border: 3px solid var(--black);
+  border-left: 9px solid var(--red);
+  background: var(--white);
+  color: var(--black);
+  font: 400 1em/1.25 "Droid Serif", Georgia, serif;
+}
+
+.planner-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  max-width: 1120px;
+  margin: 0.55rem auto;
+  font: 700 0.35em "Droid Sans", Arial, sans-serif;
+}
+
+.awards-draft-output {
+  max-width: 1120px;
+  min-height: 110px;
+  margin: 0 auto;
+  background: #ffffff;
+  white-space: pre-wrap;
+}
+
+/* =========================================================
+   Evidence sorting interaction
+   ========================================================= */
+
+.awards-sort-bank {
+  max-width: 1100px;
+  min-height: 115px;
+  margin: 0 auto 0.55rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.32rem;
+  padding: 0.45rem;
+  background: var(--light);
+  border: 3px dashed var(--gray);
+  border-radius: 8px;
+}
+
+.awards-sort-chip {
+  flex: 1 1 300px;
+  background: var(--white);
+  border: 2px solid var(--red);
+  border-left: 8px solid var(--red);
+  border-radius: 7px;
+  padding: 0.3rem 0.42rem;
+  font-size: 0.34em;
+  line-height: 1.15;
+  font-weight: 700;
+  color: #222222;
+  cursor: grab;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+.awards-sort-chip.dragging {
+  opacity: 0.45;
+}
+
+.awards-sort-chip.correct {
+  border-color: #2e7d32;
+  background: #e6f4ea;
+}
+
+.awards-sort-chip.incorrect {
+  border-color: #b00020;
+  background: #fdecea;
+}
+
+.awards-sort-targets {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.55rem;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.awards-sort-zone {
+  min-height: 180px;
+  background: var(--white);
+  border: 3px dashed #bbbbbb;
+  border-top: 7px solid var(--red);
+  border-radius: 7px;
+  padding: 0.4rem;
+}
+
+.awards-sort-zone.drag-over,
+.awards-sort-bank.drag-over {
+  outline: 4px solid var(--red);
+  outline-offset: 2px;
+}
+
+.awards-sort-zone h3 {
+  margin: 0 0 0.35rem;
+  font-size: 0.48em;
+  text-align: center;
+}
+
+.awards-sort-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.28rem;
+  min-height: 110px;
+}
+
+.awards-sort-zone .awards-sort-chip {
+  flex: 0 0 auto;
+  width: 100%;
+  font-size: 0.29em;
+}
+
+.activity-actions,
+.qa-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0.55rem;
+  margin: 0.6rem auto 0;
+}
+
+.activity-feedback {
+  min-height: 1.35em;
+  margin: 0.45rem auto 0;
+  color: var(--black);
+  font: 700 0.4em/1.2 "Droid Sans", Arial, sans-serif;
+  text-align: center;
+}
+
+/* =========================================================
+   Custom image / photo slots
+   ========================================================= */
+
+.awards-image-placeholder {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  width: min(940px, 92%);
+  min-height: 360px;
+  margin: 0 auto;
+  padding: 1rem;
+  border: 5px dashed var(--red);
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      #ffffff,
+      #ffffff 18px,
+      #f4f4f4 18px,
+      #f4f4f4 36px
+    );
+  color: var(--gray);
+  font: 700 0.5em/1.35 "Droid Sans", Arial, sans-serif;
+  text-align: center;
+}
+
+.awards-image-placeholder strong {
+  color: var(--red);
+  font-size: 1.15em;
+}
+
+.awards-image-placeholder.wide {
+  width: min(1080px, 96%);
+  min-height: 390px;
+}
+
+.awards-wide-photo {
+  display: block;
+  width: min(1000px, 94%);
+  max-height: 500px;
+  object-fit: contain;
+  margin: 0 auto !important;
+  border-radius: 8px;
+  border-left: 12px solid var(--red);
+  background: var(--white);
+}
+
+/* =========================================================
+   Impact interview timeline and time budget
+   ========================================================= */
+
+.interview-timeline {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  max-width: 1040px;
+  min-height: 130px;
+  margin: 0.35rem auto 0.7rem;
+  overflow: hidden;
+  border: 4px solid var(--black);
+  border-radius: 8px;
+}
+
+.timeline-block {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0.45rem;
+  font-family: "Droid Sans", Arial, sans-serif;
+  text-align: center;
+}
+
+.timeline-block strong {
+  font-size: 0.72em;
+}
+
+.timeline-block span {
+  font-size: 0.36em;
+  line-height: 1.2;
+}
+
+.timeline-block.presentation {
+  background: var(--red);
+  color: var(--white);
+}
+
+.timeline-block.qa {
+  background: var(--light);
+  color: var(--black);
+}
+
+.time-budget-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  max-width: 1000px;
+  margin: 0 auto 0.6rem;
+}
+
+.time-budget-grid label {
+  display: grid;
+  grid-template-columns: 1fr 90px auto;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.42rem 0.5rem;
+  background: var(--light);
+  border-left: 8px solid var(--red);
+  border-radius: 6px;
+  font: 700 0.36em "Droid Sans", Arial, sans-serif;
+  text-align: left;
+}
+
+.time-input {
+  width: 90px;
+  padding: 0.28rem;
+  border: 2px solid var(--black);
+  background: var(--white);
+  font: 700 1em "Droid Sans", Arial, sans-serif;
+  text-align: center;
+}
+
+.time-total-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--white);
+}
+
+.time-total-card > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.time-total-card span {
+  font: 700 0.32em "Droid Sans", Arial, sans-serif;
+  color: var(--gray);
+}
+
+.time-total-card strong {
+  font: 700 0.76em "Audiowide", "Droid Sans", sans-serif;
+  color: var(--red);
+}
+
+/* =========================================================
+   Q&A practice
+   ========================================================= */
+
+.qa-generator {
+  max-width: 950px;
+  margin: 0 auto;
+  background: var(--white);
+  text-align: center;
+}
+
+.qa-question {
+  min-height: 125px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem;
+  font-size: 0.62em;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.qa-timer {
+  margin-top: 0.55rem;
+  color: var(--red);
+  font: 700 1.05em "Audiowide", "Droid Sans", sans-serif;
+}
+
+.qa-timer.warning {
+  color: #b00020;
+}
+
+/* =========================================================
+   Response-selection interactives
+   ========================================================= */
+
+.leadership-response-grid,
+.woodie-response-grid {
+  max-width: 1120px;
+}
+
+.leadership-response,
+.woodie-response {
+  min-height: 230px;
+}
+
+/* =========================================================
+   Workflow
+   ========================================================= */
+
+.workflow-strip {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 0.3rem;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.workflow-step {
+  min-height: 135px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.35rem;
+  background: var(--light);
+  border-top: 7px solid var(--red);
+  text-align: center;
+}
+
+.workflow-step strong {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--red);
+  color: var(--white);
+  font: 700 0.42em "Droid Sans", Arial, sans-serif;
+}
+
+.workflow-step span {
+  font: 700 0.31em/1.2 "Droid Sans", Arial, sans-serif;
+}
+
+/* =========================================================
+   Submission checklist interaction
+   ========================================================= */
+
+.submission-checklist {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.42rem;
+  max-width: 1080px;
+  margin: 0 auto;
+}
+
+.submission-checklist label {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.35rem;
+  padding: 0.42rem 0.5rem;
+  background: var(--light);
+  border-left: 7px solid var(--red);
+  border-radius: 5px;
+  font: 700 0.34em/1.2 "Droid Sans", Arial, sans-serif;
+  text-align: left;
+}
+
+.submission-checklist input {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 auto;
+}
+
+.checklist-meter {
+  width: min(900px, 90%);
+  height: 18px;
+  margin: 0.65rem auto 0;
+  overflow: hidden;
+  background: #dddddd;
+  border-radius: 99px;
+}
+
+#checklistMeterFill {
+  width: 0;
+  height: 100%;
+  background: var(--red);
+  transition: width 0.2s ease;
+}
+
+/* =========================================================
+   Deadline table
+   ========================================================= */
+
+.deadline-table-wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  overflow-x: auto;
+}
+
+.awards-deadline-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--white);
+  font-family: "Droid Sans", Arial, sans-serif;
+}
+
+.awards-deadline-table th,
+.awards-deadline-table td {
+  border: 2px solid #cccccc;
+  padding: 0.42rem;
+  font-size: 0.32em;
+  line-height: 1.2;
+  text-align: left;
+}
+
+.awards-deadline-table th {
+  background: var(--black);
+  color: var(--white);
+  font-size: 0.34em;
+}
+
+.awards-deadline-table tbody tr:nth-child(even) {
+  background: var(--light);
+}
+
+/* =========================================================
+   Resource links
+   ========================================================= */
+
+.awards-resource-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.45rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.awards-resource-list .resource-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 72px;
+  text-align: center;
+}
+
+/* =========================================================
+   Quiz / certificate name input
+   ========================================================= */
+
+.certificate-name-input {
+  display: block;
+  width: min(650px, 90%);
+  margin: 0.7rem auto;
+  padding: 0.6rem 0.8rem;
+  border: 4px solid var(--black);
+  border-left: 12px solid var(--red);
+  background: var(--white);
+  font: 700 0.7em "Droid Sans", Arial, sans-serif;
+}
+
+/* =========================================================
+   Responsive layouts
+   ========================================================= */
+
+@media (max-width: 1000px) {
+  .awards-grid-3,
+  .planner-grid,
+  .awards-sort-targets,
+  .workflow-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .workflow-step {
+    min-height: 105px;
+  }
+}
+
+@media (max-width: 760px) {
+  .awards-grid-2,
+  .awards-grid-3,
+  .planner-grid,
+  .time-budget-grid,
+  .submission-checklist,
+  .awards-resource-list,
+  .awards-sort-targets,
+  .workflow-strip,
+  .award-output .award-facts {
+    grid-template-columns: 1fr;
+  }
+
+  .planner-controls,
+  .planner-footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .planner-controls select {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .interview-timeline {
+    grid-template-columns: 1fr;
+  }
+
+  .time-budget-grid label {
+    grid-template-columns: 1fr 80px auto;
+  }
+
+  .time-total-card {
+    grid-template-columns: 1fr;
+  }
+
+  .awards-image-placeholder,
+  .awards-image-placeholder.wide {
+    min-height: 240px;
+  }
+}
