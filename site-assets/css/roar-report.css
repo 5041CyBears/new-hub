@@ -6,210 +6,29 @@
   --roar-white: #ffffff;
   --roar-border: #d7d7d7;
   --roar-danger-bg: #fff1f1;
-  --roar-page: #ededed;
-  --roar-shadow: 0 8px 28px rgba(0, 0, 0, 0.10);
 }
 
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-  background: var(--roar-page);
-}
-
-body.roar-standalone {
-  margin: 0;
-  min-height: 100vh;
-  background:
-    linear-gradient(135deg, rgba(152, 0, 0, 0.025) 0 18%, transparent 18% 100%),
-    var(--roar-page);
-  color: #151515;
-  font-family: "Droid Serif", Georgia, serif;
-}
-
-button,
-input,
-textarea {
-  font: inherit;
-}
-
-.roar-site-header {
-  position: relative;
-  overflow: hidden;
-  background: var(--roar-black);
-  color: var(--roar-white);
-  border-bottom: 7px solid var(--roar-red);
-}
-
-.roar-site-header::after {
-  content: "";
-  position: absolute;
-  right: -65px;
-  top: -10px;
-  width: 330px;
-  height: 150px;
-  background: var(--roar-red);
-  transform: skewX(-28deg);
-  opacity: 0.32;
-  pointer-events: none;
-}
-
-.roar-header-inner {
-  position: relative;
-  z-index: 2;
-  width: min(1120px, calc(100% - 32px));
-  margin: 0 auto;
-  padding: 20px 0 18px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.roar-team-logo {
-  width: 86px;
-  height: 86px;
-  object-fit: contain;
-  flex: 0 0 auto;
-}
-
-.roar-header-copy {
-  min-width: 0;
-}
-
-.roar-team-name {
-  display: block;
-  margin-bottom: 5px;
-  color: #ddd;
-  font: 700 0.76rem/1.2 "Droid Sans", Arial, sans-serif;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-}
-
-.roar-header-copy h1 {
-  margin: 0;
-  font: 400 clamp(1.75rem, 5vw, 2.8rem)/1.05 "Audiowide", "Droid Sans", sans-serif;
-  letter-spacing: 0.015em;
-}
-
-.roar-header-copy p {
-  margin: 7px 0 0;
-  color: #ddd;
-  font: 700 0.92rem/1.25 "Droid Sans", Arial, sans-serif;
-}
-
-.roar-header-stripe {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 42%;
-  height: 7px;
-  background: #fff;
-  opacity: 0.24;
-}
-
-.roar-site-main {
-  width: min(1120px, calc(100% - 32px));
-  margin: 26px auto 42px;
-}
-
-.docs-page-section {
-  background: #fff;
-  border: 1px solid var(--roar-border);
-  border-top: 6px solid var(--roar-red);
-  padding: clamp(20px, 4vw, 34px);
-  margin: 0 0 22px;
-  box-shadow: var(--roar-shadow);
-  scroll-margin-top: 20px;
-}
-
-.docs-page-section h1,
-.docs-page-section h2,
-.docs-page-section h3 {
-  color: #111;
-  font-family: "Droid Sans", Arial, sans-serif;
-}
-
-.docs-page-title {
-  margin: 6px 0 8px;
-  font: 400 clamp(1.75rem, 4vw, 2.45rem)/1.1 "Audiowide", "Droid Sans", sans-serif !important;
-}
-
-.docs-lead {
-  max-width: 860px;
-  margin: 0;
-  font: 400 clamp(1rem, 2vw, 1.08rem)/1.65 "Droid Serif", Georgia, serif;
-  color: #333;
-}
-
-.resource-eyebrow,
-.resource-section-kicker {
-  display: inline-block;
-  color: #760000;
-  font: 700 0.72rem/1.2 "Droid Sans", Arial, sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.09em;
-}
-
-.resource-section-heading {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  gap: 14px;
-  margin-bottom: 20px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #e3e3e3;
-}
-
-.resource-section-heading h2 {
-  margin: 4px 0 0;
-  font-size: clamp(1.3rem, 2.8vw, 1.8rem);
-}
-
-.resource-callout {
-  margin: 20px 0 0;
-  padding: 15px 17px;
-  background: #f6f6f6;
-  border-left: 6px solid var(--roar-red);
-  font: 400 0.92rem/1.5 "Droid Sans", Arial, sans-serif;
-}
-
-.resource-callout-compact {
-  margin-bottom: 0;
-}
-
-.resource-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  padding: 0.72rem 0.9rem;
-  border: 0;
-  background: var(--roar-red);
-  color: #fff;
-  text-decoration: none;
-  font: 700 0.82rem/1 "Droid Sans", Arial, sans-serif;
-}
-
-.resource-link:visited {
-  color: #fff;
-}
-
-.resource-link:hover,
-.resource-link:focus-visible {
-  background: var(--roar-black);
-  color: #fff;
-  outline: none;
-}
-
-.resource-link-secondary {
-  background: var(--roar-black);
-}
-
-.resource-link-secondary:hover,
-.resource-link-secondary:focus-visible {
-  background: var(--roar-red);
-}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body.roar-standalone { margin: 0; background: #f6f6f6; color: #161616; font: 16px/1.55 "Droid Sans", Arial, sans-serif; }
+.roar-site-header { color: #fff; background: #980000; }
+.roar-header-inner { max-width: 1120px; margin: auto; display: flex; align-items: center; gap: 1.2rem; padding: 1rem; }
+.roar-team-logo { width: 92px; height: 92px; object-fit: contain; }
+.roar-header-copy h1 { margin: 0; font-family: "Audiowide", sans-serif; font-size: clamp(1.5rem, 3vw, 2.3rem); }
+.roar-header-copy p { margin: 0; } .roar-team-name { font-weight: 700; }
+.roar-header-stripe { height: 6px; background: #171717; }
+.roar-site-main { max-width: 1120px; margin: auto; padding: 1rem; }
+.docs-page-section { background: white; padding: clamp(1rem, 3vw, 2rem); margin: 1rem 0; border: 1px solid #ddd; border-radius: 8px; }
+.docs-page-title { font-family: "Audiowide", sans-serif; font-size: clamp(1.6rem, 3vw, 2.3rem); margin: .2rem 0; }
+.resource-eyebrow, .resource-section-kicker { color: #980000; font-weight: 700; letter-spacing: .06em; font-size: .8rem; }
+.resource-section-heading h2 { margin: .2rem 0 1rem; }
+.resource-link { display: inline-block; background: #980000; color: white; padding: .75rem 1rem; border-radius: 6px; font-weight: 700; text-decoration: none; }
+.resource-link:hover { background: #690000; }
+.resource-callout { padding: 1rem; margin-top: 1rem; background: #f3f3f3; border-left: 6px solid #980000; }
+.roar-site-footer { background: #171717; color: white; padding: 1.5rem max(1rem, calc((100vw - 1100px) / 2)); }
+.roar-site-footer span { display: block; }
+button, input, textarea { font: inherit; }
+#roarTurnstile { min-height: 65px; margin: .7rem 0; }
 
 .roar-hero {
   position: relative;
@@ -245,12 +64,8 @@ textarea {
   padding: 1rem 1.1rem;
   border-left: 8px solid var(--roar-red);
   background: var(--roar-danger-bg);
-  font: 400 0.94rem/1.5 "Droid Sans", Arial, sans-serif;
-}
-
-.roar-danger-callout strong {
-  display: block;
-  margin-bottom: 2px;
+  font-family: "Droid Sans", Arial, sans-serif;
+  line-height: 1.45;
 }
 
 .roar-info-grid,
@@ -277,13 +92,13 @@ textarea {
 .roar-process-grid h3,
 .roar-option-grid h3 {
   margin: 0.35rem 0 0.45rem;
+  font-family: "Droid Sans", Arial, sans-serif;
 }
 
 .roar-info-grid p,
 .roar-process-grid p,
 .roar-option-grid p {
   margin: 0;
-  line-height: 1.48;
 }
 
 .roar-step {
@@ -484,7 +299,7 @@ textarea {
 .roar-submit,
 .roar-reset {
   border: 0;
-  padding: 0.82rem 1.05rem;
+  padding: 0.78rem 1rem;
   font: 700 0.95rem/1 "Droid Sans", Arial, sans-serif;
   cursor: pointer;
 }
@@ -509,11 +324,6 @@ textarea {
   color: #fff;
 }
 
-.roar-reset:hover,
-.roar-reset:focus {
-  background: #444;
-}
-
 .roar-status {
   min-height: 1.4rem;
   margin-top: 0.8rem;
@@ -533,11 +343,8 @@ textarea {
   padding: 0.85rem;
   border-left: 6px solid #a86a00;
   background: #fff5dd;
-  font: 400 0.9rem/1.45 "Droid Sans", Arial, sans-serif;
-}
-
-.roar-config-warning code {
-  font-size: 0.88em;
+  font-family: "Droid Sans", Arial, sans-serif;
+  line-height: 1.4;
 }
 
 .roar-process-grid {
@@ -566,6 +373,20 @@ textarea {
   margin-top: 1rem;
 }
 
+.resource-link-secondary {
+  background: var(--roar-black) !important;
+}
+
+.resource-link-secondary:hover,
+.resource-link-secondary:focus {
+  background: var(--roar-red) !important;
+}
+
+.resource-item-priority {
+  border-left-color: var(--roar-black);
+  box-shadow: inset 6px 0 0 var(--roar-red);
+}
+
 .roar-submit-frame,
 .roar-honeypot {
   position: absolute !important;
@@ -575,34 +396,6 @@ textarea {
   opacity: 0 !important;
   pointer-events: none !important;
   border: 0 !important;
-}
-
-.roar-site-footer {
-  width: min(1120px, calc(100% - 32px));
-  margin: 0 auto 28px;
-  padding: 18px 20px;
-  background: #111;
-  border-top: 6px solid var(--roar-red);
-  color: #ddd;
-  font: 400 0.78rem/1.45 "Droid Sans", Arial, sans-serif;
-}
-
-.roar-site-footer > div {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 16px;
-  align-items: baseline;
-}
-
-.roar-site-footer strong {
-  color: #fff;
-  font-family: "Audiowide", "Droid Sans", sans-serif;
-  font-weight: 400;
-}
-
-.roar-site-footer p {
-  max-width: 850px;
-  margin: 8px 0 0;
 }
 
 @media (max-width: 900px) {
@@ -618,59 +411,12 @@ textarea {
   }
 }
 
-@media (max-width: 620px) {
-  .roar-header-inner {
-    width: min(100% - 24px, 1120px);
-    gap: 12px;
-    padding: 14px 0;
-  }
-
-  .roar-team-logo {
-    width: 62px;
-    height: 62px;
-  }
-
-  .roar-header-copy p {
-    font-size: 0.78rem;
-  }
-
-  .roar-site-main,
-  .roar-site-footer {
-    width: min(100% - 20px, 1120px);
-  }
-
-  .roar-site-main {
-    margin-top: 14px;
-  }
-
-  .docs-page-section {
-    padding: 18px 15px;
-    margin-bottom: 14px;
-  }
-
-  .resource-section-heading {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
+@media (max-width: 560px) {
   .roar-process-grid {
     grid-template-columns: 1fr;
   }
 
   .roar-fieldset {
     padding: 0.85rem;
-  }
-
-  .roar-radio-row {
-    flex-direction: column;
-  }
-
-  .roar-suboptions label {
-    display: block;
-    margin: 0.45rem 0;
-  }
-
-  .roar-form-actions button {
-    flex: 1 1 100%;
   }
 }

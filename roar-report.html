@@ -66,9 +66,8 @@
           <div class="roar-danger-callout">JavaScript is required for this online form. You can still report directly to a ROAR Mentor Representative, faculty advisor, or another trusted school adult.</div>
         </noscript>
 
-        <form id="roarReportForm" class="roar-form" method="post" novalidate>
+        <form id="roarReportForm" class="roar-form" method="post" novalidate inert>
           <input type="hidden" name="action" value="submitRoarReport">
-          <input type="hidden" name="reportTitle" id="reportTitle">
           <input type="hidden" name="date" id="reportDate">
           <input type="hidden" name="time" id="reportTime">
           <input type="text" name="website" id="roarHoneypot" class="roar-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -82,10 +81,15 @@
                 <small>You may leave this blank. If you want an adult to follow up directly, including your name can make that easier.</small>
               </label>
 
+              <label class="roar-field">
+                <span>Student(s) experiencing the concern <em>optional</em></span>
+                <input type="text" name="reportingStudents" maxlength="500" placeholder="Names, if you know them">
+              </label>
+
               <div class="roar-field roar-readonly-card">
                 <span>Report date and time</span>
                 <strong id="reportDateTimeDisplay">Set when the page loads</strong>
-                <small>The reporting timestamp is also recorded by the Google Sheet backend.</small>
+                <small>The secure reporting system also records when the report is received.</small>
               </div>
             </div>
           </fieldset>
@@ -154,18 +158,20 @@
           <fieldset class="roar-fieldset roar-confirmation-fieldset">
             <legend>Before submitting</legend>
             <label class="roar-confirm-check">
-              <input type="checkbox" id="privacyAcknowledge" required>
+              <input type="checkbox" id="privacyAcknowledge" name="privacyAcknowledge" value="true" required>
               <span>I understand that 5041 will keep this information private to the greatest extent reasonably possible, but an adult may need to share it with school officials, parents/guardians, Title IX personnel, law enforcement, emergency services, or others when required for safety, law, district policy, or a fair review.</span>
             </label>
           </fieldset>
 
           <div id="roarConfigWarning" class="roar-config-warning" hidden>
             <strong>Submission backend not configured yet.</strong>
-            The page is ready, but the Apps Script Web App URL must be placed in <code>site-assets/js/roar-config.js</code> before online submissions can be sent to the Google Sheet.
+            The page is ready, but the Cloudflare Worker URL and Turnstile site key must be set in <code>site-assets/js/roar-config.js</code>.
           </div>
 
+          <div id="roarTurnstile" aria-label="Submission verification"></div>
+
           <div class="roar-form-actions">
-            <button type="submit" class="roar-submit" id="submitRoar">Submit ROAR Report</button>
+            <button type="submit" class="roar-submit" id="submitRoar" disabled>Submit ROAR Report</button>
             <button type="reset" class="roar-reset" id="resetRoar">Clear Form</button>
           </div>
           <p class="roar-status" id="roarStatus" role="status" aria-live="polite"></p>
@@ -216,9 +222,9 @@
           </div>
         </div>
         <p>
-          Submitted reports are intended to be stored in the private <strong>ROAR Reports</strong> Google Sheet. Access to the sheet itself should remain restricted to authorized adults; students do not need sheet access to submit through the reporting page.
+          Reports are stored in a private ROAR database. Only authorized adults with the admin password can view them. The form does not show submitted reports to students.
         </p>
-        <a id="roarSheetLink" class="resource-link resource-link-secondary" href="#" target="_blank" rel="noopener noreferrer">Open restricted ROAR Reports Sheet <span aria-hidden="true">↗</span></a>
+        <a id="roarAdminLink" class="resource-link resource-link-secondary" href="#" target="_blank" rel="noopener noreferrer" hidden>Open ROAR admin reports <span aria-hidden="true">↗</span></a>
       </section>
 
     </main>
@@ -233,5 +239,6 @@
 
     <script src="site-assets/js/roar-config.js"></script>
     <script src="site-assets/js/roar-report.js"></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onRoarTurnstileLoaded&render=explicit" async defer></script>
   </body>
 </html>
