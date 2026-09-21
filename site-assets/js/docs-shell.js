@@ -676,7 +676,7 @@
 
     /* -------------------------------------------------------
        Resources
-       Exact order: 5041 program materials, FTC, then FRC.
+       Exact order: 5041 program materials, LEGO League, FTC, then FRC.
        These links stay permanently visible and are not
        collapsible.
        ------------------------------------------------------- */
@@ -696,7 +696,7 @@
         )
       );
 
-      ["5041", "FTC", "FRC"].forEach(
+      ["5041", "FLL", "FTC", "FRC"].forEach(
         (resourceProgram) => {
           const resource =
             resourceManifest.find(

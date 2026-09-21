@@ -337,6 +337,13 @@ window.TRAINING_SITE_MANIFEST = {
       "path": "5041-resources.html"
     },
     {
+      "program": "FLL",
+      "slug": "lego-league-resources",
+      "title": "LEGO League Resources",
+      "description": "5041-created LEGO League season planning, robot-game, programming, Innovation Project, and research resources.",
+      "path": "LEGO-League-resources.html"
+    },
+    {
       "program": "FTC",
       "slug": "ftc-resources",
       "title": "FTC Resource Library",
